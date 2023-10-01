@@ -10,11 +10,10 @@ from .models import Simulation
 @login_required
 def simulations(request):
     if request.method == 'POST':
-        todo_name = request.POST.get("new-simulation")
-        todo = Simulation.objects.create(name=todo_name, user=request.user)
+        simulation_name = request.POST.get("new-simulation")
+        simulation = Simulation.objects.create(name=simulation_name, user=request.user)
         return redirect("simulations")
 
-    # todo items
     simulations = Simulation.objects.filter(user=request.user, is_completed=False).order_by("-id")
 
     # pagination 4 items per page
@@ -26,6 +25,10 @@ def simulations(request):
 
     # NOTE: Need to change the html file to crud.html for displaying the todo's
     return render(request, "simulation/simulations.html", context)
+
+
+def new_simulation(request):
+    return render(request, 'simulation/simulation_new.html')
 
 
 def detail_simulation(request,pk):
@@ -85,11 +88,7 @@ def complete_simulation(request, pk):
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
-def delete_simulation(request, pk):
-    """
-    Args:
-        pk (Integer): Todo ID - Primary key
-    """    
-    todo = get_object_or_404(Simulation, id=pk, user=request.user)
-    todo.delete()
+def delete_simulation(request, pk):    
+    simulation = get_object_or_404(Simulation, id=pk, user=request.user)
+    simulation.delete()
     return redirect("simulations")

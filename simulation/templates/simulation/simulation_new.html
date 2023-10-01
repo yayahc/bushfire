@@ -1,0 +1,15 @@
+{% extends 'simulation/index.html' %}
+
+{% block content %}
+    
+    <div class="container-section">
+        <form action="{% url 'simulations' %}" method="post" class="create-todo-form">
+            {% csrf_token %}
+            
+            <input type="text" name="new-simulation" id="new-simulation" required>
+            <button type="submit">Creer une simulation</button>
+        </form>
+    </div>
+
+
+{% endblock %}

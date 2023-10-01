@@ -3,16 +3,12 @@
 {% block content %}
 
 <div class="container">
-    
-    <div class="container-section">
-        <form action="{% url 'simulations' %}" method="post" class="create-todo-form">
-            {% csrf_token %}
 
-            <input type="text" name="new-simulation" id="new-simulation" required>
-            <button type="submit">Creer une simulation</button>
-        </form>
-    </div>
+    <a href="/simulation/new">New simulation</a>
 
+    <br>
+
+    <h1>Toutes les simulations</h1>
     
     {% for i in page_obj %}
     <div class="todo-container">
