@@ -61,17 +61,15 @@ def logout_user(request):
     
 
 def update_simulation(request, pk):
-    """
-    Args:
-        pk (Integer): Simulation ID - primary key
-    """
-    # NOTE: below get_object_or_404() returns a data if exists else status 404 not found
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
-
-    # NOTE: request.POST.get("simulation_{pk}") is the input name of the simulation modal
-    simulation.name = request.POST.get(f"simulation_{pk}")
-    simulation.save()
-    return redirect("home")
+    if request.method == 'POST':
+        new_name = request.POST.get(f"simulation_{pk}")
+        simulation.name = new_name
+        simulation.save()
+        return render(request, 'simulation/simulation_detail.html', {'simulation': simulation})
+    
+    simulation = get_object_or_404(Simulation, pk=pk)
+    return render(request, 'simulation/simulation_edit.html', {'simulation': simulation})
 
 
 def complete_simulation(request, pk):
