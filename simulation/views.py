@@ -1,11 +1,15 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
-from django.contrib.auth import login, logout
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
-from .forms import UserRegistrationForm, SimulationForm
+from .forms import UserRegistrationForm
 from .models import Simulation
+from django.http import HttpResponse
+from .forms import UploadSimulationForm
+
+import re
 
 @login_required
 def simulations(request):
@@ -73,16 +77,9 @@ def update_simulation(request, pk):
 
 
 def complete_simulation(request, pk):
-    """
-    Updating todo as completed item
-
-    Args:
-        pk (Integer): Todo ID - primary key
-    """    
     todo = get_object_or_404(Simulation, id=pk, user=request.user)
     todo.is_completed = True
     todo.save()
-    # return redirect("home")
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -90,3 +87,68 @@ def delete_simulation(request, pk):
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
     simulation.delete()
     return redirect("simulations")
+
+
+def download_simulation(request, pk):
+    simulation = get_object_or_404(Simulation, pk=pk)
+
+    content = f"Simulation Name: {simulation.name}\n"
+    content += f"Created On: {simulation.created_on}\n"
+    content += f"Updated On: {simulation.updated_on}\n"
+    content += f"User: {simulation.user}\n"
+
+    response = HttpResponse(content, content_type='text/plain')
+    response['Content-Disposition'] = f'attachment; filename="{simulation.name}.txt"'
+    return response
+
+def download_all_simulations(request):
+    simulations = Simulation.objects.all()
+
+    content = ""
+    for simulation in simulations:
+        content += f"Simulation Name: {simulation.name}\n"
+        content += f"Created On: {simulation.created_on}\n"
+        content += f"Updated On: {simulation.updated_on}\n"
+        content += f"User: {simulation.user}\n\n\n"
+        content += "--------------------------------------\n\n\n"
+
+    response = HttpResponse(content, content_type='text/plain')
+    response['Content-Disposition'] = 'attachment; filename="all_simulations.txt"'
+    return response
+
+
+@login_required
+def upload_simulation(request):
+    if request.method == 'POST':
+        form = UploadSimulationForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            name = form.cleaned_data['name']
+            txt_file = form.cleaned_data['txt_file']
+            content = txt_file.read().decode('utf-8')
+
+            # Use regular expressions to extract information from the content
+            created_on_match = re.search(r'Created On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
+            updated_on_match = re.search(r'Updated On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
+            user_match = re.search(r'User: (\w+)', content)
+
+            if created_on_match and updated_on_match and user_match:
+                created_on = created_on_match.group(1)
+                updated_on = updated_on_match.group(1)
+                user = user_match.group(1)
+
+                # Create a new Simulation instance with the extracted data
+                simulation = Simulation.objects.create(
+                    name=name,
+                    created_on=created_on,
+                    updated_on=updated_on,
+                    user=request.user,  # Set the user who uploaded the file
+                )
+
+                # Optionally, you can redirect to a success page or display a message
+                return redirect('simulations')
+
+    else:
+        form = UploadSimulationForm()
+
+    return render(request, 'simulation/upload_simulation.html', {'form': form})

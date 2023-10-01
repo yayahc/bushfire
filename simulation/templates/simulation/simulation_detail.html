@@ -11,4 +11,7 @@
 <a href="{% url 'update_simulation' simulation.id %}">Edit </a>
 <p><a href="{% url 'delete_simulation' simulation.id %}">Delete</a></p>
 
+
+<a href="{% url 'download_simulation' pk=simulation.pk %}">Download Simulation</a>
+
 {% endblock %}

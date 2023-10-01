@@ -18,3 +18,8 @@ class SimulationForm(forms.ModelForm):
     class Meta:
         fields = "__all__"
         
+
+
+class UploadSimulationForm(forms.Form):    
+    name = forms.CharField(max_length=200)
+    txt_file = forms.FileField(label='Upload TXT File')
