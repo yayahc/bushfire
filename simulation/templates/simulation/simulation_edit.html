@@ -2,6 +2,13 @@
     {% csrf_token %}
         <input type="text" name="simulation_{{ simulation.id }}" id="simulation{{ simulation.id }}" value="{{ simulation.name }}" required
             size="40">
+
+        <input type="text" name="simulation_x_{{ simulation.id }}" id="" value="{{ simulation.x }}" required
+            size="40">
+
+        <input type="text" name="simulation_y_{{ simulation.id }}" id="" value="{{ simulation.y }}" required
+            size="40">
+
         <button type="submit" class="btn btn-sm btn-primary"
             id="edit-todo-submit">Submit</button>
 </form>

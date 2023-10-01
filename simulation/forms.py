@@ -20,6 +20,5 @@ class SimulationForm(forms.ModelForm):
         
 
 
-class UploadSimulationForm(forms.Form):    
-    name = forms.CharField(max_length=200)
+class UploadSimulationForm(forms.Form):       
     txt_file = forms.FileField(label='Upload TXT File')

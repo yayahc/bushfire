@@ -5,6 +5,8 @@
 <div class="">
   <h2>{{ simulation.name }}</h2>
   <p>{{ simulation.created_on }}</p>
+  <p>{{ simulation.x }}</p>
+  <p>{{ simulation.y }}</p>
   <p>{{ simulation.user }}</p>
 </div>
 
@@ -13,5 +15,9 @@
 
 
 <a href="{% url 'download_simulation' pk=simulation.pk %}">Download Simulation</a>
+
+<br>
+
+<a href="{% url 'view_graphic' pk=simulation.pk %}">View Graphic</a>
 
 {% endblock %}

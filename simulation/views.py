@@ -10,12 +10,31 @@ from django.http import HttpResponse
 from .forms import UploadSimulationForm
 
 import re
+import os
+import matplotlib.pyplot as plt
+
+def drawer(x,y, title):
+    plt.scatter(x, y)
+    plt.xlabel('X Coordinate')
+    plt.ylabel('Y Coordinate')
+    plt.title(f'Coordinate Graphic for Simulation {title}')
+    plt.grid(True)
+
+    # Save the plot to a file
+    temp_file = os.path.join('media', f'simulation_{title}_graphic.png')
+    plt.savefig(temp_file)
+    plt.close()
+    return f'simulation_{title}_graphic.png'
+
 
 @login_required
 def simulations(request):
     if request.method == 'POST':
         simulation_name = request.POST.get("new-simulation")
-        simulation = Simulation.objects.create(name=simulation_name, user=request.user)
+        simulation_x = request.POST.get("new-simulation-x")
+        simulation_y = request.POST.get("new-simulation-y")
+        simulation_graphic = drawer(simulation_x,simulation_y, simulation_name)
+        simulation = Simulation.objects.create(name=simulation_name, x=simulation_x, y=simulation_y, user=request.user, graphic=simulation_graphic)
         return redirect("simulations")
 
     simulations = Simulation.objects.filter(user=request.user, is_completed=False).order_by("-id")
@@ -68,7 +87,13 @@ def update_simulation(request, pk):
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
     if request.method == 'POST':
         new_name = request.POST.get(f"simulation_{pk}")
+        new_x = request.POST.get(f"simulation_x_{pk}")
+        new_y = request.POST.get(f"simulation_y_{pk}")
+
         simulation.name = new_name
+        simulation.x = new_x
+        simulation.y = new_y
+
         simulation.save()
         return render(request, 'simulation/simulation_detail.html', {'simulation': simulation})
     
@@ -95,6 +120,8 @@ def download_simulation(request, pk):
     content = f"Simulation Name: {simulation.name}\n"
     content += f"Created On: {simulation.created_on}\n"
     content += f"Updated On: {simulation.updated_on}\n"
+    content += f"X: {simulation.x}\n"
+    content += f"Y: {simulation.y}\n"
     content += f"User: {simulation.user}\n"
 
     response = HttpResponse(content, content_type='text/plain')
@@ -109,6 +136,8 @@ def download_all_simulations(request):
         content += f"Simulation Name: {simulation.name}\n"
         content += f"Created On: {simulation.created_on}\n"
         content += f"Updated On: {simulation.updated_on}\n"
+        content += f"X: {simulation.x}\n"
+        content += f"Y: {simulation.y}\n"
         content += f"User: {simulation.user}\n\n\n"
         content += "--------------------------------------\n\n\n"
 
@@ -123,32 +152,46 @@ def upload_simulation(request):
         form = UploadSimulationForm(request.POST, request.FILES)
 
         if form.is_valid():
-            name = form.cleaned_data['name']
             txt_file = form.cleaned_data['txt_file']
             content = txt_file.read().decode('utf-8')
-
-            # Use regular expressions to extract information from the content
+            
+            name = re.search(r'Simulation Name: (.+)', content)
             created_on_match = re.search(r'Created On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
             updated_on_match = re.search(r'Updated On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
+            x = re.search(r'X: (\d+\.\d+)', content)
+            y = re.search(r'Y: (\d+\.\d+)', content)
             user_match = re.search(r'User: (\w+)', content)
 
-            if created_on_match and updated_on_match and user_match:
+            if created_on_match and updated_on_match and user_match and x and y and name:
+                name = name.group(1)
                 created_on = created_on_match.group(1)
                 updated_on = updated_on_match.group(1)
+                x = float(x.group(1))
+                y = float(y.group(1))
                 user = user_match.group(1)
 
-                # Create a new Simulation instance with the extracted data
                 simulation = Simulation.objects.create(
                     name=name,
                     created_on=created_on,
                     updated_on=updated_on,
-                    user=request.user,  # Set the user who uploaded the file
+                    x=x,
+                    y=y,
+                    user=request.user,
                 )
 
-                # Optionally, you can redirect to a success page or display a message
                 return redirect('simulations')
 
     else:
         form = UploadSimulationForm()
 
     return render(request, 'simulation/upload_simulation.html', {'form': form})
+
+
+# import numpy as np
+# import matplotlib.pyplot as plt
+# from django.shortcuts import render, get_object_or_404
+# from .models import Simulation
+
+def view_graphic(request, pk):
+    simulation = get_object_or_404(Simulation, pk=pk)
+    return render(request, 'simulation/graphic_detail.html', {'simulation': simulation})

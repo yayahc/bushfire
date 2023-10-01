@@ -3,8 +3,13 @@ from django.conf import settings
 
 
 class Simulation(models.Model):
+
+    #graphic
+    graphic = models.CharField(max_length=1000, default='', null=False)
     
     #entrees
+    x = models.DecimalField(max_digits=10, decimal_places=6, default=0)
+    y = models.DecimalField(max_digits=10, decimal_places=6, default=0) 
 
     #sorties
 
@@ -27,4 +32,3 @@ class Simulation(models.Model):
 
     def __str__(self):
         return self.name
-

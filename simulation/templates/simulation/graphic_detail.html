@@ -1,0 +1,6 @@
+<h1>Simulation Detail</h1>
+<p>Title: {{ simulation.name }}</p>
+
+{% if simulation.graphic %}
+    <img src="../../../media/{{ simulation.graphic }}" alt="graphic">
+{% endif %}
