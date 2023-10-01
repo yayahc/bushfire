@@ -1,0 +1,14 @@
+{% extends 'simulation/index.html' %}
+
+{% block content %}
+
+<div class="">
+  <h2>{{ simulation.name }}</h2>
+  <p>{{ simulation.created_on }}</p>
+  <p>{{ simulation.user }}</p>
+</div>
+
+<a href="{% url 'update_simulation' simulation.id %}">Edit </a>
+<p><a href="{% url 'delete_simulation' simulation.id %}">Delete</a></p>
+
+{% endblock %}

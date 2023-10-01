@@ -1,0 +1,7 @@
+<form action="{% url 'update_simulation' i.id %}" method="post" class="edit-todo-form">
+    {% csrf_token %}
+        <input type="text" name="simulation{{ i.id }}" id="" value="{{ simulation.name }}" required
+            size="40">
+        <button type="submit" class="btn btn-sm btn-primary"
+            id="edit-todo-submit">Submit</button>
+</form>
