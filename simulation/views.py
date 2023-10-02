@@ -20,14 +20,21 @@ def drawer(x, y, title):
     os.makedirs(simulation_dir, exist_ok=True)
 
     for i in range(4):
+        c = i + 1
         plt.figure()
-        plt.scatter(x+i, y+i)
-        plt.xlabel('X Coordinate')
-        plt.ylabel('Y Coordinate')
-        plt.title(f'Coordinate Graphic for Simulation {title} - Figure {i+1}')
+        plt.plot(x, y) 
+        plt.xlabel('X Value')
+        plt.ylabel('Y Value')
+        plt.title(f'2D Plot for Simulation {title} - Figure {i + 1}')
         plt.grid(True)
 
-        file_name = f'simulation_{title}_graphic_{i+1}.png'
+        plt.xlim(0, 20) 
+        plt.ylim(0, 20) 
+
+        plt.plot([c, x+c], [c, y+c], linestyle='--', color='red', label='Intersection (0,0)')
+        plt.plot([0, x+c], [0, y+c], linestyle='--', color='green', label='Intersection (0,0)')
+
+        file_name = f'simulation_{title}_2d_plot_{i + 1}.png'
         urls += f'{file_name}|'
         file_path = os.path.join(simulation_dir, file_name)
         plt.savefig(file_path)
