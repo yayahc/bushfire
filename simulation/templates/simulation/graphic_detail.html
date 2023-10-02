@@ -1,6 +1,11 @@
 <h1>Simulation Detail</h1>
 <p>Title: {{ simulation.name }}</p>
 
-{% if simulation.graphic %}
-    <img src="../../../media/{{ simulation.graphic }}" alt="graphic">
+{% if simulation.graphic_urls %}
+    <h2>Graphics:</h2>
+    <div class="graphics">
+        {% for i in urls  %}
+            <img src="../../../media/{{ simulation.name }}/{{ i }}" alt="graphic">
+        {% endfor %}
+    </div>
 {% endif %}
