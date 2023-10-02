@@ -43,10 +43,7 @@ def simulations(request):
     paginator = Paginator(simulations, 4)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-
     context = {"simulations": simulations, "page_obj": page_obj}
-
-    # NOTE: Need to change the html file to crud.html for displaying the todo's
     return render(request, "simulation/simulations.html", context)
 
 
@@ -86,6 +83,7 @@ def logout_user(request):
 def update_simulation(request, pk):
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
     if request.method == 'POST':
+
         new_name = request.POST.get(f"simulation_{pk}")
         new_x = request.POST.get(f"simulation_x_{pk}")
         new_y = request.POST.get(f"simulation_y_{pk}")
@@ -102,9 +100,9 @@ def update_simulation(request, pk):
 
 
 def complete_simulation(request, pk):
-    todo = get_object_or_404(Simulation, id=pk, user=request.user)
-    todo.is_completed = True
-    todo.save()
+    simulation = get_object_or_404(Simulation, id=pk, user=request.user)
+    simulation.is_completed = True
+    simulation.save()
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
@@ -120,8 +118,6 @@ def download_simulation(request, pk):
     content = f"Simulation Name: {simulation.name}\n"
     content += f"Created On: {simulation.created_on}\n"
     content += f"Updated On: {simulation.updated_on}\n"
-    content += f"X: {simulation.x}\n"
-    content += f"Y: {simulation.y}\n"
     content += f"User: {simulation.user}\n"
 
     response = HttpResponse(content, content_type='text/plain')
@@ -136,61 +132,54 @@ def download_all_simulations(request):
         content += f"Simulation Name: {simulation.name}\n"
         content += f"Created On: {simulation.created_on}\n"
         content += f"Updated On: {simulation.updated_on}\n"
-        content += f"X: {simulation.x}\n"
-        content += f"Y: {simulation.y}\n"
-        content += f"User: {simulation.user}\n\n\n"
-        content += "--------------------------------------\n\n\n"
+        content += f"User: {simulation.user}\n"
+        content += "\n\n\n\n\n\n"
 
     response = HttpResponse(content, content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename="all_simulations.txt"'
     return response
 
 
-@login_required
-def upload_simulation(request):
-    if request.method == 'POST':
-        form = UploadSimulationForm(request.POST, request.FILES)
+# @login_required
+# def upload_simulation(request):
+#     if request.method == 'POST':
+#         form = UploadSimulationForm(request.POST, request.FILES)
 
-        if form.is_valid():
-            txt_file = form.cleaned_data['txt_file']
-            content = txt_file.read().decode('utf-8')
+#         if form.is_valid():
+#             txt_file = form.cleaned_data['txt_file']
+#             content = txt_file.read().decode('utf-8')
             
-            name = re.search(r'Simulation Name: (.+)', content)
-            created_on_match = re.search(r'Created On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
-            updated_on_match = re.search(r'Updated On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
-            x = re.search(r'X: (\d+\.\d+)', content)
-            y = re.search(r'Y: (\d+\.\d+)', content)
-            user_match = re.search(r'User: (\w+)', content)
+#             name = re.search(r'Simulation Name: (.+)', content)
+#             created_on_match = re.search(r'Created On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
+#             updated_on_match = re.search(r'Updated On: (\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})', content)
+#             x = re.search(r'X: (\d+\.\d+)', content)
+#             y = re.search(r'Y: (\d+\.\d+)', content)
+#             user_match = re.search(r'User: (\w+)', content)
 
-            if created_on_match and updated_on_match and user_match and x and y and name:
-                name = name.group(1)
-                created_on = created_on_match.group(1)
-                updated_on = updated_on_match.group(1)
-                x = float(x.group(1))
-                y = float(y.group(1))
-                user = user_match.group(1)
+#             if created_on_match and updated_on_match and user_match and x and y and name:
+#                 name = name.group(1)
+#                 created_on = created_on_match.group(1)
+#                 updated_on = updated_on_match.group(1)
+#                 x = float(x.group(1))
+#                 y = float(y.group(1))
+#                 user = user_match.group(1)
 
-                simulation = Simulation.objects.create(
-                    name=name,
-                    created_on=created_on,
-                    updated_on=updated_on,
-                    x=x,
-                    y=y,
-                    user=request.user,
-                )
+#                 simulation = Simulation.objects.create(
+#                     name=name,
+#                     created_on=created_on,
+#                     updated_on=updated_on,
+#                     x=x,
+#                     y=y,
+#                     user=request.user,
+#                 )
 
-                return redirect('simulations')
+#                 return redirect('simulations')
 
-    else:
-        form = UploadSimulationForm()
+#     else:
+#         form = UploadSimulationForm()
 
-    return render(request, 'simulation/upload_simulation.html', {'form': form})
+#     return render(request, 'simulation/upload_simulation.html', {'form': form})
 
-
-# import numpy as np
-# import matplotlib.pyplot as plt
-# from django.shortcuts import render, get_object_or_404
-# from .models import Simulation
 
 def view_graphic(request, pk):
     simulation = get_object_or_404(Simulation, pk=pk)

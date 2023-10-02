@@ -10,10 +10,7 @@ class Simulation(models.Model):
     #entrees
     x = models.DecimalField(max_digits=10, decimal_places=6, default=0)
     y = models.DecimalField(max_digits=10, decimal_places=6, default=0) 
-
-    #sorties
-
-
+    
     name = models.CharField(max_length=100)
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
