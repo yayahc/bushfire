@@ -37,7 +37,7 @@ def simulations(request):
         simulation = Simulation.objects.create(name=simulation_name, x=simulation_x, y=simulation_y, user=request.user, graphic=simulation_graphic)
         return redirect("simulations")
 
-    simulations = Simulation.objects.filter(user=request.user, is_completed=False).order_by("-id")
+    simulations = Simulation.objects.order_by("-id")
 
     # pagination 4 items per page
     paginator = Paginator(simulations, 4)
