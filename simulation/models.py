@@ -2,16 +2,17 @@ from django.db import models
 from django.conf import settings
 
 
-class Simulation(models.Model):
-
-    #graphic
-    graphic = models.CharField(max_length=1000, default='', null=False)
+class Simulation(models.Model):    
     
     #entrees
+    name = models.CharField(max_length=100)
     x = models.DecimalField(max_digits=10, decimal_places=6, default=0)
     y = models.DecimalField(max_digits=10, decimal_places=6, default=0) 
+
+    #graphic
+    graphic_urls = models.CharField(default='',max_length=10000)
     
-    name = models.CharField(max_length=100)
+    #common
     created_on = models.DateTimeField(auto_now_add=True)
     updated_on = models.DateTimeField(auto_now=True)
     is_completed = models.BooleanField(default=False)
@@ -29,3 +30,4 @@ class Simulation(models.Model):
 
     def __str__(self):
         return self.name
+

@@ -13,18 +13,35 @@ import re
 import os
 import matplotlib.pyplot as plt
 
-def drawer(x,y, title):
-    plt.scatter(x, y)
-    plt.xlabel('X Coordinate')
-    plt.ylabel('Y Coordinate')
-    plt.title(f'Coordinate Graphic for Simulation {title}')
-    plt.grid(True)
 
-    # Save the plot to a file
-    temp_file = os.path.join('media', f'simulation_{title}_graphic.png')
-    plt.savefig(temp_file)
-    plt.close()
-    return f'simulation_{title}_graphic.png'
+def drawer(x, y, title):
+    urls = ''
+    simulation_dir = os.path.join('media', title)
+    os.makedirs(simulation_dir, exist_ok=True)
+
+    for i in range(4):
+        c = i + 1
+        plt.figure()
+        plt.plot(x, y) 
+        plt.xlabel('X Value')
+        plt.ylabel('Y Value')
+        plt.title(f'2D Plot for Simulation {title} - Figure {i + 1}')
+        plt.grid(True)
+
+        plt.xlim(0, 20) 
+        plt.ylim(0, 20) 
+
+        plt.plot([c, x+c], [c, y+c], linestyle='--', color='red', label='Intersection (0,0)')
+        plt.plot([0, x+c], [0, y+c], linestyle='--', color='green', label='Intersection (0,0)')
+
+        file_name = f'simulation_{title}_2d_plot_{i + 1}.png'
+        urls += f'{file_name}|'
+        file_path = os.path.join(simulation_dir, file_name)
+        plt.savefig(file_path)
+        plt.close()
+
+    return urls
+
 
 
 @login_required
@@ -33,8 +50,10 @@ def simulations(request):
         simulation_name = request.POST.get("new-simulation")
         simulation_x = request.POST.get("new-simulation-x")
         simulation_y = request.POST.get("new-simulation-y")
-        simulation_graphic = drawer(simulation_x,simulation_y, simulation_name)
-        simulation = Simulation.objects.create(name=simulation_name, x=simulation_x, y=simulation_y, user=request.user, graphic=simulation_graphic)
+
+        simulation_graphic_urls = drawer(float(simulation_x),float(simulation_y), simulation_name)
+
+        simulation = Simulation.objects.create(name=simulation_name, x=simulation_x, y=simulation_y, user=request.user, graphic_urls=simulation_graphic_urls)
         return redirect("simulations")
 
     simulations = Simulation.objects.order_by("-id")
@@ -181,6 +200,12 @@ def download_all_simulations(request):
 #     return render(request, 'simulation/upload_simulation.html', {'form': form})
 
 
-def view_graphic(request, pk):
+def view_graphic(request, pk):    
     simulation = get_object_or_404(Simulation, pk=pk)
-    return render(request, 'simulation/graphic_detail.html', {'simulation': simulation})
+
+    image_array = simulation.graphic_urls.split('|')
+    if image_array[-1] == '':
+        image_array.pop()
+
+    urls = image_array
+    return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls':urls})
