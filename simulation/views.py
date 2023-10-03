@@ -11,6 +11,7 @@ from .forms import UploadSimulationForm
 
 import re
 import os
+import csv
 import matplotlib.pyplot as plt
 
 
@@ -323,14 +324,18 @@ def delete_simulation(request, pk):
 def download_simulation(request, pk):
     simulation = get_object_or_404(Simulation, pk=pk)
 
-    content = f"Simulation Name: {simulation.name}\n"
-    content += f"Created On: {simulation.created_on}\n"
-    content += f"Updated On: {simulation.updated_on}\n"
-    content += f"User: {simulation.user}\n"
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = f'attachment; filename="{simulation.name}.csv"'
 
-    response = HttpResponse(content, content_type='text/plain')
-    response['Content-Disposition'] = f'attachment; filename="{simulation.name}.txt"'
+    # Create a CSV writer and write simulation data
+    writer = csv.writer(response)
+    writer.writerow(['Simulation Name', simulation.name])
+    writer.writerow(['Created On', simulation.created_on])
+    writer.writerow(['Updated On', simulation.updated_on])
+    writer.writerow(['User', simulation.user.username])
+
     return response
+
 
 def download_all_simulations(request):
     simulations = Simulation.objects.all()
