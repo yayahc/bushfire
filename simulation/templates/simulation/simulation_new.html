@@ -6,17 +6,184 @@
         <form action="{% url 'simulations' %}" method="post" class="create-todo-form">
             {% csrf_token %}
             
-            <label for="new-simulation">Name</label>
-            <input type="text" name="new-simulation" id="new-simulation" required>
-            <br>
+            <div>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required>
+                <br>
+            </div>
 
-            <label for="new-simulation-x">X</label>
-            <input type="float" name="new-simulation-x" id="new-simulation-x" required>
-            <br>
+            <div class="vegetation">
+                <label for="limite_initiale_ox">limite_initiale_ox</label>
+                <input type="text" name="limite_initiale_ox" id="limite_initiale_ox" required>
+                <br>
 
-            <label for="new-simulation-y">Y</label>
-            <input type="float" name="new-simulation-y" id="new-simulation-y" required>
-            <br>
+                <label for="limite_finale_ox">limite_finale_ox</label>
+                <input type="text" name="limite_finale_ox" id="limite_finale_ox" required>
+                <br>
+
+                <label for="limite_initiale_oy">limite_initiale_oy</label>
+                <input type="text" name="limite_initiale_oy" id="limite_initiale_oy" required>
+                <br>
+
+                <label for="limite_finale_oy">limite_finale_oy</label>
+                <input type="text" name="limite_finale_oy" id="limite_finale_oy" required>
+                <br>
+
+                <label for="longueur_de_la_flamme">longueur_de_la_flamme</label>
+                <input type="text" name="longueur_de_la_flamme" id="longueur_de_la_flamme" required>
+                <br>
+
+                <label for="hauteur_de_la_végétation">hauteur_de_la_végétation</label>
+                <input type="text" name="hauteur_de_la_végétation" id="hauteur_de_la_végétation" required>
+                <br>
+
+                <label for="diametre_du_combustible">diametre_du_combustible</label>
+                <input type="text" name="diametre_du_combustible" id="diametre_du_combustible" required>
+                <br>
+
+                <label for="densite_de_la_végétation">densite_de_la_végétation</label>
+                <input type="text" name="densite_de_la_végétation" id="densite_de_la_végétation" required>
+                <br>
+
+                <label for="charge_surfacique_de_la_végétation">charge_surfacique_de_la_végétation</label>
+                <input type="text" name="charge_surfacique_de_la_végétation" id="charge_surfacique_de_la_végétation" required>
+                <br>
+
+                <label for="teneur_en_eau_de_la_végétation">teneur_en_eau_de_la_végétation</label>
+                <input type="text" name="teneur_en_eau_de_la_végétation" id="teneur_en_eau_de_la_végétation" required>
+                <br>
+
+                <label for="temps_de_combustion">temps_de_combustion</label>
+                <input type="text" name="temps_de_combustion" id="temps_de_combustion" required>
+                <br>
+
+                <label for="chaleur_spécifique_du_combustible">chaleur_spécifique_du_combustible</label>
+                <input type="text" name="chaleur_spécifique_du_combustible" id="chaleur_spécifique_du_combustible" required>
+                <br>
+
+                <label for="coefficient_absorption_combustible">coefficient_absorption_combustible</label>
+                <input type="text" name="coefficient_absorption_combustible" id="coefficient_absorption_combustible" required>
+                <br>
+
+                <label for="emissivite_du_combustible">emissivite_du_combustible</label>
+                <input type="text" name="emissivite_du_combustible" id="emissivite_du_combustible" required>
+                <br>
+            </div>
+
+
+            <div class="climat">
+                <label for="temps_de_simulation">temps_de_simulation</label>
+                <input type="text" name="temps_de_simulation" id="temps_de_simulation" required>
+                <br>
+
+                <label for="pas_de_temps">pas_de_temps</label>
+                <input type="text" name="pas_de_temps" id="pas_de_temps" required>
+                <br>
+
+                <label for="pas_d_espace_ox">pas_d_espace_ox</label>
+                <input type="text" name="pas_d_espace_ox" id="pas_d_espace_ox" required>
+                <br>
+
+                <label for="pas_d_espace_oy">pas_d_espace_oy</label>
+                <input type="text" name="pas_d_espace_oy" id="pas_d_espace_oy" required>
+                <br>
+
+                <label for="temperature_ambiante">temperature_ambiante</label>
+                <input type="text" name="temperature_ambiante" id="temperature_ambiante" required>
+                <br>
+
+                <label for="vitesse_du_vent">vitesse_du_vent</label>
+                <input type="text" name="vitesse_du_vent" id="vitesse_du_vent" required>
+                <br>
+
+                <label for="direction_du_vent">direction_du_vent</label>
+                <input type="text" name="direction_du_vent" id="direction_du_vent" required>
+                <br>
+
+                <label for="pente_suivant_ox">pente_suivant_ox</label>
+                <input type="text" name="pente_suivant_ox" id="pente_suivant_ox" required>
+                <br>
+
+                <label for="pente_suivant_oy">pente_suivant_oy</label>
+                <input type="text" name="pente_suivant_oy" id="pente_suivant_oy" required>
+                <br>
+
+                <label for="temperature_de_la_flamme">temperature_de_la_flamme</label>
+                <input type="text" name="temperature_de_la_flamme" id="temperature_de_la_flamme" required>
+                <br>
+
+                <label for="temperature_d_allumage">temperature_d_allumage</label>
+                <input type="text" name="temperature_d_allumage" id="temperature_d_allumage" required>
+                <br>
+
+                <label for="temperature_des_braises">temperature_des_braises</label>
+                <input type="text" name="temperature_des_braises" id="temperature_des_braises" required>
+                <br>
+
+                <label for="emissivite_des_braises">emissivite_des_braises</label>
+                <input type="text" name="emissivite_des_braises" id="emissivite_des_braises" required>
+                <br>
+
+                <label for="conductivite_des_braises">conductivite_des_braises</label>
+                <input type="text" name="conductivite_des_braises" id="conductivite_des_braises" required>
+                <br>
+
+                <label for="conductivite_de_la_flamme">conductivite_de_la_flamme</label>
+                <input type="text" name="conductivite_de_la_flamme" id="conductivite_de_la_flamme" required>
+                <br>
+
+                <label for="viscosité_de_l_aire_chaud">viscosité_de_l_aire_chaud</label>
+                <input type="text" name="viscosité_de_l_aire_chaud" id="viscosité_de_l_aire_chaud" required>
+                <br>
+
+                <label for="x_zone_de_calcul_initial">x_zone_de_calcul_initial</label>
+                <input type="text" name="x_zone_de_calcul_initial" id="x_zone_de_calcul_initial" required>
+                <br>
+
+                <label for="x_zone_de_calcul_final">x_zone_de_calcul_final</label>
+                <input type="text" name="x_zone_de_calcul_final" id="x_zone_de_calcul_final" required>
+                <br>
+
+                <label for="y_zone_de_calcul_initial">y_zone_de_calcul_initial</label>
+                <input type="text" name="y_zone_de_calcul_initial" id="y_zone_de_calcul_initial" required>
+                <br>
+
+                <label for="y_zone_de_calcul_final">y_zone_de_calcul_final</label>
+                <input type="text" name="y_zone_de_calcul_final" id="y_zone_de_calcul_final" required>
+                <br>
+            </div>
+
+
+            <div class="eclosion">
+                <label for="coordonnées_x_depart_de_feu">coordonnées_x_depart_de_feu</label>
+                <input type="text" name="coordonnées_x_depart_de_feu" id="coordonnées_x_depart_de_feu" required>
+                <br>
+
+                <label for="coordonnées_y_depart_de_feu">coordonnées_y_depart_de_feu</label>
+                <input type="text" name="coordonnées_y_depart_de_feu" id="coordonnées_y_depart_de_feu" required>
+                <br>
+
+                <label for="cote_du_site_en_feu">cote_du_site_en_feu</label>
+                <input type="text" name="cote_du_site_en_feu" id="cote_du_site_en_feu" required>
+                <br>
+
+                <label for="longueur_du_depart_de_feu">longueur_du_depart_de_feu</label>
+                <input type="text" name="longueur_du_depart_de_feu" id="longueur_du_depart_de_feu" required>
+                <br>
+
+                <label for="temps_d_allumage">temps_d_allumage</label>
+                <input type="text" name="temps_d_allumage" id="temps_d_allumage" required>
+                <br>
+
+                <label for="abscisse_du_point_d_enregistrement">abscisse_du_point_d_enregistrement</label>
+                <input type="text" name="abscisse_du_point_d_enregistrement" id="abscisse_du_point_d_enregistrement" required>
+                <br>
+
+                <label for="ordonnée_du_point_d_enregistrement">ordonnée_du_point_d_enregistrement</label>
+                <input type="text" name="ordonnée_du_point_d_enregistrement" id="ordonnée_du_point_d_enregistrement" required>
+                <br>
+            </div>
+
 
             <button type="submit">Creer une simulation</button>
         </form>
