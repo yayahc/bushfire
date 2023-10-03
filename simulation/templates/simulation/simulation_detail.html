@@ -3,11 +3,58 @@
 {% block content %}
 
 <div class="">
-  <h2>{{ simulation.name }}</h2>
   <p>{{ simulation.created_on }}</p>
-  <p>{{ simulation.x }}</p>
-  <p>{{ simulation.y }}</p>
   <p>{{ simulation.user }}</p>
+
+  <h1>Donnee sorties</h1>
+
+  <h2>vegetation</h3>
+  <p>name : {{ simulation.name }}</p>
+  <p>limite_initiale_ox : {{ simulation.limite_initiale_ox }}</p>
+  <p>limite_finale_ox : {{ simulation.limite_finale_ox }}</p>
+  <p>limite_initiale_oy : {{ simulation.limite_initiale_oy }}</p>
+  <p>limite_finale_oy : {{ simulation.limite_finale_oy }}</p>
+  <p>longueur_de_la_flamme : {{ simulation.longueur_de_la_flamme }}</p>
+  <p>hauteur_de_la_végétation : {{ simulation.hauteur_de_la_végétation }}</p>
+  <p>diametre_du_combustible : {{ simulation.diametre_du_combustible }}</p>
+  <p>densite_de_la_végétation : {{ simulation.densite_de_la_végétation }}</p>
+  <p>charge_surfacique_de_la_végétation : {{ simulation.charge_surfacique_de_la_végétation }}</p>
+  <p>teneur_en_eau_de_la_végétation : {{ simulation.teneur_en_eau_de_la_végétation }}</p>
+  <p>temps_de_combustion : {{ simulation.temps_de_combustion }}</p>
+  <p>chaleur_spécifique_du_combustible : {{ simulation.chaleur_spécifique_du_combustible }}</p>
+  <p>coefficient_absorption_combustible : {{ simulation.coefficient_absorption_combustible }}</p>
+  <p>emissivite_du_combustible : {{ simulation.emissivite_du_combustible }}</p>
+
+  <h2>climat</h2>
+  <p>temps_de_simulation : {{ simulation.temps_de_simulation }}</p>
+  <p>pas_de_temps : {{ simulation.pas_de_temps }}</p>
+  <p>pas_d_espace_ox : {{ simulation.pas_d_espace_ox }}</p>
+  <p>pas_d_espace_oy : {{ simulation.pas_d_espace_oy }}</p>
+  <p>temperature_ambiante : {{ simulation.temperature_ambiante }}</p>
+  <p>vitesse_du_vent : {{ simulation.vitesse_du_vent }}</p>
+  <p>direction_du_vent : {{ simulation.direction_du_vent }}</p>
+  <p>pente_suivant_ox : {{ simulation.pente_suivant_ox }}</p>
+  <p>pente_suivant_oy : {{ simulation.pente_suivant_oy }}</p>
+  <p>temperature_de_la_flamme : {{ simulation.temperature_de_la_flamme }}</p>
+  <p>temperature_d_allumage : {{ simulation.temperature_d_allumage }}</p>
+  <p>temperature_des_braises : {{ simulation.temperature_des_braises }}</p>
+  <p>emissivite_des_braises : {{ simulation.emissivite_des_braises }}</p>
+  <p>conductivite_des_braises : {{ simulation.conductivite_des_braises }}</p>
+  <p>conductivite_de_la_flamme : {{ simulation.conductivite_de_la_flamme }}</p>
+  <p>viscosité_de_l_aire_chaud : {{ simulation.viscosité_de_l_aire_chaud }}</p>
+  <p>x_zone_de_calcul_initial : {{ simulation.x_zone_de_calcul_initial }}</p>
+  <p>x_zone_de_calcul_final : {{ simulation.x_zone_de_calcul_final }}</p>
+  <p>y_zone_de_calcul_initial : {{ simulation.y_zone_de_calcul_initial }}</p>
+  <p>y_zone_de_calcul_final : {{ simulation.y_zone_de_calcul_final }}</p>
+
+  <h2>Eclosion</h2>
+  <p>coordonnées_x_depart_de_feu :  {{ simulation.coordonnées_x_depart_de_feu }}</p>
+  <p>coordonnées_y_depart_de_feu :  {{ simulation.coordonnées_y_depart_de_feu }}</p>
+  <p>cote_du_site_en_feu :  {{ simulation.cote_du_site_en_feu }}</p>
+  <p>longueur_du_depart_de_feu :  {{ simulation.longueur_du_depart_de_feu }}</p>
+  <p>temps_d_allumage :  {{ simulation.temps_d_allumage }}</p>
+  <p>abscisse_du_point_d_enregistrement :  {{ simulation.abscisse_du_point_d_enregistrement }}</p>
+  <p>ordonnée_du_point_d_enregistrement :  {{ simulation.ordonnée_du_point_d_enregistrement }}</p>
 </div>
 
 {% if user == simulation.user %}
