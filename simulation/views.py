@@ -16,9 +16,12 @@ import matplotlib.pyplot as plt
 
 
 def drawer(x, y, title):
+
+    #NOTE : create the simulation directory
     urls = ''
     simulation_dir = os.path.join('media', title)
     os.makedirs(simulation_dir, exist_ok=True)
+
 
     for i in range(4):
         c = i + 1
@@ -35,10 +38,14 @@ def drawer(x, y, title):
         plt.plot([c, x+c], [c, y+c], linestyle='--', color='red', label='Intersection (0,0)')
         plt.plot([0, x+c], [0, y+c], linestyle='--', color='green', label='Intersection (0,0)')
 
+
+    #NOTE : update URLs and save PNG
         file_name = f'simulation_{title}_2d_plot_{i + 1}.png'
         urls += f'{file_name}|'
         file_path = os.path.join(simulation_dir, file_name)
         plt.savefig(file_path)
+
+
         plt.close()
 
     return urls
