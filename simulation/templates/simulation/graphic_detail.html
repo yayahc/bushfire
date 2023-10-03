@@ -3,12 +3,11 @@
 <p id="urls" style="display: none;">{{ simulation.graphic_urls }}</p>
 
 {% if simulation.graphic_urls %}
-    <h2>Graphics:</h2>
-    <button id="pause"></button>
+    <h2>Graphics:</h2>    
     <div class="graphics">
         <img src="../../../media/{{ simulation.name }}/{{ urls.0 }}" alt="graphic" id="slideshow-image">
     </div>
-
+    <button id="pause"></button>
 
     <script>
         // JavaScript code for the slideshow
