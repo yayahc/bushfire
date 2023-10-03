@@ -1,0 +1,21 @@
+var_clim,data_clim
+temps de simulation ,280
+pas de temps ,1
+pas d'espace ox ,1
+pas d'espace oy ,1
+limite initiale ox,0
+limite finale ox,440
+limite initiale oy,0
+limite finale oy,400
+temperature ambiante,307
+vitesse du vent,0.53
+direction du vent,270
+pente suivant ox,0
+pente suivant oy,0
+temperature de la flamme,1132
+temperature d'allumage,500
+temperature des braises,673
+emissivite des braises,0.877
+conductivite des braises,0.0935
+conductivite de la flamme,0.0707
+Viscosité de l'aire chaud,7.77E-05

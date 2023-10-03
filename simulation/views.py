@@ -127,7 +127,7 @@ def simulations(request):
         timeAllumage = request.POST.get('timeAllumage')
         longueurEclosion = request.POST.get('longueurEclosion')
         xenreg = request.POST.get('xenreg')
-        yenreg = request.POST.get('yenr')
+        yenreg = request.POST.get('yenreg')
         
         #common
         name = request.POST.get('name')
@@ -180,7 +180,7 @@ def simulations(request):
             timeAllumage = timeAllumage,
             longueurEclosion = longueurEclosion,
             xenreg = xenreg,
-            yenr = yenreg,
+            yenreg = yenreg,
             graphic_urls = "",
             name = name,
             region = region,
