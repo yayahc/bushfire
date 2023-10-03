@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 
 from .forms import UserRegistrationForm
-from .models import Simulation
+from .models import AbsorptionFuelBed, ChaleurSpecFeulBed, ChargeSurface, DensiteFuelBed, DiametreFuelBed, EmissiviteFuelBed, HauteurFlamme, HauteurFuelBed, Simulation, TeneurEnEau, TimeCombustion, X1veg, X2veg, Y1veg, Y2veg
 from django.http import HttpResponse
 from .forms import UploadSimulationForm
 
@@ -21,7 +21,6 @@ def drawer(x, y, title):
     urls = ''
     simulation_dir = os.path.join('media', title)
     os.makedirs(simulation_dir, exist_ok=True)
-
 
     for i in range(4):
         c = i + 1
@@ -40,13 +39,12 @@ def drawer(x, y, title):
 
 
     #NOTE : update URLs and save PNG
-        file_name = f'simulation_{title}_2d_plot_{i + 1}.png'
-        urls += f'{file_name}|'
-        file_path = os.path.join(simulation_dir, file_name)
-        plt.savefig(file_path)
+    file_name = f'simulation_{title}_2d_plot_{i + 1}.png'
+    urls += f'{file_name}|'
+    file_path = os.path.join(simulation_dir, file_name)
+    plt.savefig(file_path)
 
-
-        plt.close()
+    plt.close()
 
     return urls
 
@@ -55,106 +53,139 @@ def drawer(x, y, title):
 @login_required
 def simulations(request):
     if request.method == 'POST':
+        
+        #NOTE: Get Entrees
+        timp = request.POST.get('timp')
+        typeVegetation = request.POST.get('typeVegetation')
 
-        #NOTE: get datas
-        simulation_name = request.POST.get("name")
+        x1veg = X1veg.objects.create(
+            x1veg = request.POST.get('x1veg')
+        )
 
-        #vegetation
-        limite_initiale_ox = request.POST.get("limite_initiale_ox")
-        limite_finale_ox = request.POST.get("limite_finale_ox")
-        limite_initiale_oy = request.POST.get("limite_initiale_oy")
-        limite_finale_oy = request.POST.get("limite_finale_oy")
-        longueur_de_la_flamme = request.POST.get("longueur_de_la_flamme")
-        hauteur_de_la_végétation = request.POST.get("hauteur_de_la_végétation")
-        diametre_du_combustible = request.POST.get("diametre_du_combustible")
-        densite_de_la_végétation  =request.POST.get("densite_de_la_végétation")
-        charge_surfacique_de_la_végétation = request.POST.get("charge_surfacique_de_la_végétation")
-        teneur_en_eau_de_la_végétation = request.POST.get("teneur_en_eau_de_la_végétation")
-        temps_de_combustion = request.POST.get("temps_de_combustion")
-        chaleur_spécifique_du_combustible = request.POST.get("chaleur_spécifique_du_combustible")
-        coefficient_absorption_combustible = request.POST.get("coefficient_absorption_combustible")
-        emissivite_du_combustible = request.POST.get("emissivite_du_combustible")
-    
-    
-        #climat
-        temps_de_simulation = request.POST.get("temps_de_simulation")
-        pas_de_temps = request.POST.get("pas_de_temps")
-        pas_d_espace_ox = request.POST.get("pas_d_espace_ox")
-        pas_d_espace_oy = request.POST.get("pas_d_espace_oy")
-        temperature_ambiante = request.POST.get("temperature_ambiante")
-        vitesse_du_vent = request.POST.get("vitesse_du_vent")
-        direction_du_vent = request.POST.get("direction_du_vent")
-        pente_suivant_ox = request.POST.get("pente_suivant_ox")
-        pente_suivant_oy = request.POST.get("pente_suivant_oy")
-        temperature_de_la_flamme = request.POST.get("temperature_de_la_flamme")
-        temperature_d_allumage = request.POST.get("temperature_d_allumage")
-        temperature_des_braises = request.POST.get("temperature_des_braises")
-        emissivite_des_braises = request.POST.get("emissivite_des_braises")
-        conductivite_des_braises = request.POST.get("conductivite_des_braises")
-        conductivite_de_la_flamme = request.POST.get("conductivite_de_la_flamme")
-        viscosité_de_l_aire_chaud = request.POST.get("viscosité_de_l_aire_chaud")
-        x_zone_de_calcul_initial = request.POST.get("x_zone_de_calcul_initial")
-        x_zone_de_calcul_final = request.POST.get("x_zone_de_calcul_final")
-        y_zone_de_calcul_initial = request.POST.get("y_zone_de_calcul_initial")
-        y_zone_de_calcul_final = request.POST.get("y_zone_de_calcul_final")
-    
-        #eclosion
-        coordonnées_x_depart_de_feu = request.POST.get("coordonnées_x_depart_de_feu") 
-        coordonnées_y_depart_de_feu = request.POST.get("coordonnées_y_depart_de_feu") 
-        cote_du_site_en_feu = request.POST.get("cote_du_site_en_feu")
-        longueur_du_depart_de_feu = request.POST.get("longueur_du_depart_de_feu") 
-        temps_d_allumage = request.POST.get("temps_d_allumage") 
-        abscisse_du_point_d_enregistrement = request.POST.get("abscisse_du_point_d_enregistrement") 
-        ordonnée_du_point_d_enregistrement = request.POST.get("ordonnée_du_point_d_enregistrement")  
+        x2veg = X2veg.objects.create(
+            x2veg = request.POST.get('x2veg')
+        )
+        y1veg = Y1veg.objects.create(
+            y1veg = request.POST.get('y1veg')
+        )
+        y2veg = Y2veg.objects.create(
+            y2veg = request.POST.get('y2veg')
+        )
+        teneurEnEau = TeneurEnEau.objects.create(
+            teneur_en_eau = request.POST.get('teneurEnEau')
+        )
+        hauteurFuelBed = HauteurFuelBed.objects.create(
+            hauteur_fuel_bed = request.POST.get('hauteurFuelBed')
+        )
+        emissiviteFuelBed = EmissiviteFuelBed.objects.create(
+            emissivite_fuel_bed = request.POST.get('emissiviteFuelBed')
+        )
+        absorptionFuelBed = AbsorptionFuelBed.objects.create(
+            absorption_fuel_bed = request.POST.get('absorptionFuelBed')
+        )
+        densiteFuelBed = DensiteFuelBed.objects.create(
+            densite_fuel_bed = request.POST.get('densiteFuelBed')
+        )
+        diametreFuelBed = DiametreFuelBed.objects.create(
+            diametre_fuel_bed = request.POST.get('diametreFuelBed')
+        )
+        chaleurSpecFeulBed = ChaleurSpecFeulBed.objects.create(
+            chaleur_spec_feul_bed = request.POST.get('chaleurSpecFeulBed')
+        )
+        chargeSurface = ChargeSurface.objects.create(
+            charge_surface = request.POST.get('chargeSurface')
+        )
+        hauteurFlamme = HauteurFlamme.objects.create(
+            hauteur_flamme = request.POST.get('hauteurFlamme')
+        )
+        timeCombustion = TimeCombustion.objects.create(
+            time_combustion = request.POST.get('timeCombustion')
+        )
+        timeMax = request.POST.get('timeMax')
+        deltat = request.POST.get('deltat')
+        deltax = request.POST.get('deltax')
+        deltay = request.POST.get('deltay')
+        xDebut = request.POST.get('xDebut')
+        xFin = request.POST.get('xFin')
+        yDebut = request.POST.get('yDebut')
+        yFin = request.POST.get('yFin')
+        temperatureAir = request.POST.get('temperatureAir')
+        vitesseDuVent = request.POST.get('vitesseDuVent')
+        directionDuVen = request.POST.get('directionDuVen')
+        pentex = request.POST.get('pentex')
+        pentey = request.POST.get('pentey')
+        temperatureFlamme = request.POST.get('temperatureFlamme')
+        temperatureAllumage = request.POST.get('temperatureAllumage')
+        temperatureBrais = request.POST.get('temperatureBrais')
+        emissiviteBraise = request.POST.get('emissiviteBraise')
+        conductiviteBraise = request.POST.get('conductiviteBraise')
+        conductiviteFlamme = request.POST.get('conductiviteFlamme')
+        viscositeAirChau = request.POST.get('viscositeAirChau')
+        nbEclosion = request.POST.get('nbEclosion')
+        xEclosion = request.POST.get('xEclosion')
+        yEclosion = request.POST.get('yEclosion')
+        timeAllumage = request.POST.get('timeAllumage')
+        longueurEclosion = request.POST.get('longueurEclosion')
+        xenreg = request.POST.get('xenreg')
+        yenreg = request.POST.get('yenr')
+        
+        #common
+        name = request.POST.get('name')
+        region = request.POST.get('region')
+        ville = request.POST.get("ville")
 
         #TODO: build right drawer
-        simulation_graphic_urls = drawer(float(limite_initiale_ox),float(limite_initiale_oy), simulation_name)
+        # simulation_graphic_urls = drawer(float(limite_initiale_ox),float(limite_initiale_oy), simulation_name)
 
         simulation = Simulation.objects.create(
-            name=simulation_name,
-            limite_initiale_ox = limite_initiale_ox,
-            limite_finale_ox = limite_finale_ox,
-            limite_initiale_oy = limite_initiale_oy,
-            limite_finale_oy = limite_finale_oy,
-            longueur_de_la_flamme = longueur_de_la_flamme,
-            hauteur_de_la_végétation = hauteur_de_la_végétation,
-            diametre_du_combustible = diametre_du_combustible,
-            densite_de_la_végétation = densite_de_la_végétation,
-            charge_surfacique_de_la_végétation = charge_surfacique_de_la_végétation,
-            teneur_en_eau_de_la_végétation = teneur_en_eau_de_la_végétation,
-            temps_de_combustion = temps_de_combustion,
-            chaleur_spécifique_du_combustible = chaleur_spécifique_du_combustible,
-            coefficient_absorption_combustible = coefficient_absorption_combustible,
-            emissivite_du_combustible = emissivite_du_combustible,
-            temps_de_simulation = temps_de_simulation,
-            pas_de_temps = pas_de_temps,
-            pas_d_espace_ox = pas_d_espace_ox,
-            pas_d_espace_oy = pas_d_espace_oy,
-            temperature_ambiante = temperature_ambiante,
-            vitesse_du_vent = vitesse_du_vent,
-            direction_du_vent = direction_du_vent,
-            pente_suivant_ox = pente_suivant_ox,
-            pente_suivant_oy = pente_suivant_oy,
-            temperature_de_la_flamme = temperature_de_la_flamme,
-            temperature_d_allumage = temperature_d_allumage,
-            temperature_des_braises = temperature_des_braises,
-            emissivite_des_braises = emissivite_des_braises,
-            conductivite_des_braises = conductivite_des_braises,
-            conductivite_de_la_flamme = conductivite_de_la_flamme,
-            viscosité_de_l_aire_chaud = viscosité_de_l_aire_chaud,
-            x_zone_de_calcul_initial = x_zone_de_calcul_initial,
-            x_zone_de_calcul_final = x_zone_de_calcul_final,
-            y_zone_de_calcul_initial = y_zone_de_calcul_initial,
-            y_zone_de_calcul_final = y_zone_de_calcul_final,
-            coordonnées_x_depart_de_feu = coordonnées_x_depart_de_feu,
-            coordonnées_y_depart_de_feu = coordonnées_y_depart_de_feu,
-            cote_du_site_en_feu = cote_du_site_en_feu,
-            longueur_du_depart_de_feu = longueur_du_depart_de_feu,
-            temps_d_allumage = temps_d_allumage,
-            abscisse_du_point_d_enregistrement = abscisse_du_point_d_enregistrement,
-            ordonnée_du_point_d_enregistrement = ordonnée_du_point_d_enregistrement,
+            timp = timp,
+            typeVegetation = typeVegetation,
+            x1veg = x1veg,
+            x2veg = x2veg,
+            y1veg = y1veg,
+            y2veg = y2veg,
+            teneurEnEau = teneurEnEau,
+            hauteurFuelBed = hauteurFuelBed,
+            emissiviteFuelBed = emissiviteFuelBed,
+            absorptionFuelBed = absorptionFuelBed,
+            densiteFuelBed = densiteFuelBed,
+            diametreFuelBed = diametreFuelBed,
+            chaleurSpecFeulBed = chaleurSpecFeulBed,
+            chargeSurface = chargeSurface,
+            hauteurFlamme = hauteurFlamme,
+            timeCombustion = timeCombustion,
+            timeMax = timeMax,
+            deltat = deltat,
+            deltax = deltax,
+            deltay = deltay,
+            xDebut = xDebut,
+            xFin = xFin,
+            yDebut = yDebut,
+            yFin = yFin,
+            temperatureAir = temperatureAir,
+            vitesseDuVent = vitesseDuVent,
+            directionDuVen = directionDuVen,
+            pentex = pentex,
+            pentey = pentey,
+            temperatureFlamme = temperatureFlamme,
+            temperatureAllumage = temperatureAllumage,
+            temperatureBrais = temperatureBrais,
+            emissiviteBraise = emissiviteBraise,
+            conductiviteBraise = conductiviteBraise,
+            conductiviteFlamme = conductiviteFlamme,
+            viscositeAirChau = viscositeAirChau,
+            nbEclosion = nbEclosion,
+            xEclosion = xEclosion,
+            yEclosion = yEclosion,
+            timeAllumage = timeAllumage,
+            longueurEclosion = longueurEclosion,
+            xenreg = xenreg,
+            yenr = yenreg,
+            graphic_urls = "",
+            name = name,
+            region = region,
+            ville = ville,
             user=request.user,
-            graphic_urls=simulation_graphic_urls
         )
 
         return redirect("simulations")
