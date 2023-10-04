@@ -1,4 +1,0 @@
-Simulation Name: S21
-Created On: 2023-10-04 01:08:51.946636+00:00
-Updated On: 2023-10-04 01:08:51.946705+00:00
-User: yayahc
