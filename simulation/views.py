@@ -15,6 +15,8 @@ import csv
 import matplotlib.pyplot as plt
 from django.conf import settings
 
+from .drawer import main_draw
+
 
 def drawer(x, y, title):
 
@@ -164,10 +166,11 @@ def simulations(request):
             user=request.user,
         )
 
-        #NOTE : Create csv files
+        #NOTE : Create csv files and txt file
         write_vegetation_csv(simulation)
         write_climat_csv(simulation)
         write_eclosion_csv(simulation)
+        write_contour_txt(simulation)
 
         return redirect("simulations")
 
@@ -412,17 +415,16 @@ def write_eclosion_csv(simulation):
     #NOTE: ECLOSION
     # Define the file path where the CSV will be stored
     simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
-    os.makedirs(simulation_dir, exist_ok=True)
     csv_file_path = os.path.join(simulation_dir, 'eclosion.csv')
     
     # Create and write the CSV file
     with open(csv_file_path, 'w', newline='') as csvfile:
         writer = csv.writer(csvfile)
         writer.writerow(['variables', 'valeurs'])
-        writer.writerow(['xEclosion',simulation.xEclosion])
-        writer.writerow(['yEclosion',simulation.yEclosion])
+        writer.writerow(['xEclosion',simulation.yEclosion])
         writer.writerow(['yEclosion',simulation.yEclosion])
         writer.writerow(['coteSiteFeu',simulation.coteSiteFeu])
+        writer.writerow(['longueurEclosion',simulation.longueurEclosion])
         writer.writerow(['timeAllumage',simulation.timeAllumage])
         writer.writerow(['xenreg',simulation.xenreg])
         writer.writerow(['xenreg',simulation.xenreg])
@@ -430,6 +432,24 @@ def write_eclosion_csv(simulation):
      # Return a response indicating the file location
     response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
     return response
+
+
+def write_contour_txt(simulation):
+    #NOTE: ECLOSION
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    txt_file_path = os.path.join(simulation_dir, 'contour.txt')
+
+    with open(txt_file_path, 'w') as txtfile:
+        txtfile.write(f"Simulation Name: {simulation.name}\n")
+        txtfile.write(f"Created On: {simulation.created_on}\n")
+        txtfile.write(f"Updated On: {simulation.updated_on}\n")
+        txtfile.write(f"User: {simulation.user}\n")
+
+    # Return a response indicating the file location
+    response = HttpResponse("TXT file saved successfully.", content_type='text/plain')
+    return response
+
 
 def download_vegetation(simulation):
 
@@ -557,9 +577,23 @@ def download_all_simulations(request):
 def view_graphic(request, pk):    
     simulation = get_object_or_404(Simulation, pk=pk)
 
-    image_array = simulation.graphic_urls.split('|')
-    if image_array[-1] == '':
-        image_array.pop()
+    main_draw(simulation.timp,simulation.nbEclosion,simulation.typeVegetation,simulation.name)
 
-    urls = image_array
+
+    # Specify the directory path
+    directory_path = f"media/{simulation.name}/images" 
+
+    # Initialize a list to store the image paths
+    image_paths = []
+
+    # Loop through the files in the directory
+    for filename in os.listdir(directory_path):
+        if filename.endswith(".png"):
+            # Check if the file has a .png extension
+            image_path = os.path.join(directory_path, filename)
+            image_paths.append(image_path)
+
+    # urls = image_array
+    urls = image_path
+    print(urls)
     return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls':urls})
