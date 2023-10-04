@@ -475,7 +475,7 @@ import os
 simulation_dir = os.path.join('media', 'simulation')
 os.makedirs(simulation_dir, exist_ok=True)
 
-with open("Contour.txt","w") as fichier1:   #, open("Surface.txt","w") as fichier2: 
+with open("Contour.txt","r") as fichier1:   #, open("Surface.txt","w") as fichier2: 
     for IT in list(range(1,int(timeMax//deltat)+1)):
         temps[IT]=IT*deltat
 #Calcul de la propagation ##
