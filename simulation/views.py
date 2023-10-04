@@ -13,6 +13,7 @@ import re
 import os
 import csv
 import matplotlib.pyplot as plt
+from django.conf import settings
 
 
 def drawer(x, y, title):
@@ -57,50 +58,22 @@ def simulations(request):
         #NOTE: Get Entrees
         timp = request.POST.get('timp')
         typeVegetation = request.POST.get('typeVegetation')
+        nbrDepartFeu = request.POST.get('nbrDepartFeu')
 
-        x1veg = X1veg.objects.create(
-            x1veg = request.POST.get('x1veg')
-        )
-
-        x2veg = X2veg.objects.create(
-            x2veg = request.POST.get('x2veg')
-        )
-        y1veg = Y1veg.objects.create(
-            y1veg = request.POST.get('y1veg')
-        )
-        y2veg = Y2veg.objects.create(
-            y2veg = request.POST.get('y2veg')
-        )
-        teneurEnEau = TeneurEnEau.objects.create(
-            teneur_en_eau = request.POST.get('teneurEnEau')
-        )
-        hauteurFuelBed = HauteurFuelBed.objects.create(
-            hauteur_fuel_bed = request.POST.get('hauteurFuelBed')
-        )
-        emissiviteFuelBed = EmissiviteFuelBed.objects.create(
-            emissivite_fuel_bed = request.POST.get('emissiviteFuelBed')
-        )
-        absorptionFuelBed = AbsorptionFuelBed.objects.create(
-            absorption_fuel_bed = request.POST.get('absorptionFuelBed')
-        )
-        densiteFuelBed = DensiteFuelBed.objects.create(
-            densite_fuel_bed = request.POST.get('densiteFuelBed')
-        )
-        diametreFuelBed = DiametreFuelBed.objects.create(
-            diametre_fuel_bed = request.POST.get('diametreFuelBed')
-        )
-        chaleurSpecFeulBed = ChaleurSpecFeulBed.objects.create(
-            chaleur_spec_feul_bed = request.POST.get('chaleurSpecFeulBed')
-        )
-        chargeSurface = ChargeSurface.objects.create(
-            charge_surface = request.POST.get('chargeSurface')
-        )
-        hauteurFlamme = HauteurFlamme.objects.create(
-            hauteur_flamme = request.POST.get('hauteurFlamme')
-        )
-        timeCombustion = TimeCombustion.objects.create(
-            time_combustion = request.POST.get('timeCombustion')
-        )
+        x1veg = request.POST.get('x1veg')
+        x2veg = x2veg = request.POST.get('x2veg')        
+        y1veg = request.POST.get('y1veg')
+        y2veg = request.POST.get('y2veg')
+        teneurEnEau = request.POST.get('teneurEnEau')        
+        hauteurFuelBed = request.POST.get('hauteurFuelBed')        
+        emissiviteFuelBed = request.POST.get('emissiviteFuelBed')
+        absorptionFuelBed = request.POST.get('absorptionFuelBed')
+        densiteFuelBed = request.POST.get('densiteFuelBed')        
+        diametreFuelBed = request.POST.get('diametreFuelBed')        
+        chaleurSpecFeulBed = request.POST.get('chaleurSpecFeulBed')        
+        chargeSurface = request.POST.get('chargeSurface')        
+        hauteurFlamme = request.POST.get('hauteurFlamme')        
+        timeCombustion = request.POST.get('timeCombustion')        
         timeMax = request.POST.get('timeMax')
         deltat = request.POST.get('deltat')
         deltax = request.POST.get('deltax')
@@ -124,6 +97,7 @@ def simulations(request):
         nbEclosion = request.POST.get('nbEclosion')
         xEclosion = request.POST.get('xEclosion')
         yEclosion = request.POST.get('yEclosion')
+        coteSiteFeu = request.POST.get('coteSiteFeu')
         timeAllumage = request.POST.get('timeAllumage')
         longueurEclosion = request.POST.get('longueurEclosion')
         xenreg = request.POST.get('xenreg')
@@ -140,6 +114,7 @@ def simulations(request):
         simulation = Simulation.objects.create(
             timp = timp,
             typeVegetation = typeVegetation,
+            nbrDepartFeu = nbrDepartFeu,
             x1veg = x1veg,
             x2veg = x2veg,
             y1veg = y1veg,
@@ -177,6 +152,7 @@ def simulations(request):
             nbEclosion = nbEclosion,
             xEclosion = xEclosion,
             yEclosion = yEclosion,
+            coteSiteFeu = coteSiteFeu,
             timeAllumage = timeAllumage,
             longueurEclosion = longueurEclosion,
             xenreg = xenreg,
@@ -187,6 +163,11 @@ def simulations(request):
             ville = ville,
             user=request.user,
         )
+
+        #NOTE : Create csv files
+        write_vegetation_csv(simulation)
+        write_climat_csv(simulation)
+        write_eclosion_csv(simulation)
 
         return redirect("simulations")
 
@@ -359,20 +340,161 @@ def delete_simulation(request, pk):
     return redirect("simulations")
 
 
-def download_simulation(request, pk):
-    simulation = get_object_or_404(Simulation, pk=pk)
+def write_vegetation_csv(simulation):    
+    #NOTE: VEGETATION
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    os.makedirs(simulation_dir, exist_ok=True)
+    csv_file_path = os.path.join(simulation_dir, 'vegetation.csv')
+    
+    # Create and write the CSV file
+    with open(csv_file_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['variables', 'valeurs'])
+        writer.writerow(['x1veg',simulation.x1veg])
+        writer.writerow(['x2veg',simulation.x2veg])
+        writer.writerow(['y1veg',simulation.y1veg])
+        writer.writerow(['y2veg',simulation.y2veg])
+        writer.writerow(['hauteurFlamme',simulation.hauteurFlamme])
+        writer.writerow(['hauteurFuelBed',simulation.hauteurFuelBed])
+        writer.writerow(['diametreFuelBed',simulation.diametreFuelBed])
+        writer.writerow(['densiteFuelBed',simulation.densiteFuelBed])        
+        writer.writerow(['chargeSurface',simulation.chargeSurface])
+        writer.writerow(['teneurEnEau',simulation.teneurEnEau])
+        writer.writerow(['timeCombustion',simulation.timeCombustion])
+        writer.writerow(['chaleurSpecFeulBed',simulation.chaleurSpecFeulBed])
+        writer.writerow(['absorptionFuelBed',simulation.absorptionFuelBed])
+        writer.writerow(['emissiviteBraise',simulation.emissiviteBraise])
+    
+     # Return a response indicating the file location
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
+    return response
+
+
+def write_climat_csv(simulation):
+    #NOTE: CLIMAT
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    os.makedirs(simulation_dir, exist_ok=True)
+    csv_file_path = os.path.join(simulation_dir, 'climat.csv')
+    
+    # Create and write the CSV file
+    with open(csv_file_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['variables', 'valeurs'])
+        writer.writerow(['timeMax',simulation.timeMax])
+        writer.writerow(['deltat',simulation.deltat])
+        writer.writerow(['deltax',simulation.deltax])
+        writer.writerow(['deltay',simulation.deltay])
+        writer.writerow(['xDebut',simulation.xDebut])
+        writer.writerow(['xFin',simulation.xFin])
+        writer.writerow(['yDebut',simulation.yDebut])
+        writer.writerow(['yFin',simulation.yFin])
+        writer.writerow(['temperatureAir',simulation.temperatureAir])
+        writer.writerow(['vitesseDuVent',simulation.vitesseDuVent])
+        writer.writerow(['directionDuVen',simulation.directionDuVen])
+        writer.writerow(['pentex',simulation.pentex])
+        writer.writerow(['pentey',simulation.pentey])
+        writer.writerow(['temperatureFlamme',simulation.temperatureFlamme])
+        writer.writerow(['temperatureAllumage',simulation.temperatureAllumage])
+        writer.writerow(['temperatureBrais',simulation.temperatureBrais])
+        writer.writerow(['emissiviteBraise',simulation.emissiviteBraise])
+        writer.writerow(['conductiviteBraise',simulation.conductiviteBraise])
+        writer.writerow(['conductiviteFlamme',simulation.conductiviteFlamme])
+        writer.writerow(['viscositeAirChau',simulation.viscositeAirChau])
+    
+     # Return a response indicating the file location
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
+    return response
+
+
+def write_eclosion_csv(simulation):
+    #NOTE: ECLOSION
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    os.makedirs(simulation_dir, exist_ok=True)
+    csv_file_path = os.path.join(simulation_dir, 'eclosion.csv')
+    
+    # Create and write the CSV file
+    with open(csv_file_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['variables', 'valeurs'])
+        writer.writerow(['xEclosion',simulation.xEclosion])
+        writer.writerow(['yEclosion',simulation.yEclosion])
+        writer.writerow(['yEclosion',simulation.yEclosion])
+        writer.writerow(['coteSiteFeu',simulation.coteSiteFeu])
+        writer.writerow(['timeAllumage',simulation.timeAllumage])
+        writer.writerow(['xenreg',simulation.xenreg])
+        writer.writerow(['xenreg',simulation.xenreg])
+    
+     # Return a response indicating the file location
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
+    return response
+
+def download_vegetation(simulation):
 
     response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = f'attachment; filename="{simulation.name}.csv"'
+    response['Content-Disposition'] = f'attachment; filename="vegetation.csv"'
 
-    # Create a CSV writer and write simulation data
+    # vegetation
     writer = csv.writer(response)
-    writer.writerow(['Simulation Name', simulation.name])
-    writer.writerow(['Created On', simulation.created_on])
-    writer.writerow(['Updated On', simulation.updated_on])
-    writer.writerow(['User', simulation.user.username])
+    writer.writerow([simulation.x1veg])
+    writer.writerow([simulation.x2veg])
+    writer.writerow([simulation.y1veg])
+    writer.writerow([simulation.y2veg])
+    writer.writerow([simulation.hauteurFlamme])
+    writer.writerow([simulation.hauteurFuelBed])
+    writer.writerow([simulation.diametreFuelBed])
+    writer.writerow([simulation.chargeSurface])
+    writer.writerow([simulation.teneurEnEau])
+    writer.writerow([simulation.timeCombustion])
+    writer.writerow([simulation.chaleurSpecFeulBed])
+    writer.writerow([simulation.absorptionFuelBed])
+    writer.writerow([simulation.emissiviteBraise])
 
     return response
+    
+def download_climat(simulation):   
+
+    responseTwo = HttpResponse(content_type='text/csv')
+    responseTwo['Content-Disposition'] = f'attachment; filename="vegetation.csv"'
+    #climat
+    writer = csv.writer(responseTwo)
+    writer.writerow([simulation.timeMax])
+    writer.writerow([simulation.timeMax])
+    writer.writerow([simulation.deltat])
+    writer.writerow([simulation.deltax])
+    writer.writerow([simulation.deltay])
+    writer.writerow([simulation.xDebut])
+    writer.writerow([simulation.xFin])
+    writer.writerow([simulation.yDebut])
+    writer.writerow([simulation.yFin])
+    writer.writerow([simulation.temperatureAir])
+    writer.writerow([simulation.vitesseDuVent])
+    writer.writerow([simulation.directionDuVen])
+    writer.writerow([simulation.pentex])
+    writer.writerow([simulation.pentey])
+    writer.writerow([simulation.temperatureFlamme])
+    writer.writerow([simulation.temperatureAllumage])
+    writer.writerow([simulation.temperatureBrais])
+    writer.writerow([simulation.emissiviteBraise])
+    writer.writerow([simulation.conductiviteBraise])
+    writer.writerow([simulation.conductiviteFlamme])
+    writer.writerow([simulation.viscositeAirChau])
+
+def download_eclosion(simulation):
+    #eclosion
+    responseThree = HttpResponse(content_type='text/csv')
+    responseThree['Content-Disposition'] = f'attachment; filename="vegetation.csv"'
+    writer = csv.writer(responseThree)
+    writer.writerow([simulation.xEclosion])
+    writer.writerow([simulation.yEclosion])
+    writer.writerow([simulation.yEclosion])
+    writer.writerow(['centre'])
+    writer.writerow([simulation.timeAllumage])
+    writer.writerow([simulation.xenreg])
+    writer.writerow([simulation.xenreg])
+
 
 
 def download_all_simulations(request):
