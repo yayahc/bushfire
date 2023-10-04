@@ -1,0 +1,15 @@
+variables,valeurs
+x1veg,1
+x2veg,1
+y1veg,1
+y2veg,1
+hauteurFlamme,1
+hauteurFuelBed,1
+diametreFuelBed,1
+densiteFuelBed,1
+chargeSurface,1
+teneurEnEau,1
+timeCombustion,1
+chaleurSpecFeulBed,1
+absorptionFuelBed,1
+emissiviteBraise,1
