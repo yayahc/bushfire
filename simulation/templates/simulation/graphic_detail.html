@@ -1,9 +1,10 @@
 <h1>Simulation Detail</h1>
 <p>Title: {{ simulation.name }}</p>
 
-
+{% for i in urls %}
     <h2>Graphics:</h2>    
     <div class="graphics">
-        <img src="../../../{{urls }}" alt="graphic" id="slideshow-image">
+        <img src="../../../{{ i }}" alt="graphic" id="slideshow-image">
     </div>
 
+{% endfor %}

@@ -2,7 +2,7 @@ from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView
 
 from .views import (simulations, register, logout_user, update_simulation, complete_simulation,
-    delete_simulation, detail_simulation, new_simulation, view_graphic)
+    delete_simulation, detail_simulation, new_simulation, view_graphic, simulate)
 
 
 urlpatterns = [
@@ -23,5 +23,6 @@ urlpatterns = [
     
     # path('upload-simulation/', upload_simulation, name='upload_simulation'),
 
+    path('simulation/<int:pk>/simulate/', simulate, name='simulate'),
     path('simulation/<int:pk>/graphic/', view_graphic, name='view_graphic'),
 ]
