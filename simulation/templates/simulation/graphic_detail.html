@@ -1,10 +1,44 @@
 <h1>Simulation Detail</h1>
 <p>Title: {{ simulation.name }}</p>
 
-{% for i in urls %}
-    <h2>Graphics:</h2>    
+    <h2>Graphics:</h2>
+    <button id="pause"></button>
     <div class="graphics">
-        <img src="../../../{{ i }}" alt="graphic" id="slideshow-image">
+        <img src="../../../media/{{ simulation.name }}/{{ urls.0 }}" alt="graphic" id="slideshow-image">
     </div>
 
-{% endfor %}
+
+    <script>
+        // JavaScript code for the slideshow
+        var urlsString = document.getElementById('urls').textContent;
+        var urls = urlsString.split('|');
+        urls.pop();
+        
+        var currentImageIndex = 0;
+        var imageElement = document.getElementById('slideshow-image');
+        var pause = document.getElementById('pause');
+
+        function changeImage() {
+            pause.textContent = "pause";
+
+            var imageUrl = '../../../media/{{ simulation.name }}/' + urls[currentImageIndex];
+            imageElement.src = imageUrl;
+
+            // Increment the currentImageIndex and reset it to 0 when it reaches the end
+            currentImageIndex = (currentImageIndex + 1) % urls.length;
+        }
+
+        var intervalId = setInterval(changeImage, 1000); // Change image every 1 second
+
+        // Add a click event listener to pause/play the slideshow
+        pause.addEventListener('click', function() {
+            pause.textContent = "simulate";
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null; // Pause the slideshow
+            } else {
+                intervalId = setInterval(changeImage, 1000); // Resume the slideshow
+            }
+        });
+    </script>
+{% endif %}
