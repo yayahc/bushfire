@@ -574,12 +574,15 @@ def download_all_simulations(request):
 #     return render(request, 'simulation/upload_simulation.html', {'form': form})
 
 
-def view_graphic(request, pk):    
+def simulate(request, pk):    
     simulation = get_object_or_404(Simulation, pk=pk)
-
     main_draw(simulation.timp,simulation.nbEclosion,simulation.typeVegetation,simulation.name)
 
 
+
+def view_graphic(request, pk):
+    simulation = get_object_or_404(Simulation, pk=pk)
+    
     # Specify the directory path
     directory_path = f"media/{simulation.name}/images" 
 
@@ -594,6 +597,6 @@ def view_graphic(request, pk):
             image_paths.append(image_path)
 
     # urls = image_array
-    urls = image_path
+    urls = image_paths
     print(urls)
     return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls':urls})
