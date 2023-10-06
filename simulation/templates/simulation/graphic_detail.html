@@ -1,55 +1,41 @@
 <h1>Simulation Detail</h1>
 <p>Title: {{ simulation.name }}</p>
-
-<h2>Graphics:</h2>
 <p id="urls" style="display: none;">{{ urls }}</p>
-    
+
 {% if urls %}
-<div id="slideshow">
-    <img id="image" src="" alt="Image">
-</div>
-<button id="pauseButton">Pause</button>
-{% endif %}
+    <h2>Graphics:</h2>    
+    <div class="graphics">
+        <img src="" alt="graphic" id="slideshow-image">
+    </div>
+    <button id="simulate">Simulate</button>
 
-<script>
-   // Replace 'directoryPath' with the path to your image directory
-   var directoryPath = document.getElementById('urls').textContent;
-   console.log(directoryPath);
-        var imagePaths = [];
-
-        // Function to fetch all image file paths in the directory
-        function fetchImagePaths() {
-            fetch(directoryPath)
-                .then(response => response.text())
-                .then(data => {
-                    imagePaths = data.split('|').filter(Boolean); // Split the string into an array
-                    if (imagePaths.length > 0) {
-                        changeImage();
-                    }
-                });
-        }
-
-        console.log(imagePaths)
-
+    <script>
+        // JavaScript code for the slideshow
+        var urlsString = document.getElementById('urls').textContent;
+        var urls = urlsString.split('|');
+        urls.pop();
+        
         var currentImageIndex = 0;
-        var imageElement = document.getElementById('image');
-        var pauseButton = document.getElementById('pauseButton');
-        var isPaused = false;
+        var imageElement = document.getElementById('slideshow-image');
+        var simulateButton = document.getElementById('simulate');
+        var intervalId = null;
 
         function changeImage() {
-            if (!isPaused) {
-                imageElement.src = directoryPath + imagePaths[currentImageIndex];
-                currentImageIndex = (currentImageIndex + 1) % imagePaths.length;
-            }
+            var imageUrl = '../../../' + urls[currentImageIndex];
+            imageElement.src = imageUrl;
+            currentImageIndex = (currentImageIndex + 1) % urls.length;
         }
 
-        fetchImagePaths(); // Fetch image paths when the page loads
-
-        setInterval(changeImage, 1000);
-
-        // Add click event to pause button
-        pauseButton.addEventListener('click', function () {
-            isPaused = !isPaused;
-            pauseButton.textContent = isPaused ? 'Play' : 'Pause';
+        // Add a click event listener to the "simulate" button
+        simulateButton.addEventListener('click', function() {
+            if (!intervalId) {
+                intervalId = setInterval(changeImage, 1000); // Start the slideshow
+                simulateButton.textContent = "Pause";
+            } else {
+                clearInterval(intervalId); // Pause the slideshow
+                intervalId = null;
+                simulateButton.textContent = "Simulate";
+            }
         });
-</script>
+    </script>
+{% endif %}

@@ -447,7 +447,7 @@ def write_contour_txt(simulation):
         txtfile.write(f"User: {simulation.user}\n")
 
     # Return a response indicating the file location
-    response = HttpResponse("TXT file saved successfully.", content_type='text/plain')
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
     return response
 
 
@@ -578,25 +578,26 @@ def simulate(request, pk):
     simulation = get_object_or_404(Simulation, pk=pk)
     main_draw(simulation.timp,simulation.nbEclosion,simulation.typeVegetation,simulation.name)
 
+    return redirect('view_graphic', pk=pk)
 
 
 def view_graphic(request, pk):
     simulation = get_object_or_404(Simulation, pk=pk)
     
-    # Specify the directory path
-    directory_path = f"media/{simulation.name}/images" 
+    directory_path = f"media/{simulation.name}/images"
 
-    # Initialize a list to store the image paths
-    # image_paths = ''
+    image_paths = []
 
-    # Loop through the files in the directory
-    # for filename in os.listdir(directory_path):
-    #     if filename.endswith(".png"):
-    #         # Check if the file has a .png extension
-    #         image_path = os.path.join(directory_path, filename)
-    #         image_paths += image_path+'|'
+    for filename in os.listdir(directory_path):
+        if filename.endswith(".png"):
+            # Check if the file has a .png extension
+            image_path = os.path.join(directory_path, filename)
+            image_paths.append(image_path)
 
-    # urls = image_array
-    urls = directory_path
-    print(urls)
-    return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls':urls})
+    urls = sorted(image_paths, key=lambda x: int(x.split('_')[-1].split('.')[0]))
+
+    urls_string = ''
+    for i in range(0, len(urls)):
+        urls_string += f'{urls[i]}|'
+
+    return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls': urls_string})

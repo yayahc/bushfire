@@ -1,0 +1,15 @@
+variables,valeurs
+x1veg,0
+x2veg,440
+y1veg,0
+y2veg,400
+hauteurFlamme,6.29
+hauteurFuelBed,0.51
+diametreFuelBed,0.001
+densiteFuelBed,0.37
+chargeSurface,0.37
+teneurEnEau,0.058
+timeCombustion,23.52
+chaleurSpecFeulBed,12
+absorptionFuelBed,512
+emissiviteBraise,0.877
