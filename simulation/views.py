@@ -587,16 +587,16 @@ def view_graphic(request, pk):
     directory_path = f"media/{simulation.name}/images" 
 
     # Initialize a list to store the image paths
-    image_paths = []
+    # image_paths = ''
 
     # Loop through the files in the directory
-    for filename in os.listdir(directory_path):
-        if filename.endswith(".png"):
-            # Check if the file has a .png extension
-            image_path = os.path.join(directory_path, filename)
-            image_paths.append(image_path)
+    # for filename in os.listdir(directory_path):
+    #     if filename.endswith(".png"):
+    #         # Check if the file has a .png extension
+    #         image_path = os.path.join(directory_path, filename)
+    #         image_paths += image_path+'|'
 
     # urls = image_array
-    urls = image_paths
+    urls = directory_path
     print(urls)
     return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls':urls})
