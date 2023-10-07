@@ -1,4 +1,0 @@
-Simulation Name: S10
-Created On: 2023-10-06 22:29:38.136465+00:00
-Updated On: 2023-10-06 22:29:38.136503+00:00
-User: yayahc
