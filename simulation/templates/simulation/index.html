@@ -1,51 +1,177 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
+
+<!-- Mirrored from mobirise.com/extensions/workflowm5/chat-app/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Oct 2023 00:54:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>BushFire</title>
+    <!-- Site made with Mobirise Website Builder v5.6.4, https://mobirise.com -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v5.6.4, mobirise.com">
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:src" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:title" content="WorkflowM5 Theme Web Chat Communication App Demo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="{% static 'assets/images/logo.png' %}" type="image/x-icon">
+    <meta name="description" content="New WorkflowM5 Theme HTML Template - Download Now!">
 
-    <!-- Bootstrap CSS -->
-    <link type="text/css" rel="stylesheet" href="{% static '/css/style.css' %}">
-    <link rel="stylesheet" href="{% static '/css/login.css' %}">
-    <link rel="stylesheet" href="{% static '/css/register.css' %}">
+
+    <title>WorkflowM5 Theme Web Chat Communication App Demo</title>
+    <link rel="stylesheet" href="{% static 'assets/web/assets/mobirise-icons2/mobirise2.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/dropdown/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
+    <link rel="preload"
+        href="{% static 'fonts.googleapis.com/css4a95.css' %}?family=Kantumruy+Pro:100,200,300,400,500,600,700,100i,200i,300i,400i,500i,600i,700i&amp;display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="{% static 'fonts.googleapis.com/css4a95.css' %}?family=Kantumruy+Pro:100,200,300,400,500,600,700,100i,200i,300i,400i,500i,600i,700i&amp;display=swap">
+    </noscript>
+    <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/mobirise/css/mbr-additional.css' %}" type="text/css">
+
+
+
+
 </head>
 
 <body>
-    <nav class="navbar">
-	    <p class="navbar-brand">BushFire</p>
 
-        {% if user.is_authenticated %}
-            <p id="welcome-user">Welcome, {{ request.user.username }}</p>
+    <section data-bs-version="5.1" class="menu menu1 cid-tjQDEIwxeU" once="menu" id="menu01-1">
 
-            <ul>
-                <li class="navbar-item">
-                    <a class="link" href="{% url 'logout' %}">Logout</a>
-                </li>
-            </ul>
-        {% else %}
-            <ul>
-                {% if request.path == '/register/' %}
-                    <li>
-                        <a class="link" href="{% url 'login' %}">Login</a>
-                    </li>
-                {% elif request.path == '/login/' %}
-                    <li>
-                        <a class="link" href="{% url 'register' %}">Register</a>
-                    </li>
-                {% endif %}
-            </ul>
-        {% endif %}
-	</nav>
+        <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="https://mobiri.se/">
+                            <img src="{% static 'assets/images/logo.png' %}" alt="Mobirise Website Builder" style="height: 3rem;">
+                        </a>
+                    </span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-7"
+                            href="https://mobiri.se/">WorkflowM5</a></span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+                    data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                        <li class="nav-item"><a class="nav-link link text-black show display-4" href="https://mobiri.se/"
+                                aria-expanded="false">Home</a></li>                       
+                        <li class="nav-item"><a class="nav-link link text-black display-4"
+                                href="https://mobiri.se/">About</a></li>                       
+                        <li class="nav-item"><a class="nav-link link text-black display-4"
+                                href="https://mobiri.se/">Contacts</a>
+                        </li>
+                    </ul>
+                    
 
+                    {% if user.is_authenticated %}
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-info display-4"
+                            href="{% url 'logout' %}">Logout</a>                            
+                    </div>
+                    {% else %}
+                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-info display-4"
+                        href="{% url 'login' %}">Login</a>
+                        <a class="btn btn-success display-4" href="{% url 'register' %}">Register</a>
+                    </div>
+                    {% endif %}
+                    
+
+                </div>
+            </div>
+        </nav>
+    </section>
+              
     {% block content %}
     {% endblock %}
-    <!-- Below jquery javascript is required for modal functionalities -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
+    <section data-bs-version="5.1" class="footer1 cid-tjRuWdZyqX" once="footers" id="footer01-d">
+
+
+
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-12 col-lg-3">
+                    <div class="social-list text-center">
+
+
+
+
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="socicon-twitter socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="socicon-facebook socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="socicon-youtube socicon mbr-iconfont mbr-iconfont-social"></span>
+                            </a>
+                        </div>
+                        <div class="soc-item">
+                            <a href="#" target="_blank">
+                                <span class="mbr-iconfont mbr-iconfont-social socicon-skype socicon"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-12 col-md-12 col-lg-4">
+                    <ul class="foot-menu pt-2">
+
+
+
+                        <li class="foot-menu-item mbr-fonts-style display-4">
+                            <a href="#" class="text-black">Home</a>
+                        </li>
+                        <li class="foot-menu-item mbr-fonts-style display-4">
+                            <a href="#" class="text-black">Services</a>
+                        </li>
+                        <li class="foot-menu-item mbr-fonts-style display-4">
+                            <a href="#" class="text-black">Services</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-12 col-md-12 col-lg-5">
+                    <p class="mbr-text pt-3 align-right mbr-fonts-style display-4">
+                        © Copyright 2030 Mobirise. All Rights Reserved.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/smoothscroll/smooth-scroll.js' %}"></script>
+    <script src="{% static 'assets/ytplayer/index.js' %}"></script>
+    <script src="{% static 'assets/dropdown/js/navbar-dropdown.js' %}"></script>
+    <script src="{% static 'assets/mbr-switch-arrow/mbr-switch-arrow.js' %}"></script>
+    <script src="{% static 'assets/theme/js/script.js' %}"></script>
+
 </body>
 </html>

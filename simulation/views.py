@@ -52,8 +52,6 @@ def drawer(x, y, title):
     return urls
 
 
-
-@login_required
 def simulations(request):
     if request.method == 'POST':
         
@@ -296,7 +294,7 @@ def update_simulation(request, pk):
     return render(request, 'simulation/simulation_edit.html', {'simulation': simulation})
 
 
-
+@login_required
 def new_simulation(request):
     return render(request, 'simulation/simulation_new.html')
 

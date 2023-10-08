@@ -1,23 +1,533 @@
 {% extends 'simulation/index.html' %}
+{% load static %}
 
 {% block content %}
+<section data-bs-version="5.1" class="header2 cid-tjQDC0fgGE" id="header02-0">
+  <div class="container">
+    <div class="row justify-content-center">
 
-    <div class="container">
-
-        <a href="/simulation/new">New simulation</a>
-
-        <br>
-
-        <h1>Toutes les simulations</h1>
-        
-        {% for i in page_obj %}
-        <div class="todo-container">
-            <div class="todos">
-                <li><a href="{% url 'detail_simulation' i.id %}">{{ i.name }}</a></li>
-                <!-- <li><a href="{% url 'delete_simulation' i.id %}">Delete</a></li> -->
+        <div class="col-12 col-lg col-md-12">
+            <div class="text-wrapper align-left">
+                <h1 class="mbr-section-title align-left mbr-fonts-style mb-3 display-2"><strong>Web Chat
+                        Communication App</strong></h1>
+                <p class="mbr-text align-left mbr-fonts-style display-5">
+                    Lorem ipsum dolor sit amet, consectetur. Proin cursus vitae nunc elementum parturient.</p>
+                <div class="mbr-section-btn mt-3 align-left"><a class="btn btn-primary display-4"
+                        href="/simulation/new">Creer une simulation</a></div>
             </div>
         </div>
-        {% endfor %}
+        <div class="col-12 col-md-12 col-lg-6">
+            <!-- <img class="w-100" src="{% static 'assets/images/bushfire.jpg' %}" alt="Mobirise Website Builder"> -->
+        </div>
     </div>
+  </div>
+</section>
 
+<section data-bs-version="5.1" class="features13 cid-tjRueusv7U" id="features01-2">
+
+
+
+<div class="container">
+  <div class="row">
+      <div class="col-12 mb-5">
+
+          <h3 class="mbr-section-title mbr-fonts-style align-center display-1"><strong>All Simulations</strong></h3>
+
+      </div>
+  </div>
+  {% for i in page_obj %}
+  <div class="row">      
+      <div class="card col-12 col-md-6 md-pb col-lg-3">
+          <a href="{% url 'detail_simulation' i.id %}">
+            <div class="card-wrapper">
+              <div class="card-box align-center">
+                  <div class="iconfont-wrapper">
+                      <span class="mbr-iconfont mobi-mbri-numbered-list mobi-mbri"></span>
+                  </div>
+                  <h5 class="card-title align-left mbr-fonts-style m-0 p-0 display-5">
+                      <strong>{{ i.name }}</strong></h5>
+
+              </div>
+              <p class="card-text align-left mbr-fonts-style pt-4 mb-0 display-4">Lorem ipsum dolor sit amet,
+                  consectet
+                  adipiscing elit curabitur id libero.</p>
+
+            </div>
+          </div>   
+          </a>  
+  </div>
+  <br><br>
+  {% endfor %}
+</div>
+</section>
+
+<section data-bs-version="5.1" class="features2 cid-tjRueDYDTq" id="features02-3">
+
+
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12 col-md-12 col-lg-6">
+          <div class="image-wrapper">
+              <img class="w-100" src="{% static 'assets/images/mbr-5.jpg' %}" alt="Mobirise Website Builder">
+          </div>
+      </div>
+      <div class="card col-12 m-auto col-lg-6 col-md-10">
+          <div class="card-wrapper">
+              <span class="mbr-iconfont mobi-mbri-clock mobi-mbri"></span>
+              <div class="card-box">
+                  <h4 class="card-title mbr-fonts-style mb-2 display-2"><strong>Increase your
+                          Productivity</strong></h4>
+                  <h5 class="card-text mbr-fonts-style display-7">
+                      <div><span style="font-size: 1.4rem; background-color: transparent;">Lorem ipsum sit
+                              amet,
+                              consectetur adipiscing elit. Vivamus urna lorem.</span><br></div>
+                  </h5>
+              </div>
+          </div>
+      </div>
+
+
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="features3 cid-tjRueNf95w" id="features03-4">
+
+
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+
+      <div class="card col-12 m-auto col-lg-6 col-md-10">
+          <div class="card-wrapper">
+              <span class="mbr-iconfont mobi-mbri-edit mobi-mbri"></span>
+              <div class="card-box">
+                  <h4 class="card-title mbr-fonts-style mb-3 display-2"><strong>Optimize work
+                          processes</strong></h4>
+                  <h5 class="card-text mbr-fonts-style display-7">
+                      <div><span style="font-size: 1.4rem; background-color: transparent;">Lorem ipsum dolor
+                              sit
+                              orci amet, consectetur adipiscing elit. Vivamus urna facilisis ac
+                              dignissim.</span><br></div>
+                  </h5>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-6">
+          <div class="image-wrapper">
+              <img class="w-100" src="{% static 'assets/images/mbr-6.jpg' %}" alt="Mobirise Website Builder">
+          </div>
+      </div>
+
+
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="pricing1 cid-tjRuQo193e" id="pricing01-b">
+
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12">
+          <h2 class="title align-center mbr-fonts-style mb-5 pb-3 display-1"><strong>Choose pricing the
+                  plan</strong></h2>
+
+      </div>
+      <div class="col-12 col-md-6 align-center col-lg-5">
+          <div class="plan card1">
+              <div class="plan-header">
+                  <h6 class="plan-title align-left mbr-fonts-style mb-3 display-2">
+                      <strong>Business</strong>
+                  </h6>
+                  <div class="plan-price">
+                      <p class="price-term mbr-semibold align-left mbr-fonts-style mb-3 display-7">Lorem ipsum
+                          dolor sit
+                          amet&nbsp;</p>
+                  </div>
+              </div>
+              <div class="plan-body">
+                  <div class="plan-list mb-4">
+                      <div class="mbr-text mbr-fonts-style display-7">
+                          <ul>
+                              <li>Optimization</li>
+                              <li>Structure</li>
+                              <li>Productivity</li>
+                              <li>Workflow</li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="mbr-section-btn align-left">
+                      <a href="https://mobiri.se/" class="btn btn-primary display-4">Get
+                          started</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="col-12 col-md-6 align-center col-lg-5">
+          <div class="plan card2">
+              <div class="plan-header">
+                  <h6 class="plan-title align-left mbr-fonts-style mb-3 display-2">
+                      <strong>Enterprise</strong>
+                  </h6>
+                  <div class="plan-price">
+                      <p class="price-term mbr-semibold align-left mbr-fonts-style mb-3 display-7">Lorem ipsum
+                          dolor sit
+                          amet&nbsp;</p>
+                  </div>
+              </div>
+              <div class="plan-body">
+                  <div class="plan-list mb-4">
+                      <div class="mbr-text mbr-fonts-style display-7">
+                          <ul>
+                              <li>Optimization</li>
+                              <li>Structure</li>
+                              <li>Productivity</li>
+                              <li>Workflow</li>
+                          </ul>
+                      </div>
+
+                  </div>
+                  <div class="mbr-section-btn align-left">
+                      <a href="https://mobiri.se/" class="btn btn-primary display-4">Get
+                          started</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="list1 cid-tjRvHUWqIe" id="list01-h">
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12">
+          <h4 class="mbr-section-title mbr-fonts-style mb-5 display-2"><strong>Structure work
+                  processes</strong>
+          </h4>
+      </div>
+      <div class="counter-container col-md-12 col-lg-5">
+
+          <div class="mbr-text mbr-fonts-style display-7">
+              <ul>
+                  <li>Lorem ipsum dolor amet consectetur.</li>
+                  <li>In hac habitasse platea purus dictumst.</li>
+                  <li>Fusce venenatis diam ullamcorper arcu.</li>
+              </ul>
+          </div>
+      </div>
+      <div class="counter-container col-md-12 col-lg-5">
+
+          <div class="mbr-text mbr-fonts-style display-7">
+              <ul>
+                  <li>Sed lectus efficitur a dignissim ultrices.</li>
+                  <li>Nam fringilla dapibus mollis dapibus.</li>
+                  <li>Vivamus tristique, at eleifend laoreet.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="article01 cid-tjRvM1hRCp" id="article01-i">
+
+
+
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+
+      <div class="col-12 col-lg col-md-12">
+          <div class="text-wrapper pb-3 align-left">
+              <h1 class="mbr-section-title align-left mbr-fonts-style mb-3 display-1"><strong>Optimize
+                      Workflow</strong></h1>
+              <p class="mbr-text align-left mbr-fonts-style display-5">
+                  Lorem ipsum dolor amet&nbsp;neque consectetur. Proin cursus vitae elementum parturient.</p>
+
+          </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-6">
+          <div class="image-wrapper">
+              <img class="w-100" src="{% static 'assets/images/mbr-6.jpg' %}" alt="Mobirise Website Builder">
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="people1 cid-tjRvgyt5KU" id="people01-e">
+
+<div class="images-container container">
+  <div class="mbr-section-head pb-5">
+      <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2"><strong>Over a million
+              companies trust us</strong></h3>
+
+
+  </div>
+  <div class="row justify-content-center mt-4">
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/1.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/2.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/3.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/4.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/2.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/3.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/4.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/5.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/2.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/3.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/4.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/2.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/3.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/4.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/5.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/2.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/3.png' %}" alt="Mobirise Website Builder">
+      </div>
+      <div class="col-md-3 card">
+          <img src="{% static 'assets/images/4.png' %}" alt="Mobirise Website Builder">
+      </div>
+
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="people2 cid-tjRuN2Wm8v" id="people02-7">
+
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="title col-md-12 col-lg-7">
+          <h3 class="mbr-section-title mbr-fonts-style align-center mb-4 display-2">
+              <strong>Testimonials</strong>
+          </h3>
+          <h4 class="mbr-section-subtitle align-center mbr-fonts-style mb-4 display-7"><strong>"Lorem ipsum
+                  dolor sit
+                  amet, consectetur adipiscing elit. Vivamus urna lorem, facilisis ac dignissim nec, facilisis
+                  vitae leo. Fusce in sagittis risus, sit amet hendrerit diam. Ut posuere leo et dui
+                  ullamcorper
+                  imperdiet. Morbi gravida ultricies est."</strong></h4>
+          <p class="mbr-text align-center mbr-fonts-style mb-4 display-4"><strong>
+                  Tania W. Holland
+              </strong><br>Client</p>
+
+      </div>
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="article02 cid-tjRvyqD2tZ" id="article02-g">
+
+
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12 col-lg col-md-12">
+          <div class="text-wrapper pb-3 align-left">
+              <h2 class="mbr-section-title align-left mbr-fonts-style mb-3 display-2"><strong>Increase
+                      Productivity</strong></h2>
+              <p class="mbr-text align-left mbr-fonts-style display-4">Lorem ipsum dolor sit amet, consectetur
+                  adipiscing elit. Vivamus urna lorem, facilisis ac dignissim nec, facilisis vitae leo. Fusce
+                  in
+                  sagittis risus,</p>
+              <div class="item">
+                  <h3 class="mbr-section-title align-left mbr-fonts-style mb-3 display-7">
+                      <strong>Lorem ipsum dolor sit amet,</strong>
+                  </h3>
+                  <p class="mbr-text align-left mbr-fonts-style display-4">Lorem ipsum dolor sit amet,
+                      consectetur
+                      adipiscing elit. Vivamus urna lorem, facilisis ac dignissim nec, facilisis vitae leo.
+                      Fusce
+                      in sagittis risus.<br></p>
+              </div>
+              <div class="item">
+                  <h3 class="mbr-section-title align-left mbr-fonts-style mb-3 display-7">
+                      <strong>Donec lobortis consequat ullamcorper</strong>
+                  </h3>
+                  <p class="mbr-text align-left mbr-fonts-style display-4">Lorem ipsum dolor sit amet,
+                      consectetur
+                      adipiscing elit. Vivamus urna lorem, facilisis ac dignissim nec, facilisis vitae leo.
+                      Fusce
+                      in sagittis risus.</p>
+              </div>
+              <div class="item">
+                  <h3 class="mbr-section-title align-left mbr-fonts-style mb-3 display-7">
+                      <strong>Mauris vel egestas urna</strong>
+                  </h3>
+                  <p class="mbr-text align-left mbr-fonts-style display-4">Lorem ipsum dolor sit amet,
+                      consectetur
+                      adipiscing elit. Vivamus urna lorem, facilisis ac dignissim nec, facilisis vitae leo.
+                      Fusce
+                      in sagittis risus.</p>
+              </div>
+
+          </div>
+      </div>
+      <div class="col-12 col-md-12 col-lg-6">
+          <div class="image-wrapper">
+              <img class="w-100" src="{% static 'assets/images/features1.jpg' %}" alt="Mobirise Website Builder">
+          </div>
+      </div>
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="list4 cid-tjRuOAqDXU" id="list04-9">
+
+
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-12 col-md-12 col-lg-10 m-auto">
+          <div class="content">
+              <div class="mbr-section-head align-left mb-5">
+
+                  <h3 class="mbr-section-title mb-2 mbr-fonts-style display-1"><strong>FAQs</strong></h3>
+              </div>
+              <div id="bootstrap-accordion_9" class="panel-group accordionStyles accordion" role="tablist"
+                  aria-multiselectable="true">
+                  <div class="card mb-3">
+                      <div class="card-header" role="tab" id="headingOne">
+                          <a role="button" class="panel-title collapsed" data-toggle="collapse"
+                              data-bs-toggle="collapse" data-core="" href="#collapse1_9" aria-expanded="false"
+                              aria-controls="collapse1">
+
+                              <h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">Lorem
+                                  ipsum dolor sit amet
+                                  augue neque</h6>
+                              <span class="sign mbr-iconfont mobi-mbri-plus"></span>
+                          </a>
+                      </div>
+                      <div id="collapse1_9" class="panel-collapse noScroll collapse" role="tabpanel"
+                          aria-labelledby="headingOne" data-parent="#accordion"
+                          data-bs-parent="#bootstrap-accordion_9">
+                          <div class="panel-body">
+                              <p class="mbr-fonts-style panel-text display-4">Lorem ipsum dolor sit amet,
+                                  consectetur
+                                  adipiscing elit. Pellentesque nec purus ut massa hendrerit fringilla luctus
+                                  mattis diam.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card mb-3">
+                      <div class="card-header" role="tab" id="headingOne">
+                          <a role="button" class="panel-title collapsed" data-toggle="collapse"
+                              data-bs-toggle="collapse" data-core="" href="#collapse2_9" aria-expanded="false"
+                              aria-controls="collapse2">
+
+                              <h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">
+                                  Pellentesque
+                                  nec purus ut massa finibus</h6>
+                              <span class="sign mbr-iconfont mobi-mbri-plus"></span>
+                          </a>
+                      </div>
+                      <div id="collapse2_9" class="panel-collapse noScroll collapse" role="tabpanel"
+                          aria-labelledby="headingOne" data-parent="#accordion"
+                          data-bs-parent="#bootstrap-accordion_9">
+                          <div class="panel-body">
+                              <p class="mbr-fonts-style panel-text display-4">
+                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec
+                                  purus
+                                  ut massa hendrerit fringilla luctus mattis diam.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="card mb-3">
+                      <div class="card-header" role="tab" id="headingOne">
+                          <a role="button" class="panel-title collapsed" data-toggle="collapse"
+                              data-bs-toggle="collapse" data-core="" href="#collapse3_9" aria-expanded="false"
+                              aria-controls="collapse3">
+                              <h6 class="panel-title-edit mbr-semibold mbr-fonts-style mb-0 display-5">Mauris
+                                  porttitor tempor orci vitae molestie&nbsp;</h6>
+                              <span class="sign mbr-iconfont mobi-mbri-plus"></span>
+                          </a>
+                      </div>
+                      <div id="collapse3_9" class="panel-collapse noScroll collapse" role="tabpanel"
+                          aria-labelledby="headingOne" data-parent="#accordion"
+                          data-bs-parent="#bootstrap-accordion_9">
+                          <div class="panel-body">
+                              <p class="mbr-fonts-style panel-text display-4">
+                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque nec
+                                  purus
+                                  ut massa hendrerit fringilla luctus mattis diam.</p>
+                          </div>
+                      </div>
+                  </div>
+
+
+
+              </div>
+          </div>
+      </div>
+
+  </div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="contacts1 cid-tjRuNF4G7x" id="contacts01-8">
+
+
+
+<div class="container">
+  <div class="mbr-section-head mb-4">
+      <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-1"><strong>Visit Us</strong></h3>
+
+  </div>
+  <div class="google-map"><iframe frameborder="0" style="border:0"
+          src=""
+          allowfullscreen=""></iframe></div>
+</div>
+</section>
+
+<section data-bs-version="5.1" class="list02 cid-tjRuP9TQlx" id="list02-a">
+
+
+</section>
 {% endblock %}
