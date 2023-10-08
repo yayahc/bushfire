@@ -1,0 +1,4 @@
+Simulation Name: Strong
+Created On: 2023-10-08 11:23:00.208796+00:00
+Updated On: 2023-10-08 11:23:00.208848+00:00
+User: iko

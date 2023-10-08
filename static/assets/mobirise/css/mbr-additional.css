@@ -1,3 +1,7 @@
+.btn-custom {
+  background-color: red;
+}
+
 body {
   font-family: Kantumruy Pro;
 }
@@ -111,12 +115,12 @@ body {
   background-color: #ff9966 !important;
 }
 .btn-primary {
-  border: 5px solid #d1d1f7;
+  border: 5px solid transparent;
 }
 .btn-primary,
 .btn-primary:active {
   background-color: #565add !important;
-  border-color: #d1d1f7 !important;
+  /* border-color: #d1d1f7 !important; */
   color: #ffffff !important;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
 }

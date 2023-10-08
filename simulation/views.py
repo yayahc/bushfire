@@ -182,6 +182,10 @@ def simulations(request):
     return render(request, "simulation/simulations.html", context)
 
 
+def all_simmulations(request):
+    simulations = Simulation.objects.order_by("-id")
+    return render(request, "simulation/all_simulations.html", {"simulations":simulations})
+    
 
 def update_simulation(request, pk):
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
@@ -447,6 +451,7 @@ def write_contour_txt(simulation):
     # Return a response indicating the file location
     response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
     return response
+
 
 
 def download_vegetation(simulation):

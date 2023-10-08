@@ -65,8 +65,8 @@
                     
 
                     {% if user.is_authenticated %}
-                    <div class="navbar-buttons"><a class="btn btn-primary"
-                            href="{% url 'logout' %}">Logout</a>                            
+                    <div class="navbar-buttons">
+                        <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>                            
                     </div>
                     {% else %}
                     <div class="navbar-buttons"><a class="btn btn-primary"
