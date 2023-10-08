@@ -111,7 +111,7 @@ body {
   background-color: #ff9966 !important;
 }
 .btn-primary {
-  border: 5px solid #d1d1f7 !important;
+  border: 5px solid #d1d1f7;
 }
 .btn-primary,
 .btn-primary:active {
