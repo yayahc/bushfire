@@ -1,186 +1,308 @@
+{% extends 'simulation/index.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'simulation/sponsors.html' %}
+
 <form action="{% url 'update_simulation' simulation.id %}" method="post" class="edit-todo-form">
     {% csrf_token %}
-
           
             <div>
                 <label for="name_{{ simulation.id }}">Name</label>
-                <input type="text" name="name_{{ simulation.id }}" id="name_{{ simulation.id }}" value="{{ simulation.name }}" required>
+                <input type="text" name="name{{ simulation.id }}" id="name{{ simulation.id }}" value="{{ simulation.name }}" required>
                 <br>
             </div>
 
-            <div class="vegetation">
-                <label for="limite_initiale_ox_{{ simulation.id }}">limite_initiale_ox</label>
-                <input type="text" name="limite_initiale_ox_{{ simulation.id }}" id="limite_initiale_ox_{{ simulation.id }}" value="{{ simulation.limite_initiale_ox }}" required>
-                <br>
-
-                <label for="limite_finale_ox_{{ simulation.id }}">limite_finale_ox</label>
-                <input type="text" name="limite_finale_ox_{{ simulation.id }}" id="limite_finale_ox_{{ simulation.id }}" value="{{ simulation.limite_finale_ox }}" required>
-                <br>
-
-                <label for="limite_initiale_oy_{{ simulation.id }}">limite_initiale_oy</label>
-                <input type="text" name="limite_initiale_oy_{{ simulation.id }}" id="limite_initiale_oy_{{ simulation.id }}" value="{{ simulation.limite_initiale_oy }}" required>
-                <br>
-
-                <label for="limite_finale_oy_{{ simulation.id }}">limite_finale_oy</label>
-                <input type="text" name="limite_finale_oy_{{ simulation.id }}" id="limite_finale_oy_{{ simulation.id }}" value="{{ simulation.limite_finale_oy }}" required>
-                <br>
-
-                <label for="longueur_de_la_flamme_{{ simulation.id }}">longueur_de_la_flamme</label>
-                <input type="text" name="longueur_de_la_flamme_{{ simulation.id }}" id="longueur_de_la_flamme_{{ simulation.id }}" value="{{ simulation.longueur_de_la_flamme }}" required>
-                <br>
-
-                <label for="hauteur_de_la_végétation_{{ simulation.id }}">hauteur_de_la_végétation</label>
-                <input type="text" name="hauteur_de_la_végétation_{{ simulation.id }}" id="hauteur_de_la_végétation_{{ simulation.id }}" value="{{ simulation.hauteur_de_la_végétation }}" required>
-                <br>
-
-                <label for="diametre_du_combustible_{{ simulation.id }}">diametre_du_combustible</label>
-                <input type="text" name="diametre_du_combustible_{{ simulation.id }}" id="diametre_du_combustible_{{ simulation.id }}" value="{{ simulation.diametre_du_combustible }}" required>
-                <br>
-
-                <label for="densite_de_la_végétation_{{ simulation.id }}">densite_de_la_végétation</label>
-                <input type="text" name="densite_de_la_végétation_{{ simulation.id }}" id="densite_de_la_végétation_{{ simulation.id }}" value="{{ simulation.densite_de_la_végétation }}" required>
-                <br>
-
-                <label for="charge_surfacique_de_la_végétation_{{ simulation.id }}">charge_surfacique_de_la_végétation</label>
-                <input type="text" name="charge_surfacique_de_la_végétation_{{ simulation.id }}" id="charge_surfacique_de_la_végétation_{{ simulation.id }}" value="{{ simulation.charge_surfacique_de_la_végétation }}" required>
-                <br>
-
-                <label for="teneur_en_eau_de_la_végétation_{{ simulation.id }}">teneur_en_eau_de_la_végétation</label>
-                <input type="text" name="teneur_en_eau_de_la_végétation_{{ simulation.id }}" id="teneur_en_eau_de_la_végétation_{{ simulation.id }}" value="{{ simulation.teneur_en_eau_de_la_végétation }}" required>
-                <br>
-
-                <label for="temps_de_combustion_{{ simulation.id }}">temps_de_combustion</label>
-                <input type="text" name="temps_de_combustion_{{ simulation.id }}" id="temps_de_combustion_{{ simulation.id }}" value="{{ simulation.temps_de_combustion }}" required>
-                <br>
-
-                <label for="chaleur_spécifique_du_combustible_{{ simulation.id }}">chaleur_spécifique_du_combustible</label>
-                <input type="text" name="chaleur_spécifique_du_combustible_{{ simulation.id }}" id="chaleur_spécifique_du_combustible_{{ simulation.id }}" value="{{ simulation.chaleur_spécifique_du_combustible }}" required>
-                <br>
-
-                <label for="coefficient_absorption_combustible_{{ simulation.id }}">coefficient_absorption_combustible</label>
-                <input type="text" name="coefficient_absorption_combustible_{{ simulation.id }}" id="coefficient_absorption_combustible_{{ simulation.id }}" value="{{ simulation.coefficient_absorption_combustible }}" required>
-                <br>
-
-                <label for="emissivite_du_combustible_{{ simulation.id }}">emissivite_du_combustible</label>
-                <input type="text" name="emissivite_du_combustible_{{ simulation.id }}" id="emissivite_du_combustible_{{ simulation.id }}" value="{{ simulation.emissivite_du_combustible }}" required>
+            <div>
+                <label for="region_{{ simulation.id }}">Region</label>
+                <input type="text" name="region{{ simulation.id }}" id="region{{ simulation.id }}" value="{{ simulation.region }}" required>
                 <br>
             </div>
 
-
-            <div class="climat">
-                <label for="temps_de_simulation_{{ simulation.id }}">temps_de_simulation</label>
-                <input type="text" name="temps_de_simulation_{{ simulation.id }}" id="temps_de_simulation_{{ simulation.id }}" value="{{ simulation.temps_de_simulation }}" required>
+            <div>
+                <label for="ville_{{ simulation.id }}">ville</label>
+                <input type="text" name="ville{{ simulation.id }}" id="ville{{ simulation.id }}" value="{{ simulation.ville }}" required>
                 <br>
+            </div>
 
-                <label for="pas_de_temps_{{ simulation.id }}">pas_de_temps</label>
-                <input type="text" name="pas_de_temps_{{ simulation.id }}" id="pas_de_temps_{{ simulation.id }}" value="{{ simulation.pas_de_temps }}" required>
+            <div>
+                <label for="timp_{{ simulation.id }}">timp</label>
+                <input type="text" name="timp{{ simulation.id }}" id="timp{{ simulation.id }}" value="{{ simulation.timp }}" required>
                 <br>
+            </div>
 
-                <label for="pas_d_espace_ox_{{ simulation.id }}">pas_d_espace_ox</label>
-                <input type="text" name="pas_d_espace_ox_{{ simulation.id }}" id="pas_d_espace_ox_{{ simulation.id }}" value="{{ simulation.pas_d_espace_ox }}" required>
+            <div>
+                <label for="typeVegetation_{{ simulation.id }}">typeVegetation</label>
+                <input type="text" name="typeVegetation{{ simulation.id }}" id="typeVegetation{{ simulation.id }}" value="{{ simulation.typeVegetation }}" required>
                 <br>
+            </div>
 
-                <label for="pas_d_espace_oy_{{ simulation.id }}">pas_d_espace_oy</label>
-                <input type="text" name="pas_d_espace_oy_{{ simulation.id }}" id="pas_d_espace_oy_{{ simulation.id }}" value="{{ simulation.pas_d_espace_oy }}" required>
+            <div>
+                <label for="nbrDepartFeu_{{ simulation.id }}">nbrDepartFeu</label>
+                <input type="text" name="nbrDepartFeu{{ simulation.id }}" id="nbrDepartFeu{{ simulation.id }}" value="{{ simulation.nbrDepartFeu }}" required>
                 <br>
+            </div>
 
-                <label for="temperature_ambiante_{{ simulation.id }}">temperature_ambiante</label>
-                <input type="text" name="temperature_ambiante_{{ simulation.id }}" id="temperature_ambiante_{{ simulation.id }}" value="{{ simulation.temperature_ambiante }}" required>
+            <div>
+                <label for="x1veg_{{ simulation.id }}">x1veg</label>
+                <input type="text" name="x1veg{{ simulation.id }}" id="x1veg{{ simulation.id }}" value="{{ simulation.x1veg }}" required>
                 <br>
+            </div>
 
-                <label for="vitesse_du_vent_{{ simulation.id }}">vitesse_du_vent</label>
-                <input type="text" name="vitesse_du_vent_{{ simulation.id }}" id="vitesse_du_vent_{{ simulation.id }}" value="{{ simulation.vitesse_du_vent }}" required>
+            <div>
+                <label for="x2veg_{{ simulation.id }}">x2veg</label>
+                <input type="text" name="x2veg{{ simulation.id }}" id="x2veg{{ simulation.id }}" value="{{ simulation.x2veg }}" required>
                 <br>
+            </div>
 
-                <label for="direction_du_vent_{{ simulation.id }}">direction_du_vent</label>
-                <input type="text" name="direction_du_vent_{{ simulation.id }}" id="direction_du_vent_{{ simulation.id }}" value="{{ simulation.direction_du_vent }}" required>
+            <div>
+                <label for="y1veg_{{ simulation.id }}">y1veg</label>
+                <input type="text" name="y1veg{{ simulation.id }}" id="y1veg{{ simulation.id }}" value="{{ simulation.y1veg }}" required>
                 <br>
+            </div>
 
-                <label for="pente_suivant_ox_{{ simulation.id }}">pente_suivant_ox</label>
-                <input type="text" name="pente_suivant_ox_{{ simulation.id }}" id="pente_suivant_ox_{{ simulation.id }}" value="{{ simulation.pente_suivant_ox }}" required>
+            <div>
+                <label for="y2veg_{{ simulation.id }}">y2veg</label>
+                <input type="text" name="y2veg{{ simulation.id }}" id="y2veg{{ simulation.id }}" value="{{ simulation.y2veg }}" required>
                 <br>
+            </div>
 
-                <label for="pente_suivant_oy_{{ simulation.id }}">pente_suivant_oy</label>
-                <input type="text" name="pente_suivant_oy_{{ simulation.id }}" id="pente_suivant_oy_{{ simulation.id }}" value="{{ simulation.pente_suivant_oy }}" required>
+            <div>
+                <label for="teneurEnEau_{{ simulation.id }}">teneurEnEau</label>
+                <input type="text" name="teneurEnEau{{ simulation.id }}" id="teneurEnEau{{ simulation.id }}" value="{{ simulation.teneurEnEau }}" required>
                 <br>
+            </div>
 
-                <label for="temperature_de_la_flamme_{{ simulation.id }}">temperature_de_la_flamme</label>
-                <input type="text" name="temperature_de_la_flamme_{{ simulation.id }}" id="temperature_de_la_flamme_{{ simulation.id }}" value="{{ simulation.temperature_de_la_flamme }}" required>
+            <div>
+                <label for="hauteurFuelBed_{{ simulation.id }}">hauteurFuelBed</label>
+                <input type="text" name="hauteurFuelBed{{ simulation.id }}" id="hauteurFuelBed{{ simulation.id }}" value="{{ simulation.hauteurFuelBed }}" required>
                 <br>
+            </div>
 
-                <label for="temperature_d_allumage_{{ simulation.id }}">temperature_d_allumage</label>
-                <input type="text" name="temperature_d_allumage_{{ simulation.id }}" id="temperature_d_allumage_{{ simulation.id }}" value="{{ simulation.temperature_d_allumage }}" required>
+            <div>
+                <label for="emissiviteFuelBed_{{ simulation.id }}">emissiviteFuelBed</label>
+                <input type="text" name="emissiviteFuelBed{{ simulation.id }}" id="emissiviteFuelBed{{ simulation.id }}" value="{{ simulation.emissiviteFuelBed }}" required>
                 <br>
+            </div>
 
-                <label for="temperature_des_braises_{{ simulation.id }}">temperature_des_braises</label>
-                <input type="text" name="temperature_des_braises_{{ simulation.id }}" id="temperature_des_braises_{{ simulation.id }}" value="{{ simulation.temperature_des_braises }}" required>
+            <div>
+                <label for="absorptionFuelBed{{ simulation.id }}">absorptionFuelBed</label>
+                <input type="text" name="absorptionFuelBed{{ simulation.id }}" id="absorptionFuelBed{{ simulation.id }}" value="{{ simulation.absorptionFuelBed }}" required>
                 <br>
+            </div>
 
-                <label for="emissivite_des_braises_{{ simulation.id }}">emissivite_des_braises</label>
-                <input type="text" name="emissivite_des_braises_{{ simulation.id }}" id="emissivite_des_braises_{{ simulation.id }}" value="{{ simulation.emissivite_des_braises }}" required>
+            <div>
+                <label for="densiteFuelBed{{ simulation.id }}">densiteFuelBed</label>
+                <input type="text" name="densiteFuelBed{{ simulation.id }}" id="densiteFuelBed{{ simulation.id }}" value="{{ simulation.densiteFuelBed }}" required>
                 <br>
+            </div>
 
-                <label for="conductivite_des_braises_{{ simulation.id }}">conductivite_des_braises</label>
-                <input type="text" name="conductivite_des_braises_{{ simulation.id }}" id="conductivite_des_braises_{{ simulation.id }}" value="{{ simulation.conductivite_des_braises }}" required>
+            <div>
+                <label for="diametreFuelBed{{ simulation.id }}">diametreFuelBed</label>
+                <input type="text" name="diametreFuelBed{{ simulation.id }}" id="diametreFuelBed{{ simulation.id }}" value="{{ simulation.diametreFuelBed }}" required>
                 <br>
+            </div>
 
-                <label for="conductivite_de_la_flamme_{{ simulation.id }}">conductivite_de_la_flamme</label>
-                <input type="text" name="conductivite_de_la_flamme_{{ simulation.id }}" id="conductivite_de_la_flamme_{{ simulation.id }}" value="{{ simulation.conductivite_de_la_flamme }}" required>
-                <br>
-
-                <label for="viscosité_de_l_aire_chaud_{{ simulation.id }}">viscosité_de_l_aire_chaud</label>
-                <input type="text" name="viscosité_de_l_aire_chaud_{{ simulation.id }}" id="viscosité_de_l_aire_chaud_{{ simulation.id }}" value="{{ simulation.viscosité_de_l_aire_chaud }}" required>
-                <br>
-
-                <label for="x_zone_de_calcul_initial_{{ simulation.id }}">x_zone_de_calcul_initial</label>
-                <input type="text" name="x_zone_de_calcul_initial_{{ simulation.id }}" id="x_zone_de_calcul_initial_{{ simulation.id }}" value="{{ simulation.x_zone_de_calcul_initial }}" required>
-                <br>
-
-                <label for="x_zone_de_calcul_final_{{ simulation.id }}">x_zone_de_calcul_final</label>
-                <input type="text" name="x_zone_de_calcul_final_{{ simulation.id }}" id="x_zone_de_calcul_final_{{ simulation.id }}" value="{{ simulation.x_zone_de_calcul_final }}" required>
-                <br>
-
-                <label for="y_zone_de_calcul_initial_{{ simulation.id }}">y_zone_de_calcul_initial</label>
-                <input type="text" name="y_zone_de_calcul_initial_{{ simulation.id }}" id="y_zone_de_calcul_initial_{{ simulation.id }}" value="{{ simulation.y_zone_de_calcul_initial }}" required>
-                <br>
-
-                <label for="y_zone_de_calcul_final_{{ simulation.id }}">y_zone_de_calcul_final</label>
-                <input type="text" name="y_zone_de_calcul_final_{{ simulation.id }}" id="y_zone_de_calcul_final_{{ simulation.id }}" value="{{ simulation.y_zone_de_calcul_final }}" required>
+            <div>
+                <label for="chaleurSpecFeulBed{{ simulation.id }}">chaleurSpecFeulBed</label>
+                <input type="text" name="chaleurSpecFeulBed{{ simulation.id }}" id="chaleurSpecFeulBed{{ simulation.id }}" value="{{ simulation.chaleurSpecFeulBed }}" required>
                 <br>
             </div>
 
 
-            <div class="eclosion">
-                <label for="coordonnées_x_depart_de_feu_{{ simulation.id }}">coordonnées_x_depart_de_feu</label>
-                <input type="text" name="coordonnées_x_depart_de_feu_{{ simulation.id }}" id="coordonnées_x_depart_de_feu_{{ simulation.id }}" value="{{ simulation.coordonnées_x_depart_de_feu }}" required>
-                <br>
-
-                <label for="coordonnées_y_depart_de_feu_{{ simulation.id }}">coordonnées_y_depart_de_feu</label>
-                <input type="text" name="coordonnées_y_depart_de_feu_{{ simulation.id }}" id="coordonnées_y_depart_de_feu_{{ simulation.id }}" value="{{ simulation.coordonnées_y_depart_de_feu }}" required>
-                <br>
-
-                <label for="cote_du_site_en_feu_{{ simulation.id }}">cote_du_site_en_feu</label>
-                <input type="text" name="cote_du_site_en_feu_{{ simulation.id }}" id="cote_du_site_en_feu_{{ simulation.id }}" value="{{ simulation.cote_du_site_en_feu }}" required>
-                <br>
-
-                <label for="longueur_du_depart_de_feu_{{ simulation.id }}">longueur_du_depart_de_feu</label>
-                <input type="text" name="longueur_du_depart_de_feu_{{ simulation.id }}" id="longueur_du_depart_de_feu_{{ simulation.id }}" value="{{ simulation.longueur_du_depart_de_feu }}" required>
-                <br>
-
-                <label for="temps_d_allumage_{{ simulation.id }}">temps_d_allumage</label>
-                <input type="text" name="temps_d_allumage_{{ simulation.id }}" id="temps_d_allumage_{{ simulation.id }}" value="{{ simulation.temps_d_allumage }}" required>
-                <br>
-
-                <label for="abscisse_du_point_d_enregistrement_{{ simulation.id }}">abscisse_du_point_d_enregistrement</label>
-                <input type="text" name="abscisse_du_point_d_enregistrement_{{ simulation.id }}" id="abscisse_du_point_d_enregistrement_{{ simulation.id }}" value="{{ simulation.abscisse_du_point_d_enregistrement }}" required>
-                <br>
-
-                <label for="ordonnée_du_point_d_enregistrement_{{ simulation.id }}">ordonnée_du_point_d_enregistrement</label>
-                <input type="text" name="ordonnée_du_point_d_enregistrement_{{ simulation.id }}" id="ordonnée_du_point_d_enregistrement_{{ simulation.id }}" value="{{ simulation.ordonnée_du_point_d_enregistrement }}" required>
+            <!-- climat -->
+            <div>
+                <label for="chargeSurface{{ simulation.id }}">chargeSurface</label>
+                <input type="text" name="chargeSurface{{ simulation.id }}" id="chargeSurface{{ simulation.id }}" value="{{ simulation.chargeSurface }}" required>
                 <br>
             </div>
+
+            <div>
+                <label for="hauteurFlamme{{ simulation.id }}">hauteurFlamme</label>
+                <input type="text" name="hauteurFlamme{{ simulation.id }}" id="hauteurFlamme{{ simulation.id }}" value="{{ simulation.hauteurFlamme }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="timeCombustion{{ simulation.id }}">timeCombustion</label>
+                <input type="text" name="timeCombustion{{ simulation.id }}" id="timeCombustion{{ simulation.id }}" value="{{ simulation.timeCombustion }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="timeMax{{ simulation.id }}">timeMax</label>
+                <input type="text" name="timeMax{{ simulation.id }}" id="timeMax{{ simulation.id }}" value="{{ simulation.timeMax }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="deltat{{ simulation.id }}">deltat</label>
+                <input type="text" name="deltat{{ simulation.id }}" id="deltat{{ simulation.id }}" value="{{ simulation.deltat }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="deltax{{ simulation.id }}">deltax</label>
+                <input type="text" name="deltax{{ simulation.id }}" id="deltax{{ simulation.id }}" value="{{ simulation.deltax }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="deltay{{ simulation.id }}">deltay</label>
+                <input type="text" name="deltay{{ simulation.id }}" id="deltay{{ simulation.id }}" value="{{ simulation.deltay }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="xDebut{{ simulation.id }}">xDebut</label>
+                <input type="text" name="xDebut{{ simulation.id }}" id="xDebut{{ simulation.id }}" value="{{ simulation.xDebut }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="xFin{{ simulation.id }}">xFin</label>
+                <input type="text" name="xFin{{ simulation.id }}" id="xFin{{ simulation.id }}" value="{{ simulation.xFin }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="yDebut{{ simulation.id }}">yDebut</label>
+                <input type="text" name="yDebut{{ simulation.id }}" id="yDebut{{ simulation.id }}" value="{{ simulation.yDebut }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="yFin{{ simulation.id }}">yFin</label>
+                <input type="text" name="yFin{{ simulation.id }}" id="yFin{{ simulation.id }}" value="{{ simulation.yFin }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="temperatureAir{{ simulation.id }}">temperatureAir</label>
+                <input type="text" name="temperatureAir{{ simulation.id }}" id="temperatureAir{{ simulation.id }}" value="{{ simulation.temperatureAir }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="vitesseDuVent{{ simulation.id }}">vitesseDuVent</label>
+                <input type="text" name="vitesseDuVent{{ simulation.id }}" id="vitesseDuVent{{ simulation.id }}" value="{{ simulation.vitesseDuVent }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="directionDuVen{{ simulation.id }}">directionDuVen</label>
+                <input type="text" name="directionDuVen{{ simulation.id }}" id="directionDuVen{{ simulation.id }}" value="{{ simulation.directionDuVen }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="pentex{{ simulation.id }}">pentex</label>
+                <input type="text" name="pentex{{ simulation.id }}" id="pentex{{ simulation.id }}" value="{{ simulation.pentex }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="pentey{{ simulation.id }}">pentey</label>
+                <input type="text" name="pentey{{ simulation.id }}" id="pentey{{ simulation.id }}" value="{{ simulation.pentey }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="temperatureFlamme{{ simulation.id }}">temperatureFlamme</label>
+                <input type="text" name="temperatureFlamme{{ simulation.id }}" id="temperatureFlamme{{ simulation.id }}" value="{{ simulation.temperatureFlamme }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="temperatureAllumage{{ simulation.id }}">temperatureAllumage</label>
+                <input type="text" name="temperatureAllumage{{ simulation.id }}" id="temperatureAllumage{{ simulation.id }}" value="{{ simulation.temperatureAllumage }}" required>
+                <br>
+            </div>
+
+            <!-- eclosion -->
+            <div>
+                <label for="temperatureBrais{{ simulation.id }}">temperatureBrais</label>
+                <input type="text" name="temperatureBrais{{ simulation.id }}" id="temperatureBrais{{ simulation.id }}" value="{{ simulation.temperatureBrais }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="emissiviteBraise{{ simulation.id }}">emissiviteBraise</label>
+                <input type="text" name="emissiviteBraise{{ simulation.id }}" id="emissiviteBraise{{ simulation.id }}" value="{{ simulation.emissiviteBraise }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="conductiviteBraise{{ simulation.id }}">conductiviteBraise</label>
+                <input type="text" name="conductiviteBraise{{ simulation.id }}" id="conductiviteBraise{{ simulation.id }}" value="{{ simulation.conductiviteBraise }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="conductiviteFlamme{{ simulation.id }}">conductiviteFlamme</label>
+                <input type="text" name="conductiviteFlamme{{ simulation.id }}" id="conductiviteFlamme{{ simulation.id }}" value="{{ simulation.conductiviteFlamme }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="viscositeAirChau{{ simulation.id }}">viscositeAirChau</label>
+                <input type="text" name="viscositeAirChau{{ simulation.id }}" id="viscositeAirChau{{ simulation.id }}" value="{{ simulation.viscositeAirChau }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="nbEclosion{{ simulation.id }}">nbEclosion</label>
+                <input type="text" name="nbEclosion{{ simulation.id }}" id="nbEclosion{{ simulation.id }}" value="{{ simulation.nbEclosion }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="xEclosion{{ simulation.id }}">xEclosion</label>
+                <input type="text" name="xEclosion{{ simulation.id }}" id="xEclosion{{ simulation.id }}" value="{{ simulation.xEclosion }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="yEclosion{{ simulation.id }}">yEclosion</label>
+                <input type="text" name="yEclosion{{ simulation.id }}" id="yEclosion{{ simulation.id }}" value="{{ simulation.yEclosion }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="coteSiteFeu{{ simulation.id }}">coteSiteFeu</label>
+                <input type="text" name="coteSiteFeu{{ simulation.id }}" id="coteSiteFeu{{ simulation.id }}" value="{{ simulation.coteSiteFeu }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="timeAllumage{{ simulation.id }}">timeAllumage</label>
+                <input type="text" name="timeAllumage{{ simulation.id }}" id="timeAllumage{{ simulation.id }}" value="{{ simulation.timeAllumage }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="longueurEclosion{{ simulation.id }}">longueurEclosion</label>
+                <input type="text" name="longueurEclosion{{ simulation.id }}" id="longueurEclosion{{ simulation.id }}" value="{{ simulation.longueurEclosion }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="xenreg{{ simulation.id }}">xenreg</label>
+                <input type="text" name="xenreg{{ simulation.id }}" id="xenreg{{ simulation.id }}" value="{{ simulation.xenreg }}" required>
+                <br>
+            </div>
+
+            <div>
+                <label for="yenreg{{ simulation.id }}">yenreg</label>
+                <input type="text" name="yenreg{{ simulation.id }}" id="yenreg{{ simulation.id }}" value="{{ simulation.yenreg }}" required>
+                <br>
+            </div>
+
 
 
         <button type="submit" class="btn btn-sm btn-primary"
             id="edit-todo-submit">Submit</button>
 </form>
+
+
+{% endblock %}

@@ -1,4 +1,9 @@
 {% extends 'simulation/index.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'simulation/sponsors.html' %}
+
 {% load crispy_forms_tags %}
 
 {% block content %}
@@ -26,5 +31,8 @@
             </div>
         </form>
     </div>
+
+
+{% include 'simulation/about.html' %}
 
 {% endblock %}

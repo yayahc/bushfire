@@ -1,3 +1,10 @@
+{% extends 'simulation/index.html' %}
+{% load static %}
+
+{% block content %}
+{% include 'simulation/sponsors.html' %}
+
+
 <h1>Simulation Detail</h1>
 <p>Title: {{ simulation.name }}</p>
 <p id="urls" style="display: none;">{{ urls }}</p>
@@ -39,3 +46,8 @@
         });
     </script>
 {% endif %}
+
+
+{% include 'simulation/about.html' %}
+
+{% endblock %}

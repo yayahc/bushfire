@@ -1,7 +1,11 @@
 {% extends 'simulation/index.html' %}
-{% load crispy_forms_tags %}
+{% load static %}
 
 {% block content %}
+{% include 'simulation/sponsors.html' %}
+
+{% load crispy_forms_tags %}
+
 <div class="content-section">
     <form action="" method="POST">
         {% csrf_token %}
@@ -25,4 +29,7 @@
         </div>
     </form>
 </div>
+
+{% include 'simulation/about.html' %}
+
 {% endblock %}
