@@ -49,14 +49,9 @@
 
         <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
             <div class="container">
-                <div class="navbar-brand">
-                    <span class="navbar-logo">
-                        <a href="https://mobiri.se/">
-                            <img src="{% static 'assets/images/logo.png' %}" alt="Mobirise Website Builder" style="height: 3rem;">
-                        </a>
-                    </span>
+                <div class="navbar-brand">                   
                     <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-7"
-                            href="https://mobiri.se/">WorkflowM5</a></span>
+                            href="https://mobiri.se/">BushFire</a></span>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
                     data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
@@ -81,11 +76,11 @@
                     
 
                     {% if user.is_authenticated %}
-                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-info display-4"
+                    <div class="navbar-buttons"><a class="btn btn-primary"
                             href="{% url 'logout' %}">Logout</a>                            
                     </div>
                     {% else %}
-                    <div class="navbar-buttons mbr-section-btn"><a class="btn btn-info display-4"
+                    <div class="navbar-buttons"><a class="btn btn-primary"
                         href="{% url 'login' %}">Login</a>
                         <a class="btn btn-success display-4" href="{% url 'register' %}">Register</a>
                     </div>
