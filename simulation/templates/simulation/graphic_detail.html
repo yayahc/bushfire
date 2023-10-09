@@ -2,30 +2,26 @@
 {% load static %}
 
 {% block content %}
-{% include 'simulation/sponsors.html' %}
 
 <br>
 
 {% if urls %}
 <div class="pt-md-14 pt-12 pb-14">
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="row">
-            <div class="offset-xl-2 col-xl-8 col-lg-12 col-md-12">
+            <div class="">
                 <div class="mb-4 mb-xl-0 text-center">                    
                     <!-- Caption -->
-                    <h1 class="display-6 ls-sm mt-2 fw-bold ">{{ simulation.name }}</h1>
-                    <p class="mb-6 h2 text-muted px-md-8">
+                    <!-- <h1 class="display-6 ls-sm mt-2 fw-bold ">{{ simulation.name }}</h1> -->
+                    <!-- <p class="mb-6 h2 text-muted px-md-8">
                         Geeks is a customizable, Bootstrap based UI Kits and
                         Templates for Developers.
-                    </p>     
-                    <div class="graphics">
-                        <img src="{% static 'placeholder_image.png' %}" id="slideshow-image">
+                    </p>      -->
+                    <div class="container-graphic">
+                        <button class="btn btn-dark" type="submit" id="simulate">Play</button>
+                        <div class="graphics">
+                            <img src="{% static 'assets/images/placeholder-image.png' %}" id="slideshow-image">
+                        </div>
                     </div>
-                    <button class="btn btn-dark" type="submit" id="simulate">Play</button>
                 </div>
-            </div>        
-        </div>
     </div>
 </div>
 
@@ -58,10 +54,27 @@
             } else {
                 clearInterval(intervalId); // Pause the slideshow
                 intervalId = null;
-                simulateButton.textContent = "Simulate";
+                simulateButton.textContent = "Play";
             }
         });
     </script>
+
+    <style>        
+        .graphic img{
+            display: flex;
+            justify-content: center;            
+            align-items: center;
+        }
+        .container-graphic button {
+            max-height: 50px;
+            width: 200px;
+        }
+        .graphic img {
+            width: 80%;
+        }
+    </style>
+
+
 {% endif %}
 
 {% endblock %}
