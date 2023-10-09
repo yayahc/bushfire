@@ -14,13 +14,14 @@
     <div class="graphics">
         <img src="" alt="graphic" id="slideshow-image">
     </div>
-    <button id="simulate">Simulate</button>
+    <button id="simulate">Play</button>
 
     <script>
         // JavaScript code for the slideshow
         var urlsString = document.getElementById('urls').textContent;
         var urls = urlsString.split('|');
         urls.pop();
+        console.log(urls);
         
         var currentImageIndex = 0;
         var imageElement = document.getElementById('slideshow-image');
@@ -46,8 +47,5 @@
         });
     </script>
 {% endif %}
-
-
-{% include 'simulation/about.html' %}
 
 {% endblock %}

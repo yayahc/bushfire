@@ -88,7 +88,7 @@ def new_simulation(request):
         timeCombustion = request.POST.get('timeCombustion')        
         timeMax = request.POST.get('timeMax')
         deltat = request.POST.get('deltat')
-        deltax = request.POST.get('deredirectltax')
+        deltax = request.POST.get('deltax')
         deltay = request.POST.get('deltay')
         xDebut = request.POST.get('xDebut')
         xFin = request.POST.get('xFin')
@@ -182,9 +182,9 @@ def new_simulation(request):
         write_eclosion_csv(simulation)
         write_contour_txt(simulation)
 
-        return render(request, "simulation/simulation_details.html", {'simulations':simulation})
+        return redirect("detail_simulation", pk=simulation.pk)
 
-    simulation = get_object_or_404(Simulation)
+    simulation = Simulation.objects
     return render(request, "simulation/simulation_new.html")
 
 
@@ -349,7 +349,7 @@ def complete_simulation(request, pk):
 def delete_simulation(request, pk):    
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
     simulation.delete()
-    return redirect("simulations")
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
 def write_vegetation_csv(simulation):    
