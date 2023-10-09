@@ -587,27 +587,32 @@ def download_all_simulations(request):
 def simulate(request, pk):    
     simulation = get_object_or_404(Simulation, pk=pk)
     main_draw(simulation.timp,simulation.nbEclosion,simulation.typeVegetation,simulation.name)
-
+    simulation.is_completed = True
+    simulation.save()
     return redirect('view_graphic', pk=pk)
 
 
 def view_graphic(request, pk):
     simulation = get_object_or_404(Simulation, pk=pk)
     
-    directory_path = f"media/{simulation.name}/images"
+    if (simulation.is_completed):
+        directory_path = f"media/{simulation.name}/images"
 
-    image_paths = []
+        image_paths = []
 
-    for filename in os.listdir(directory_path):
-        if filename.endswith(".png"):
-            # Check if the file has a .png extension
-            image_path = os.path.join(directory_path, filename)
-            image_paths.append(image_path)
+        for filename in os.listdir(directory_path):
+            if filename.endswith(".png"):
+                # Check if the file has a .png extension
+                image_path = os.path.join(directory_path, filename)
+                image_paths.append(image_path)
 
-    urls = sorted(image_paths, key=lambda x: int(x.split('_')[-1].split('.')[0]))
+        urls = sorted(image_paths, key=lambda x: int(x.split('_')[-1].split('.')[0]))
 
-    urls_string = ''
-    for i in range(0, len(urls)):
-        urls_string += f'{urls[i]}|'
+        urls_string = ''
+        for i in range(0, len(urls)):
+            urls_string += f'{urls[i]}|'
 
-    return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls': urls_string})
+        return render(request, 'simulation/graphic_detail.html', {'simulation': simulation, 'urls': urls_string})
+    else:
+        return redirect('detail_simulation', pk=pk)
+    
