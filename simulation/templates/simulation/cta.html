@@ -32,12 +32,13 @@
             </div>
       
             {% if user.is_authenticated %}
-            <div class="lc-block d-grid gap-2 d-md-flex justify-content-md-start">   
-              <a class="btn btn-primary px-4 mx-1" href="/simulation/new">Create Simulation</a>
-              <a class="btn btn-outline-primary px-4" href="/simulations" role="button">Historique des simulations</a>
-            </div>
+            <!-- <div class="lc-block d-grid gap-2 d-md-flex justify-content-md-start">    -->
+              <!-- <a class="btn btn-primary px-4 mx-1" href="/simulation/new">Create Simulation</a> -->
+              <!-- <a class="btn btn-outline-primary px-4" href="/simulations" role="button">Historique des simulations</a> -->
+            <!-- </div> -->
+            <a class="btn btn-primary px-4" href="#simulations">Let's go</a>
             {% else %}
-            <a class="btn btn-outline-primary px-4" href="#simulations" role="button">Historique des simulations</a>
+            <a class="btn btn-primary px-4" href="#simulations">Let's go</a>
             {% endif %}
           </div>
           <!-- <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">

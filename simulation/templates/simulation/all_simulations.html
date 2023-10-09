@@ -8,7 +8,7 @@
   <main role="main" class="flex-shrink-0">
     <br><br>
     <div class="container mt-4">
-      {% if simulations %}          
+      {% if simulations %}                
         <h1 class="display-5">All Simulations</h1>
         <br>
         <table class="table table-striped table-hover">
@@ -29,14 +29,14 @@
                 <td class="text-black display-4" >{{ i.created_on }}</td>
                 <td class="text-black display-4" >{{ i.user }}</td>
                 <td>
-                    <a href="view.html"><button class="btn btn-primary btn-sm">View</button></a>
+                    <a href="{% url 'detail_simulation' i.id %}"><button class="btn btn-outline-primary btn-sm">View</button></a>
                     {% if user == i.user %}
-                    <a class="btn btn-outline-primary btn-sm" href="{% url 'update_simulation' i.id %}">Edit</a>
+                    <a href="{% url 'update_simulation' i.id %}"><button class="btn btn-outline-primary btn-sm">Edit</button></a>
                     <a href="{% url 'delete_simulation' i.id %}" class="btn btn-outline-danger btn-sm">Delete</a>
                     {% endif %}
                 </td>
               </tr>               
-              {% endfor %}   
+              {% endfor %}  
             {% else %}
             <h4 class="">No simulations ...</h4>
             {% endif %}
