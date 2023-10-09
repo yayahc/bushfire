@@ -17,9 +17,10 @@
 
 <br>
 
-<a href="{% url 'simulate' pk=simulation.pk %}">simuler</a>
 {% if simulation.is_completed %}
-  <a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>
+<a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>
+{% else %}
+<a href="{% url 'simulate' pk=simulation.pk %}">simuler</a>
 {% endif %}
 
 {% endblock %}

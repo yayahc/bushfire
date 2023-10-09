@@ -246,7 +246,7 @@ def update_simulation(request, pk):
         new_yenreg = request.POST.get(f'yenreg{pk}')
         
         #common
-        new_name = request.POST.get(f'name{pk}')
+        new_name = simulation.name
         new_region = request.POST.get(f'region{pk}')
         new_ville = request.POST.get(f"ville{pk}")
 
