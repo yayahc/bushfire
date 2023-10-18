@@ -6,7 +6,7 @@
 
 {% load crispy_forms_tags %}
 
-<div class="content-section">
+<div class="container mt-4">
     <form action="" method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -16,7 +16,7 @@
         </fieldset>
 
         <div class="form-submit">
-            <button class="login-submit-btn" type="submit">Login</button>
+            <button class="btn btn-primary" type="submit">Login</button>
         </div>
 
         <hr>
@@ -29,7 +29,5 @@
         </div>
     </form>
 </div>
-
-{% include 'simulation/about.html' %}
 
 {% endblock %}

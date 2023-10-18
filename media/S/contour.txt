@@ -1,4 +1,0 @@
-Simulation Name: S
-Created On: 2023-10-09 20:00:30.113179+00:00
-Updated On: 2023-10-09 20:00:30.113222+00:00
-User: iko

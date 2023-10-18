@@ -2,25 +2,510 @@
 
 {% block content %}
 
-<div class="">
-  <p>{{ simulation.created_on }}</p>
-  <p>{{ simulation.user }}</p>
 
-  <h1>Donnee sorties</h1>
+<!-- -------------------- -->
 
 
+<div class="gallery_section layout_padding">
+  <br><br><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <title>Tableaux De Données</title>
+        </head>
+        <body>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="5" class="table-title">Vegetation</th>
+                </tr>
+                <tr>
+                  <th>Paramètres</th>
+                  <th>Valeurs</th>
+                  <!-- <th>Valeurs</th>
+                  <th>Valeurs</th>
+                  <th>Valeurs</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Nbre de Type de Vegetation</td>
+                  <td>{{ simulation.typeVegetation }}</td>
+                  <!-- <td>{{ simulation.Nbre_de_Type_de_Vegetation2 }}</td> -->
+                  <!-- <td>{{ simulation.Nbre_de_Type_de_Vegetation3 }}</td> -->
+                  <!-- <td>{{ simulation.Nbre_de_Type_de_Vegetation4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>Nbre de Départ de Feu</td>
+                  <td>{{ simulation.Nbre_de_Départ_de_Feu }}</td>
+                  <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu2 }}</td> -->
+                  <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu3 }}</td> -->
+                  <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>Fréquence d'impression(s)</td>
+                  <td>{{ simulation.Fréquence_d_impression }}</td>
+                  <!-- <td>{{ simulation.Fréquence_d_impression2 }}</td> -->
+                  <!-- <td>{{ simulation.Fréquence_d_impression3 }}</td> -->
+                  <!-- <td>{{ simulation.Fréquence_d_impression4 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>Limite initiale ox(m)</td>
+                  <td>{{ simulation.Limite_initiale_ox }}</td>
+                  <!-- <td>{{ simulation.Limite_initiale_ox2 }}</td> -->
+                  <!-- <td>{{ simulation.Limite_initiale_ox3 }}</td> -->
+                  <!-- <td>{{ simulation.Limite_initiale_ox4 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td> limite finale ox(m)</td>
+                  <td>{{ simulation.limite_finale_ox }}</td>
+                  <!-- <td>{{ simulation.limite_finale_ox2 }}</td> -->
+                  <!-- <td>{{ simulation.limite_finale_ox3 }}</td> -->
+                  <!-- <td>{{ simulation.limite_finale_ox4 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>limite initiale oy(m)</td>
+                  <td>{{ simulation.limite_initiale_oy }}</td>
+                  <!-- <td>{{ simulation.limite_initiale_oy2 }}</td> -->
+                  <!-- <td>{{ simulation.limite_initiale_oy3 }}</td> -->
+                  <!-- <td>{{ simulation.limite_initiale_oy4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>limite finale oy(m)
+                  </td>
+                  <td>{{ simulation.limite_finale_oy }}</td>
+                  <!-- <td>{{ simulation.limite_finale_oy2 }}</td> -->
+                  <!-- <td>{{ simulation.limite_finale_oy3 }}</td> -->
+                  <!-- <td>{{ simulation.limite_finale_oy4 }}</td> -->
+
+                </tr>
+                <tr>
+                  <td>longueur de la flamme(m)
+                  </td>
+                  <td>{{ simulation.longueur_de_la_flamme }}</td>
+                  <!-- <td>{{ simulation.longueur_de_la_flamme2 }}</td> -->
+                  <!-- <td>{{ simulation.longueur_de_la_flamme3 }}</td> -->
+                  <!-- <td>{{ simulation.longueur_de_la_flamme4 }}</td> -->
+
+                </tr>
+                <tr>
+                  <td>hauteur de la végétation(m)
+                  </td>
+                  <td>{{ simulation.hauteur_de_la_végétation }}</td>
+                  <!-- <td>{{ simulation.hauteur_de_la_végétation2 }}</td> -->
+                  <!-- <td>{{ simulation.hauteur_de_la_végétation3 }}</td> -->
+                  <!-- <td>{{ simulation.hauteur_de_la_végétation4 }}</td> -->
+
+                </tr>
+                <tr>
+                  <td>diamètre du combustible(m)
+                  </td>
+                  <td>{{ simulation.diamètre_du_combustible }}</td>
+                  <!-- <td>{{ simulation.diamètre_du_combustible2 }}</td> -->
+                  <!-- <td>{{ simulation.diamètre_du_combustible3 }}</td> -->
+                  <!-- <td>{{ simulation.diamètre_du_combustible4 }}</td> -->
+
+                </tr>
+                <tr>
+                  <td>densité de la végétation(Kg/m3)
+                  </td>
+                  <td>{{ simulation.densité_de_la_végétation }}</td>
+                  <!-- <td>{{ simulation.densité_de_la_végétation2 }}</td> -->
+                  <!-- <td>{{ simulation.densité_de_la_végétation3 }}</td> -->
+                  <!-- <td>{{ simulation.densité_de_la_végétation4 }}</td> -->
+
+                </tr>
+                <tr>
+                  <td>charge surfacique de la végétation(Kg/m2)</td>
+                  <td>{{ simulation.charge_surfacique_de_la_végétation }}</td>
+                  <!-- <td>{{ simulation.charge_surfacique_de_la_végétation2 }}</td> -->
+                  <!-- <td>{{ simulation.charge_surfacique_de_la_végétation3 }}</td> -->
+                  <!-- <td>{{ simulation.charge_surfacique_de_la_végétation4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>teneur en eau de la végétation(-)
+                  </td>
+                  <td>{{ simulation.teneur_en_eau_de_la_végétation }}</td>
+                  <!-- <td>{{ simulation.teneur_en_eau_de_la_végétation2 }}</td> -->
+                  <!-- <td>{{ simulation.teneur_en_eau_de_la_végétation3 }}</td> -->
+                  <!-- <td>{{ simulation.teneur_en_eau_de_la_végétation4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>temps de combustion(s)
+                  </td>
+                  <td>{{ simulation.temps_de_combustion }}</td>
+                  <!-- <td>{{ simulation.temps_de_combustion2 }}</td> -->
+                  <!-- <td>{{ simulation.temps_de_combustion3 }}</td> -->
+                  <!-- <td>{{ simulation.temps_de_combustion4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>chaleur spécifique du combustible(J/Kg/K)
+                  </td>
+                  <td>{{ simulation.chaleur_spécifique_du_combustible }}</td>
+                  <!-- <td>{{ simulation.chaleur_spécifique_du_combustible2 }}</td> -->
+                  <!-- <td>{{ simulation.chaleur_spécifique_du_combustible3 }}</td> -->
+                  <!-- <td>{{ simulation.chaleur_spécifique_du_combustible4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>coefficient absorption combustible(-)
+                  </td>
+                  <td>{{ simulation.coefficient_absorption_combustible }}</td>
+                  <!-- <td>{{ simulation.coefficient_absorption_combustible2 }}</td> -->
+                  <!-- <td>{{ simulation.coefficient_absorption_combustible3 }}</td> -->
+                  <!-- <td>{{ simulation.coefficient_absorption_combustible4 }}</td> -->
+                </tr>
+                <tr>
+                  <td>emissivite du combustible(-)
+                  </td>
+                  <td>{{ simulation.emissivite_du_combustible }}</td>
+                  <!-- <td>{{ simulation.emissivite_du_combustible2 }}</td> -->
+                  <!-- <td>{{ simulation.emissivite_du_combustible3 }}</td> -->
+                  <!-- <td>{{ simulation.emissivite_du_combustible4 }}</td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="4" class="table-title">CLIMAT & AUTRES PARAMETRES</th>
+                </tr>
+                <tr>
+                  <th>Paramètres</th>
+                  <th>Valeurs</th>
+                  <!-- <th>Valeurs</th> -->
+                  <!-- <th>Valeurs</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>temperature ambiante(K)</td>
+                  <td>{{ simulation.temperature_ambiante }}</td>
+                  <!-- <td>{{ simulation.temperature_ambiante2 }}</td> -->
+                  <!-- <td>{{ simulation.temperature_ambiante3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>vitesse du vent(m/s) </td>
+                  <td>{{ simulation.vitesse_du_vent }}</td>
+                  <!-- <td>{{ simulation.vitesse_du_vent2 }}</td> -->
+                  <!-- <td>{{ simulation.vitesse_du_vent3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>direction du vent(deg)</td>
+                  <td>{{ simulation.direction_du_vent }}</td>
+                  <!-- <td>{{ simulation.direction_du_vent2 }}</td> -->
+                  <!-- <td>{{ simulation.direction_du_vent3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>pente suivant ox(deg)</td>
+                  <td>{{ simulation.pente_suivant_ox }}</td>
+                  <!-- <td>{{ simulation.pente_suivant_ox2 }}</td> -->
+                  <!-- <td>{{ simulation.pente_suivant_ox3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>pente suivant oy(deg) </td>
+                  <td>{{ simulation.pente_suivant_oy }}</td>
+                  <!-- <td>{{ simulation.pente_suivant_oy2 }}</td> -->
+                  <!-- <td>{{ simulation.pente_suivant_oy3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>temperature de la flamme(K)</td>
+                  <td>{{ simulation.temperature_de_la_flamme }}</td>
+                  <!-- <td>{{ simulation.temperature_de_la_flamme2 }}</td> -->
+                  <!-- <td>{{ simulation.temperature_de_la_flamme3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>temperature d'allumage(K)</td>
+                  <td>{{ simulation.temperature_d_allumage }}</td>
+                  <!-- <td>{{ simulation.temperature_d_allumage2 }}</td> -->
+                  <!-- <td>{{ simulation.temperature_d_allumage3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>temperature des braises(K)</td>
+                  <td>{{ simulation.temperature_des_braises }}</td>
+                  <!-- <td>{{ simulation.temperature_des_braises2 }}</td> -->
+                  <!-- <td>{{ simulation.temperature_des_braises3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>emissivite des braises(-) </td>
+                  <td>{{ simulation.emissivite_des_braises }}</td>
+                  <!-- <td>{{ simulation.emissivite_des_braises2 }}</td> -->
+                  <!-- <td>{{ simulation.emissivite_des_braises3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>conductivite des braises(-)
+                  </td>
+                  <td>{{ simulation.conductivite_des_braises }}</td>
+                  <!-- <td>{{ simulation.conductivite_des_braises2 }}</td> -->
+                  <!-- <td>{{ simulation.conductivite_des_braises3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>conductivite de la flamme(W/mK)</td>
+                  <td>{{ simulation.conductivite_de_la_flamme }}</td>
+                  <!-- <td>{{ simulation.conductivite_de_la_flamme2 }}</td> -->
+                  <!-- <td>{{ simulation.conductivite_de_la_flamme3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>Viscosité de l'aire chaud(m2/s)</td>
+                  <td>{{ simulation.Viscosité_de_l_aire_chaud }}</td>
+                  <!-- <td>{{ simulation.Viscosité_de_l_aire_chaud2 }}</td> -->
+                  <!-- <td>{{ simulation.Viscosité_de_l_aire_chaud3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>temps de simulation (s)</td>
+                  <td>{{ simulation.temps_de_simulation }}</td>
+                  <!-- <td>{{ simulation.temps_de_simulation2 }}</td> -->
+                  <!-- <td>{{ simulation.temps_de_simulation3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>pas de temps (s)</td>
+                  <td>{{ simulation.pas_de_temps }}</td>
+                  <!-- <td>{{ simulation.pas_de_temps2 }}</td> -->
+                  <!-- <td>{{ simulation.pas_de_temps3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>pas d'espace ox (m)</td>
+                  <td>{{ simulation.pas_d_espace_ox }}</td>
+                  <!-- <td>{{ simulation.pas_d_espace_ox2 }}</td> -->
+                  <!-- <td>{{ simulation.pas_d_espace_ox3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>pas d'espace oy (m) </td>
+                  <td>{{ simulation.pas_d_espace_oy }}</td>
+                  <!-- <td>{{ simulation.pas_d_espace_oy2 }}</td> -->
+                  <!-- <td>{{ simulation.pas_d_espace_oy3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>x_zone_de_calcul_initial(m)</td>
+                  <td>{{ simulation.x_zone_de_calcul_initial }}</td>
+                  <!-- <td>{{ simulation.x_zone_de_calcul_initial2 }}</td> -->
+                  <!-- <td>{{ simulation.x_zone_de_calcul_initial3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>x_zone_de_calcul_final (m)</td>
+                  <td>{{ simulation.x_zone_de_calcul_final }}</td>
+                  <!-- <td>{{ simulation.x_zone_de_calcul_final2 }}</td> -->
+                  <!-- <td>{{ simulation.x_zone_de_calcul_final3 }}</td> -->
+                </tr>
+                <tr>
+                  <td>y_zone_de_calcul _initial(m)</td>
+                  <td>{{ simulation.y_zone_de_calcul_initial }}</td>
+                  <!-- <td>{{ simulation.y_zone_de_calcul_initial2 }}</td> -->
+                  <!-- <td>{{ simulation.y_zone_de_calcul_initial3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>y_zone_de calcul_final(m)</td>
+                  <td>{{ simulation.y_zone_de_calcul_final }}</td>
+                  <!-- <td>{{ simulation.y_zone_de_calcul_final2 }}</td> -->
+                  <!-- <td>{{ simulation.y_zone_de_calcul_final3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>x_zone_de calcul _initial(m) </td>
+                  <td>{{ simulation.x_zone_de_calcul_initial }}</td>
+                  <!-- <td>{{ simulation.x_zone_de_calcul_initial2 }}</td> -->
+                  <!-- <td>{{ simulation.x_zone_de_calcul_initial3 }}</td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th colspan="4" class="table-title">DEPART DE FEU</th>
+                </tr>
+                <tr>
+                  <th>Paramètres</th>
+                  <th>Départ_1</th>
+                  <!-- <th>Départ_2</th> -->
+                  <!-- <th>Départ_3</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>coordonnées x départ de feu(m)</td>
+                  <td>{{ simulation.coordonnées_x_départ_de_feu }}</td>
+                  <!-- <td>{{ simulation.coordonnées_x_départ_de_feu2 }}</td> -->
+                  <!-- <td>{{ simulation.coordonnées_x_départ_de_feu3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>coordonnées y départ de feu(m)</td>
+                  <td>{{ simulation.coordonnées_y_départ_de_feu }}</td>
+                  <!-- <td>{{ simulation.coordonnées_y_départ_de_feu2 }}</td> -->
+                  <!-- <td>{{ simulation.coordonnées_y_départ_de_feu3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>côté du site en feu(N:nord, S:sud, W:ouest, E:est ou C:centre)</td>
+                  <td>{{ simulation.coté_du_site_en_feu }}</td>
+                  <!-- <td>{{ simulation.coté_du_site_en_feu2 }}</td> -->
+                  <!-- <td>{{ simulation.coté_du_site_en_feu3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>longueur du départ de feu(m)</td>
+                  <td>{{ simulation.longueur_du_départ_de_feu }}</td>
+                  <!-- <td>{{ simulation.longueur_du_départ_de_feu2 }}</td> -->
+                  <!-- <td>{{ simulation.longueur_du_départ_de_feu3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>temps d'allumage</td>
+                  <td>{{ simulation.temps_d_allumage }}</td>
+                  <!-- <td>{{ simulation.temps_d_allumage2 }}</td> -->
+                  <!-- <td>{{ simulation.temps_d_allumage3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>abscisse du point d'enregistrement(m)</td>
+                  <td>{{ simulation.abscisse_du_point_d_enregistrement }}</td>
+                  <!-- <td>{{ simulation.abscisse_du_point_d_enregistrement2 }}</td> -->
+                  <!-- <td>{{ simulation.abscisse_du_point_d_enregistrement3 }}</td> -->
+                </tr>
+
+                <tr>
+                  <td>ordonnée du point d'enregistrement(m)</td>
+                  <td>{{ simulation.ordonnée_du_point_d_enregistrement }}</td>
+                  <!-- <td>{{ simulation.Ordonnée_du_point_d_enregistrement2 }}</td> -->
+                  <!-- <td>{{ simulation.Ordonnée_du_point_d_enregistrement3 }}</td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </body>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+ 
+
+  .table-container {
+     float: left;
+     width: 48%;
+     margin-right: 2%;
+     margin-bottom: 20px;
+     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+     border-radius: 10px;
+     /* Bords arrondis */
+     overflow: hidden;
+  }
+
+  table {
+     width: 100%;
+     border-collapse: collapse;
+     margin-bottom: 10px;
+     border-radius: 10px;
+     /* Bords arrondis */
+     overflow: hidden;
+  }
+
+  th,
+  td {
+     border: 1px solid #ddd;
+     padding: 12px;
+     text-align: left;
+  }
+
+  th {
+     background-color: #b11c30;
+     color: white;
+     font-weight: bold;
+  }
+
+  tbody tr:nth-child(even) {
+     background-color: #f9f9f9;
+  }
+
+  tbody tr:nth-child(odd) {
+     background-color: #f2f2f2;
+     /* Gris clair */
+  }
+
+
+
+  tbody tr:hover {
+     background-color: #f0f0f0;
+  }
+
+  /* Clearfix */
+  .clearfix::after {
+     content: "";
+     display: table;
+     clear: both;
+  }
+
+  .table-title {
+     text-align: center;
+     font-weight: bold;
+     font-size: 18px;
+     margin-bottom: 10px;
+     background-color: #3d4246;
+     color: white;
+     padding: 10px;
+  }
+
+  h1 {
+     text-align: center;
+     color: #ff9900;
+     margin-bottom: 20px;
+     font-size: 24px;
+     font-weight: bold;
+     border: 2px solid #ff9900;
+     padding: 10px;
+     border-radius: 10px;
+     background-color: #e0ddddec;
+     /* Fond gris */
+  }
+
+</style>
+
+<!-- -------------------- -->
+
+
+<center>
 {% if user == simulation.user %}
-  <a href="{% url 'update_simulation' simulation.id %}">Edit </a>
-  <p><a href="{% url 'delete_simulation' simulation.id %}">Delete</a></p>
+<a class="btn btn-secondary" href="{% url 'update_simulation' simulation.id %}">Edit </a>
+<a class="btn btn-secondary" href="{% url 'delete_simulation' simulation.id %}">Delete</a>
 {% endif %}
+</center>
 
 
 <br>
 
+<center>
 {% if simulation.is_completed %}
 <a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>
 {% else %}
-<a href="{% url 'simulate' pk=simulation.pk %}">simuler</a>
+  <a class="btn btn-primary" href="{% url 'simulate' pk=simulation.pk %}">Simuler</a>
 {% endif %}
+</center>
 
 {% endblock %}
