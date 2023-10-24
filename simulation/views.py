@@ -193,6 +193,114 @@ def all_simmulations(request):
     return render(request, "simulation/all_simulations.html", {"simulations":simulations})
     
 
+def write_vegetation_csv(simulation):    
+    #NOTE: VEGETATION
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    os.makedirs(simulation_dir, exist_ok=True)
+    csv_file_path = os.path.join(simulation_dir, 'vegetation.csv')
+    
+    # Create and write the CSV file
+    with open(csv_file_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['variables', 'valeurs'])
+        writer.writerow(['x1veg',simulation.x1veg])
+        writer.writerow(['x2veg',simulation.x2veg])
+        writer.writerow(['y1veg',simulation.y1veg])
+        writer.writerow(['y2veg',simulation.y2veg])
+        writer.writerow(['hauteurFlamme',simulation.hauteurFlamme])
+        writer.writerow(['hauteurFuelBed',simulation.hauteurFuelBed])
+        writer.writerow(['diametreFuelBed',simulation.diametreFuelBed])
+        writer.writerow(['densiteFuelBed',simulation.densiteFuelBed])        
+        writer.writerow(['chargeSurface',simulation.chargeSurface])
+        writer.writerow(['teneurEnEau',simulation.teneurEnEau])
+        writer.writerow(['timeCombustion',simulation.timeCombustion])
+        writer.writerow(['chaleurSpecFeulBed',simulation.chaleurSpecFeulBed])
+        writer.writerow(['absorptionFuelBed',simulation.absorptionFuelBed])
+        writer.writerow(['emissiviteBraise',simulation.emissiviteBraise])
+    
+     # Return a response indicating the file location
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
+    return response
+
+
+def write_climat_csv(simulation):
+    #NOTE: CLIMAT
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    os.makedirs(simulation_dir, exist_ok=True)
+    csv_file_path = os.path.join(simulation_dir, 'climat.csv')
+    
+    # Create and write the CSV file
+    with open(csv_file_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['variables', 'valeurs'])
+        writer.writerow(['timeMax',simulation.timeMax])
+        writer.writerow(['deltat',simulation.deltat])
+        writer.writerow(['deltax',simulation.deltax])
+        writer.writerow(['deltay',simulation.deltay])
+        writer.writerow(['xDebut',simulation.xDebut])
+        writer.writerow(['xFin',simulation.xFin])
+        writer.writerow(['yDebut',simulation.yDebut])
+        writer.writerow(['yFin',simulation.yFin])
+        writer.writerow(['temperatureAir',simulation.temperatureAir])
+        writer.writerow(['vitesseDuVent',simulation.vitesseDuVent])
+        writer.writerow(['directionDuVen',simulation.directionDuVen])
+        writer.writerow(['pentex',simulation.pentex])
+        writer.writerow(['pentey',simulation.pentey])
+        writer.writerow(['temperatureFlamme',simulation.temperatureFlamme])
+        writer.writerow(['temperatureAllumage',simulation.temperatureAllumage])
+        writer.writerow(['temperatureBrais',simulation.temperatureBrais])
+        writer.writerow(['emissiviteBraise',simulation.emissiviteBraise])
+        writer.writerow(['conductiviteBraise',simulation.conductiviteBraise])
+        writer.writerow(['conductiviteFlamme',simulation.conductiviteFlamme])
+        writer.writerow(['viscositeAirChau',simulation.viscositeAirChau])
+    
+     # Return a response indicating the file location
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
+    return response
+
+
+def write_eclosion_csv(simulation):
+    #NOTE: ECLOSION
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    csv_file_path = os.path.join(simulation_dir, 'eclosion.csv')
+    
+    # Create and write the CSV file
+    with open(csv_file_path, 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        writer.writerow(['variables', 'valeurs'])
+        writer.writerow(['xEclosion',simulation.yEclosion])
+        writer.writerow(['yEclosion',simulation.yEclosion])
+        writer.writerow(['coteSiteFeu',simulation.coteSiteFeu])
+        writer.writerow(['longueurEclosion',simulation.longueurEclosion])
+        writer.writerow(['timeAllumage',simulation.timeAllumage])
+        writer.writerow(['xenreg',simulation.xenreg])
+        writer.writerow(['xenreg',simulation.xenreg])
+    
+     # Return a response indicating the file location
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
+    return response
+
+
+def write_contour_txt(simulation):
+    #NOTE: ECLOSION
+    # Define the file path where the CSV will be stored
+    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
+    txt_file_path = os.path.join(simulation_dir, 'contour.txt')
+
+    with open(txt_file_path, 'w') as txtfile:
+        txtfile.write(f"Simulation Name: {simulation.name}\n")
+        txtfile.write(f"Created On: {simulation.created_on}\n")
+        txtfile.write(f"Updated On: {simulation.updated_on}\n")
+        txtfile.write(f"User: {simulation.user}\n")
+
+    # Return a response indicating the file location
+    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
+    return response
+
+
 def update_simulation(request, pk):
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
     if request.method == 'POST':
@@ -304,6 +412,10 @@ def update_simulation(request, pk):
         # simulation.graphic_urls = drawer(float(new_limite_initiale_ox),float(new_limite_initiale_oy), new_simulation_name)
 
         simulation.save()
+        write_climat_csv(simulation)
+        write_eclosion_csv(simulation)
+        write_vegetation_csv(simulation)
+        write_contour_txt(simulation)
         return render(request, 'simulation/simulation_detail.html', {'simulation': simulation})
     
     simulation = get_object_or_404(Simulation, pk=pk)
@@ -349,116 +461,7 @@ def complete_simulation(request, pk):
 def delete_simulation(request, pk):    
     simulation = get_object_or_404(Simulation, id=pk, user=request.user)
     simulation.delete()
-    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-
-
-def write_vegetation_csv(simulation):    
-    #NOTE: VEGETATION
-    # Define the file path where the CSV will be stored
-    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
-    os.makedirs(simulation_dir, exist_ok=True)
-    csv_file_path = os.path.join(simulation_dir, 'vegetation.csv')
-    
-    # Create and write the CSV file
-    with open(csv_file_path, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(['variables', 'valeurs'])
-        writer.writerow(['x1veg',simulation.x1veg])
-        writer.writerow(['x2veg',simulation.x2veg])
-        writer.writerow(['y1veg',simulation.y1veg])
-        writer.writerow(['y2veg',simulation.y2veg])
-        writer.writerow(['hauteurFlamme',simulation.hauteurFlamme])
-        writer.writerow(['hauteurFuelBed',simulation.hauteurFuelBed])
-        writer.writerow(['diametreFuelBed',simulation.diametreFuelBed])
-        writer.writerow(['densiteFuelBed',simulation.densiteFuelBed])        
-        writer.writerow(['chargeSurface',simulation.chargeSurface])
-        writer.writerow(['teneurEnEau',simulation.teneurEnEau])
-        writer.writerow(['timeCombustion',simulation.timeCombustion])
-        writer.writerow(['chaleurSpecFeulBed',simulation.chaleurSpecFeulBed])
-        writer.writerow(['absorptionFuelBed',simulation.absorptionFuelBed])
-        writer.writerow(['emissiviteBraise',simulation.emissiviteBraise])
-    
-     # Return a response indicating the file location
-    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
-    return response
-
-
-def write_climat_csv(simulation):
-    #NOTE: CLIMAT
-    # Define the file path where the CSV will be stored
-    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
-    os.makedirs(simulation_dir, exist_ok=True)
-    csv_file_path = os.path.join(simulation_dir, 'climat.csv')
-    
-    # Create and write the CSV file
-    with open(csv_file_path, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(['variables', 'valeurs'])
-        writer.writerow(['timeMax',simulation.timeMax])
-        writer.writerow(['deltat',simulation.deltat])
-        writer.writerow(['deltax',simulation.deltax])
-        writer.writerow(['deltay',simulation.deltay])
-        writer.writerow(['xDebut',simulation.xDebut])
-        writer.writerow(['xFin',simulation.xFin])
-        writer.writerow(['yDebut',simulation.yDebut])
-        writer.writerow(['yFin',simulation.yFin])
-        writer.writerow(['temperatureAir',simulation.temperatureAir])
-        writer.writerow(['vitesseDuVent',simulation.vitesseDuVent])
-        writer.writerow(['directionDuVen',simulation.directionDuVen])
-        writer.writerow(['pentex',simulation.pentex])
-        writer.writerow(['pentey',simulation.pentey])
-        writer.writerow(['temperatureFlamme',simulation.temperatureFlamme])
-        writer.writerow(['temperatureAllumage',simulation.temperatureAllumage])
-        writer.writerow(['temperatureBrais',simulation.temperatureBrais])
-        writer.writerow(['emissiviteBraise',simulation.emissiviteBraise])
-        writer.writerow(['conductiviteBraise',simulation.conductiviteBraise])
-        writer.writerow(['conductiviteFlamme',simulation.conductiviteFlamme])
-        writer.writerow(['viscositeAirChau',simulation.viscositeAirChau])
-    
-     # Return a response indicating the file location
-    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
-    return response
-
-
-def write_eclosion_csv(simulation):
-    #NOTE: ECLOSION
-    # Define the file path where the CSV will be stored
-    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
-    csv_file_path = os.path.join(simulation_dir, 'eclosion.csv')
-    
-    # Create and write the CSV file
-    with open(csv_file_path, 'w', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        writer.writerow(['variables', 'valeurs'])
-        writer.writerow(['xEclosion',simulation.yEclosion])
-        writer.writerow(['yEclosion',simulation.yEclosion])
-        writer.writerow(['coteSiteFeu',simulation.coteSiteFeu])
-        writer.writerow(['longueurEclosion',simulation.longueurEclosion])
-        writer.writerow(['timeAllumage',simulation.timeAllumage])
-        writer.writerow(['xenreg',simulation.xenreg])
-        writer.writerow(['xenreg',simulation.xenreg])
-    
-     # Return a response indicating the file location
-    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
-    return response
-
-
-def write_contour_txt(simulation):
-    #NOTE: ECLOSION
-    # Define the file path where the CSV will be stored
-    simulation_dir = os.path.join(settings.MEDIA_ROOT, simulation.name)
-    txt_file_path = os.path.join(simulation_dir, 'contour.txt')
-
-    with open(txt_file_path, 'w') as txtfile:
-        txtfile.write(f"Simulation Name: {simulation.name}\n")
-        txtfile.write(f"Created On: {simulation.created_on}\n")
-        txtfile.write(f"Updated On: {simulation.updated_on}\n")
-        txtfile.write(f"User: {simulation.user}\n")
-
-    # Return a response indicating the file location
-    response = HttpResponse("CSV file saved successfully.", content_type='text/plain')
-    return response
-
+    return simulations(request)
 
 
 def download_vegetation(simulation):

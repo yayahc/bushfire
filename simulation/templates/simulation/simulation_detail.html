@@ -38,7 +38,7 @@
                 </tr>
                 <tr>
                   <td>Nbre de Départ de Feu</td>
-                  <td>{{ simulation.Nbre_de_Départ_de_Feu }}</td>
+                  <td>{{ simulation.nbrDepartFeu }}</td>
                   <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu2 }}</td> -->
                   <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu3 }}</td> -->
                   <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu4 }}</td> -->
@@ -490,22 +490,40 @@
 <!-- -------------------- -->
 
 
-<center>
+<center class="center-action">
 {% if user == simulation.user %}
-<a class="btn btn-secondary" href="{% url 'update_simulation' simulation.id %}">Edit </a>
-<a class="btn btn-secondary" href="{% url 'delete_simulation' simulation.id %}">Delete</a>
-{% endif %}
-</center>
+  <a class="btn btn-outlined" id="download">Download PDF</a>
+  <a class="btn btn-secondary" href="{% url 'update_simulation' simulation.id %}">Edit </a>
+  <a class="btn btn-secondary" href="{% url 'delete_simulation' simulation.id %}">Delete</a>
+  
+  {% if simulation.is_completed %}
+  <a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>
+  {% else %}
+    <a class="btn btn-primary" href="{% url 'simulate' pk=simulation.pk %}">Simuler</a>
+  {% endif %}
 
-
-<br>
-
-<center>
-{% if simulation.is_completed %}
-<a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>
 {% else %}
-  <a class="btn btn-primary" href="{% url 'simulate' pk=simulation.pk %}">Simuler</a>
+  <a class="btn btn-outlined" id="download">Download PDF</a>
+  {% if simulation.is_completed %}
+  <a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>
+  {% endif %}
 {% endif %}
 </center>
+
+
+<script>
+  const downloadbtn = document.querySelector("#download");
+  const centerbtns = document.querySelector(".center-action");
+  downloadbtn.addEventListener('click', () => {
+    console.log('let');
+    const footer = document.querySelector('.footer1');
+    centerbtns.style.display = 'none';
+    footer.style.display = 'none';
+    window.print();
+    
+    centerbtns.style.display = 'block';
+    footer.style.display = 'block';
+  })
+</script>
 
 {% endblock %}
