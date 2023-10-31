@@ -2,7 +2,7 @@
 
 {% block content %}
     
-    <div class="container-section">
+    <center class="container-section">
         <form action="{% url 'new_simulation' %}" method="post">
             {% csrf_token %}
             
@@ -215,7 +215,11 @@
 
             <button type="submit">Creer une simulation</button>
         </form>
-    </div>
+    </center>
 
+
+<style>
+  
+</style>
 
 {% endblock %}

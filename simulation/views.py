@@ -619,3 +619,10 @@ def view_graphic(request, pk):
     else:
         return redirect('detail_simulation', pk=pk)
     
+
+
+def about(request):
+    return render(request, 'simulation/about.html')
+
+def contact(request):
+    return render(request, 'simulation/contact.html')

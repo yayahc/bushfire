@@ -278,32 +278,27 @@ class TimeCombustion(models.Model):
 class Simulation(models.Model):    
     
     #NOTE: Entrees
-    timp = models.IntegerField(default=0)
+
+    #Vegetation
     typeVegetation = models.IntegerField(default=0)
     nbrDepartFeu = models.IntegerField(default=0)
-
+    timp = models.IntegerField(default=0)
     x1veg = models.FloatField(default=0.0)
     x2veg = models.FloatField(default=0.0)
     y1veg = models.FloatField(default=0.0)
     y2veg = models.FloatField(default=0.0)
-    teneurEnEau = models.FloatField(default=0.0)
-    hauteurFuelBed = models.FloatField(default=0.0)
-    emissiviteFuelBed = models.FloatField(default=0.0)
-    absorptionFuelBed = models.FloatField(default=0.0)
-    densiteFuelBed = models.FloatField(default=0.0)
-    diametreFuelBed = models.FloatField(default=0.0)
-    chaleurSpecFeulBed = models.FloatField(default=0.0)
-    chargeSurface = models.FloatField(default=0.0)
     hauteurFlamme = models.FloatField(default=0.0)
+    hauteurFuelBed = models.FloatField(default=0.0)
+    diametreFuelBed = models.FloatField(default=0.0)
+    densiteFuelBed = models.FloatField(default=0.0)
+    chargeSurface = models.FloatField(default=0.0)
+    teneurEnEau = models.FloatField(default=0.0)
     timeCombustion = models.FloatField(default=0.0)
-    timeMax = models.FloatField(default=0.0)
-    deltat = models.FloatField(default=0.0)
-    deltax = models.FloatField(default=0.0)
-    deltay = models.FloatField(default=0.0)
-    xDebut = models.FloatField(default=0.0)
-    xFin = models.FloatField(default=0.0)
-    yDebut = models.FloatField(default=0.0)
-    yFin = models.FloatField(default=0.0)
+    chaleurSpecFeulBed = models.FloatField(default=0.0)
+    absorptionFuelBed = models.FloatField(default=0.0)
+    emissiviteFuelBed = models.FloatField(default=0.0)
+
+    #Climat
     temperatureAir = models.FloatField(default=0.0)
     vitesseDuVent = models.FloatField(default=0.0)
     directionDuVen = models.FloatField(default=0.0)
@@ -316,14 +311,24 @@ class Simulation(models.Model):
     conductiviteBraise = models.FloatField(default=0.0)
     conductiviteFlamme = models.FloatField(default=0.0)
     viscositeAirChau = models.FloatField(default=0.0)
+    timeMax = models.FloatField(default=0.0)
+    deltat = models.FloatField(default=0.0)
+    deltax = models.FloatField(default=0.0)
+    deltay = models.FloatField(default=0.0)
+    xDebut = models.FloatField(default=0.0)
+    xFin = models.FloatField(default=0.0)
+    yDebut = models.FloatField(default=0.0)
+    yFin = models.FloatField(default=0.0)
+    
+    #Depart feu
     nbEclosion = models.IntegerField(default=0)
     xEclosion = models.FloatField(default=0.0)
     yEclosion = models.FloatField(default=0.0)
     coteSiteFeu = models.CharField(default='', max_length=10)
     timeAllumage = models.FloatField(default=0.0)
-    longueurEclosion = models.FloatField(default=0.0)
     xenreg = models.FloatField(default=0.0)
     yenreg = models.FloatField(default=0.0)
+    longueurEclosion = models.FloatField(default=0.0)
     
     #graphic
     graphic_urls = models.CharField(default='',max_length=10000)
