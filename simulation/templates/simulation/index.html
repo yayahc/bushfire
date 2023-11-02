@@ -66,12 +66,12 @@
 
                     {% if user.is_authenticated %}
                     <div class="navbar-buttons">
-                        <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>                            
+                        <a class="btn btn-primary" href="{% url 'logout' %}">Se deconnecte</a>                            
                     </div>
                     {% else %}
                     <div class="navbar-buttons"><a class="btn btn-primary"
                         href="{% url 'login' %}">Login</a>
-                        <a class="btn btn-success display-4" href="{% url 'register' %}">Register</a>
+                        <a class="btn btn-success display-4" href="{% url 'register' %}">S'inscrire</a>
                     </div>
                     {% endif %}
                     

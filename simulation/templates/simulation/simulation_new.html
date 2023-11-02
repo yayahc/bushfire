@@ -1,225 +1,582 @@
 {% extends 'simulation/index.html' %}
 
 {% block content %}
-    
-    <center class="container-section">
+
+
+
+<!-- -------------------- -->
+
+
+<div class="gallery_section layout_padding">
+    <br><br><br>
+    <div class="container">
         <form action="{% url 'new_simulation' %}" method="post">
             {% csrf_token %}
-            
-            <div>
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" value="S" required>
-                <br>
-            </div>
-
-            <div>
-                <label for="region">Region :</label>
-                <input type="text" name="region" id="region" value="Lagune" required>
-                <br>
-            </div>
-
-            <div>
-                <label for="ville">Ville : </label>
-                <input type="text" name="ville" id="ville" value="Abidjan" required>
-                <br>
-            </div>
-
-            <div class="vegetation">               
-
-                <label for="timp">timp</label>
-                <input type="number" name="timp" id="timp" value="1" required>
-                <br>
-
-                <label for="typeVegetation">typeVegetation</label>
-                <input type="number" name="typeVegetation" id="typeVegetation" value="1" required>
-                <br>
-                
-                <label for="nbrDepartFeu">nbrDepartFeu</label>
-                <input type="number" name="nbrDepartFeu" id="nbrDepartFeu" value="1" required>
-                <br>
-
-                <label for="x1veg">x1veg</label>
-                <input type="float" name="x1veg" id="x1veg" value="0" required>
-                <br>
-
-                <label for="x2veg">x2veg</label>
-                <input type="float" name="x2veg" id="x2veg" value="440" required>
-                <br>
-
-                <label for="y1veg">y1veg</label>
-                <input type="float" name="y1veg" id="y1veg" value="0" required>
-                <br>
-
-                <label for="y2veg">y2veg</label>
-                <input type="float" name="y2veg" id="y2veg" value="400" required>
-                <br>
-
-                <label for="teneurEnEau">teneurEnEau</label>
-                <input type="float" name="teneurEnEau" id="teneurEnEau" value="0.058" required>
-                <br>
-
-                <label for="hauteurFuelBed">hauteurFuelBed</label>
-                <input type="float" name="hauteurFuelBed" id="hauteurFuelBed" value="0.51" required>
-                <br>
-
-                <label for="emissiviteFuelBed">emissiviteFuelBed</label>
-                <input type="float" name="emissiviteFuelBed" id="emissiviteFuelBed" value="0.001" required>
-                <br>
-
-                <label for="absorptionFuelBed">absorptionFuelBed</label>
-                <input type="float" name="absorptionFuelBed" id="absorptionFuelBed" value="512" required>
-                <br>
-
-                <label for="densiteFuelBed">densiteFuelBed</label>
-                <input type="float" name="densiteFuelBed" id="densiteFuelBed" value="0.37" required>
-                <br>
-
-                <label for="diametreFuelBed">diametreFuelBed</label>
-                <input type="float" name="diametreFuelBed" id="diametreFuelBed" value="0.001" required>
-                <br>
-
-                <label for="chaleurSpecFeulBed">chaleurSpecFeulBed</label>
-                <input type="float" name="chaleurSpecFeulBed" id="chaleurSpecFeulBed" value="1250" required>
-                <br>
-            </div>
-
-
-            <div class="climat">
-                <label for="chargeSurface">chargeSurface</label>
-                <input type="float" name="chargeSurface" id="chargeSurface" value="0.37" required>
-                <br>
-
-                <label for="hauteurFlamme">hauteurFlamme</label>
-                <input type="float" name="hauteurFlamme" id="hauteurFlamme" value="6.29" required>
-                <br>
-
-                <label for="timeCombustion">timeCombustion</label>
-                <input type="number" name="timeCombustion" id="timeCombustion" value="23.52" required>
-                <br>
-
-                <label for="timeMax">timeMax</label>
-                <input type="float" name="timeMax" id="timeMax" value="280" required>
-                <br>
-
-                <label for="deltat">deltat</label>
-                <input type="float" name="deltat" id="deltat" value="1" required>
-                <br>
-
-                <label for="deltax">deltax</label>
-                <input type="float" name="deltax" id="deltax" value="1" required>
-                <br>
-
-                <label for="deltay">deltay</label>
-                <input type="float" name="deltay" id="deltay" value="1" required>
-                <br>
-
-                <label for="xDebut">xDebut</label>
-                <input type="float" name="xDebut" id="xDebut" value="0" required>
-                <br>
-
-                <label for="xFin">xFin</label>
-                <input type="float" name="xFin" id="xFin" value="440" required>
-                <br>
-          
-                <label for="yDebut">yDebut</label>
-                <input type="float" name="yDebut" id="yDebut" value="0" required>
-                <br>
-
-                <label for="yFin">yFin</label>
-                <input type="float" name="yFin" id="yFin" value="400" required>
-                <br>
-
-                <label for="temperatureAir">temperatureAir</label>
-                <input type="float" name="temperatureAir" id="temperatureAir" value="307" required>
-                <br>
-
-                <label for="vitesseDuVent">vitesseDuVent</label>
-                <input type="float" name="vitesseDuVent" id="vitesseDuVent" value="0.53" required>
-                <br>                
-
-                <label for="directionDuVen">directionDuVen</label>
-                <input type="float" name="directionDuVen" id="directionDuVen" value="270" required>
-                <br>
-
-                <label for="pentex">pentex</label>
-                <input type="float" name="pentex" id="pentex" value="0" required>
-                <br>
-
-                <label for="pentey">pentey</label>
-                <input type="float" name="pentey" id="pentey" value="0" required>
-                <br>
-
-                <label for="temperatureFlamme">temperatureFlamme</label>
-                <input type="float" name="temperatureFlamme" id="temperatureFlamme" value="1132" required>
-                <br>
-
-                <label for="temperatureAllumage">temperatureAllumage</label>
-                <input type="float" name="temperatureAllumage" id="temperatureAllumage" value="500" required>
-                <br>
-            </div>
-
-
-            <div class="eclosion">
-                <label for="temperatureBrais">temperatureBrais</label>
-                <input type="float" name="temperatureBrais" id="temperatureBrais" value="673" required>
-                <br>
-
-                <label for="emissiviteBraise">emissiviteBraise</label>
-                <input type="float" name="emissiviteBraise" id="emissiviteBraise" value="0.877" required>
-                <br>
-
-                <label for="conductiviteBraise">conductiviteBraise</label>
-                <input type="float" name="conductiviteBraise" id="conductiviteBraise" value="0.0935" required>
-                <br>
-
-                <label for="conductiviteFlamme">conductiviteFlamme</label>
-                <input type="float" name="conductiviteFlamme" id="conductiviteFlamme" value="0.0707" required>
-                <br>
-
-                <label for="viscositeAirChau">viscositeAirChau</label>
-                <input type="float" name="viscositeAirChau" id="viscositeAirChau" value="0.0000777" required>
-                <br>
-
-                <label for="nbEclosion">nbEclosion</label>
-                <input type="number" name="nbEclosion" id="nbEclosion" value="1" required>
-                <br>
-
-                <label for="xEclosion">xEclosion</label>
-                <input type="float" name="xEclosion" id="xEclosion" value="0" required>
-                <br>
-
-                <label for="yEclosion">yEclosion</label>
-                <input type="float" name="yEclosion" id="yEclosion" value="200" required>
-                <br>
-                
-                <label for="coteSiteFeu">coteSiteFeu</label>
-                <input type="text" name="coteSiteFeu" id="coteSiteFeu" value="NORD" required>
-                <br>
-                <label for="timeAllumage">timeAllumage</label>
-                <input type="float" name="timeAllumage" id="timeAllumage" value="50" required>
-                <br>
-
-                <label for="longueurEclosion">longueurEclosion</label>
-                <input type="float" name="longueurEclosion" id="longueurEclosion" value="175" required>
-                <br>
-
-                <label for="xenreg">xenreg</label>
-                <input type="float" name="xenreg" id="xenreg" value="201" required>
-                <br>
-
-                <label for="yenreg">yenreg</label>
-                <input type="float" name="yenreg" id="yenreg" value="200" required>
-                <br>
-            </div>
-
-
-            <button type="submit">Creer une simulation</button>
-        </form>
-    </center>
-
-
-<style>
+      
+      <div class="basic-info">
+        <table>
+          <thead>
+            <tr>
+              <th colspan="4" class="table-title">Information de la simulation</th>
+            </tr>
+            <tr>
+              <th>Information</th>
+              <th>Valeurs</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Non de la simulation</td>
+              <td><input type="text" name="name" id="name" value="S" required></td>
+            </tr>
   
-</style>
+            <tr>
+              <td>Region</td>
+              <td><input type="text" name="region" id="region" value="Lagune" required></td>
+            </tr>
+  
+            <tr>
+              <td>Ville</td>
+              <td> <input type="text" name="ville" id="ville" value="Abidjan" required></td>
+            </tr>                  
+         
+          </tbody>
+        </table>
+        <br>
+      </div>
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <title>Tableaux De Données</title>
+          </head>
+          <body>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th colspan="5" class="table-title">Vegetation</th>
+                  </tr>
+                  <tr>
+                    <th>Paramètres</th>
+                    <th>Valeurs</th>
+                    <!-- <th>Valeurs</th>
+                    <th>Valeurs</th>
+                    <th>Valeurs</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Nbre de Type de Vegetation</td>
+                    <td><input type="number" name="typeVegetation" id="typeVegetation" value="1" required>
+                    </td>
+                    <!-- <td>{{ simulation.Nbre_de_Type_de_Vegetation2 }}</td> -->
+                    <!-- <td>{{ simulation.Nbre_de_Type_de_Vegetation3 }}</td> -->
+                    <!-- <td>{{ simulation.Nbre_de_Type_de_Vegetation4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>Nbre de Départ de Feu</td>
+                    <td><input type="number" name="nbrDepartFeu" id="nbrDepartFeu" value="1" required></td>
+                    <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu2 }}</td> -->
+                    <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu3 }}</td> -->
+                    <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu4 }}</td> -->
+                  </tr> 
+                  <tr>
+                    <td>Temps d'impression</td>
+                    <td><input type="number" name="timp" id="timp" value="1" required></td>
+                    <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu2 }}</td> -->
+                    <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu3 }}</td> -->
+                    <!-- <td>{{ simulation.Nbre_de_Départ_de_Feu4 }}</td> -->
+                  </tr>             
+                  <tr>
+                    <td>Limite initiale ox(m)</td>
+                    <td>                <input type="float" name="x1veg" id="x1veg" value="0" required>
+                    </td>
+                    <!-- <td>{{ simulation.Limite_initiale_ox2 }}</td> -->
+                    <!-- <td>{{ simulation.Limite_initiale_ox3 }}</td> -->
+                    <!-- <td>{{ simulation.Limite_initiale_ox4 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td> limite finale ox(m)</td>
+                    <td>                <input type="float" name="x2veg" id="x2veg" value="440" required>
+                    </td>
+                    <!-- <td>{{ simulation.limite_finale_ox2 }}</td> -->
+                    <!-- <td>{{ simulation.limite_finale_ox3 }}</td> -->
+                    <!-- <td>{{ simulation.limite_finale_ox4 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>limite initiale oy(m)</td>
+                    <td><input type="float" name="y1veg" id="y1veg" value="0" required>
+                </td>
+                    <!-- <td>{{ simulation.limite_initiale_oy2 }}</td> -->
+                    <!-- <td>{{ simulation.limite_initiale_oy3 }}</td> -->
+                    <!-- <td>{{ simulation.limite_initiale_oy4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>limite finale oy(m)
+                    </td>
+                    <td><input type="float" name="y2veg" id="y2veg" value="400" required>
+                </td>
+                    <!-- <td>{{ simulation.limite_finale_oy2 }}</td> -->
+                    <!-- <td>{{ simulation.limite_finale_oy3 }}</td> -->
+                    <!-- <td>{{ simulation.limite_finale_oy4 }}</td> -->
+  
+                  </tr>
+                  <tr>
+                    <td>longueur de la flamme(m)
+                    </td>
+                    <td><input type="float" name="hauteurFlamme" id="hauteurFlamme" value="6.29" required>
+                </td>
+                    <!-- <td>{{ simulation.longueur_de_la_flamme2 }}</td> -->
+                    <!-- <td>{{ simulation.longueur_de_la_flamme3 }}</td> -->
+                    <!-- <td>{{ simulation.longueur_de_la_flamme4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>hauteur de la végétation(m)
+                    </td>
+                    <td><input type="float" name="hauteurFuelBed" id="hauteurFuelBed" value="0.51" required>
+                </td>
+                    <!-- <td>{{ simulation.hauteur_de_la_végétation2 }}</td> -->
+                    <!-- <td>{{ simulation.hauteur_de_la_végétation3 }}</td> -->
+                    <!-- <td>{{ simulation.hauteur_de_la_végétation4 }}</td> -->
+  
+                  </tr>
+                  <tr>
+                    <td>diamètre du combustible(m)
+                    </td>
+                    <td><input type="float" name="diametreFuelBed" id="diametreFuelBed" value="0.001" required>
+                </td>
+                    <!-- <td>{{ simulation.diamètre_du_combustible2 }}</td> -->
+                    <!-- <td>{{ simulation.diamètre_du_combustible3 }}</td> -->
+                    <!-- <td>{{ simulation.diamètre_du_combustible4 }}</td> -->
+  
+                  </tr>
+                  <tr>
+                    <td>densité de la végétation(Kg/m3)
+                    </td>
+                    <td><input type="float" name="densiteFuelBed" id="densiteFuelBed" value="0.37" required>
+                </td>
+                    <!-- <td>{{ simulation.densité_de_la_végétation2 }}</td> -->
+                    <!-- <td>{{ simulation.densité_de_la_végétation3 }}</td> -->
+                    <!-- <td>{{ simulation.densité_de_la_végétation4 }}</td> -->
+  
+                  </tr>
+                  <tr>
+                    <td>charge surfacique de la végétation(Kg/m2)</td>
+                    <td><input type="float" name="chargeSurface" id="chargeSurface" value="0.37" required>
+                </td>
+                    <!-- <td>{{ simulation.charge_surfacique_de_la_végétation2 }}</td> -->
+                    <!-- <td>{{ simulation.charge_surfacique_de_la_végétation3 }}</td> -->
+                    <!-- <td>{{ simulation.charge_surfacique_de_la_végétation4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>teneur en eau de la végétation(-)
+                    </td>
+                    <td><input type="float" name="teneurEnEau" id="teneurEnEau" value="0.058" required>
+                </td>
+                    <!-- <td>{{ simulation.teneur_en_eau_de_la_végétation2 }}</td> -->
+                    <!-- <td>{{ simulation.teneur_en_eau_de_la_végétation3 }}</td> -->
+                    <!-- <td>{{ simulation.teneur_en_eau_de_la_végétation4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>temps de combustion(s)
+                    </td>
+                    <td><input type="number" name="timeCombustion" id="timeCombustion" value="23.52" required>
+                </td>
+                    <!-- <td>{{ simulation.temps_de_combustion2 }}</td> -->
+                    <!-- <td>{{ simulation.temps_de_combustion3 }}</td> -->
+                    <!-- <td>{{ simulation.temps_de_combustion4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>chaleur spécifique du combustible(J/Kg/K)
+                    </td>
+                    <td><input type="float" name="chaleurSpecFeulBed" id="chaleurSpecFeulBed" value="1250" required>
+                </td>
+                    <!-- <td>{{ simulation.chaleur_spécifique_du_combustible2 }}</td> -->
+                    <!-- <td>{{ simulation.chaleur_spécifique_du_combustible3 }}</td> -->
+                    <!-- <td>{{ simulation.chaleur_spécifique_du_combustible4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>coefficient absorption combustible(-)
+                    </td>
+                    <td><input type="float" name="absorptionFuelBed" id="absorptionFuelBed" value="512" required>
+                </td>
+                    <!-- <td>{{ simulation.coefficient_absorption_combustible2 }}</td> -->
+                    <!-- <td>{{ simulation.coefficient_absorption_combustible3 }}</td> -->
+                    <!-- <td>{{ simulation.coefficient_absorption_combustible4 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>emissivite du combustible(-)
+                    </td>
+                    <td><input type="float" name="emissiviteFuelBed" id="emissiviteFuelBed" value="0.001" required>
+                </td>
+                    <!-- <td>{{ simulation.emissivite_du_combustible2 }}</td> -->
+                    <!-- <td>{{ simulation.emissivite_du_combustible3 }}</td> -->
+                    <!-- <td>{{ simulation.emissivite_du_combustible4 }}</td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th colspan="4" class="table-title">Climat</th>
+                  </tr>
+                  <tr>
+                    <th>Paramètres</th>
+                    <th>Valeurs</th>
+                    <!-- <th>Valeurs</th> -->
+                    <!-- <th>Valeurs</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>temperature ambiante(K)</td>
+                    <td><input type="float" name="temperatureAir" id="temperatureAir" value="307" required>
+                </td>
+                    <!-- <td>{{ simulation.temperature_ambiante2 }}</td> -->
+                    <!-- <td>{{ simulation.temperature_ambiante3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>vitesse du vent(m/s) </td>
+                    <td><input type="float" name="vitesseDuVent" id="vitesseDuVent" value="0.53" required>
+                </td>
+                    <!-- <td>{{ simulation.vitesse_du_vent2 }}</td> -->
+                    <!-- <td>{{ simulation.vitesse_du_vent3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>direction du vent(deg)</td>
+                    <td><input type="float" name="directionDuVen" id="directionDuVen" value="270" required>
+                </td>
+                    <!-- <td>{{ simulation.direction_du_vent2 }}</td> -->
+                    <!-- <td>{{ simulation.direction_du_vent3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>pente suivant ox(deg)</td>
+                    <td><input type="float" name="pentex" id="pentex" value="0" required>
+                </td>
+                    <!-- <td>{{ simulation.pente_suivant_ox2 }}</td> -->
+                    <!-- <td>{{ simulation.pente_suivant_ox3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>pente suivant oy(deg) </td>
+                    <td><input type="float" name="pentey" id="pentey" value="0" required>
+                </td>
+                    <!-- <td>{{ simulation.pente_suivant_oy2 }}</td> -->
+                    <!-- <td>{{ simulation.pente_suivant_oy3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>temperature de la flamme(K)</td>
+                    <td><input type="float" name="temperatureFlamme" id="temperatureFlamme" value="1132" required>
+                </td>
+                    <!-- <td>{{ simulation.temperature_de_la_flamme2 }}</td> -->
+                    <!-- <td>{{ simulation.temperature_de_la_flamme3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>temperature d'allumage(K)</td>
+                    <td><input type="float" name="temperatureAllumage" id="temperatureAllumage" value="500" required>
+                </td>
+                    <!-- <td>{{ simulation.temperature_d_allumage2 }}</td> -->
+                    <!-- <td>{{ simulation.temperature_d_allumage3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>temperature des braises(K)</td>
+                    <td><input type="float" name="temperatureBrais" id="temperatureBrais" value="673" required>
+                </td>
+                    <!-- <td>{{ simulation.temperature_des_braises2 }}</td> -->
+                    <!-- <td>{{ simulation.temperature_des_braises3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>emissivite des braises(-) </td>
+                    <td><input type="float" name="emissiviteBraise" id="emissiviteBraise" value="0.877" required>
+                </td>
+                    <!-- <td>{{ simulation.emissivite_des_braises2 }}</td> -->
+                    <!-- <td>{{ simulation.emissivite_des_braises3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>conductivite des braises(-)
+                    </td>
+                    <td><input type="float" name="conductiviteBraise" id="conductiviteBraise" value="0.0935" required>
+                </td>
+                    <!-- <td>{{ simulation.conductivite_des_braises2 }}</td> -->
+                    <!-- <td>{{ simulation.conductivite_des_braises3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>conductivite de la flamme(W/mK)</td>
+                    <td><input type="float" name="conductiviteFlamme" id="conductiviteFlamme" value="0.0707" required>
+                </td>
+                    <!-- <td>{{ simulation.conductivite_de_la_flamme2 }}</td> -->
+                    <!-- <td>{{ simulation.conductivite_de_la_flamme3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>Viscosité de l'aire chaud(m2/s)</td>
+                    <td><input type="float" name="viscositeAirChau" id="viscositeAirChau" value="0.0000777" required>
+                </td>
+                    <!-- <td>{{ simulation.Viscosité_de_l_aire_chaud2 }}</td> -->
+                    <!-- <td>{{ simulation.Viscosité_de_l_aire_chaud3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>temps de simulation max (s)</td>
+                    <td><input type="float" name="timeMax" id="timeMax" value="280" required>
+                </td>
+                    <!-- <td>{{ simulation.temps_de_simulation2 }}</td> -->
+                    <!-- <td>{{ simulation.temps_de_simulation3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>pas de temps (s)</td>
+                    <td><input type="float" name="deltat" id="deltat" value="1" required>
+                </td>
+                    <!-- <td>{{ simulation.pas_de_temps2 }}</td> -->
+                    <!-- <td>{{ simulation.pas_de_temps3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>pas d'espace ox (m)</td>
+                    <td><input type="float" name="deltax" id="deltax" value="1" required>
+                </td>
+                    <!-- <td>{{ simulation.pas_d_espace_ox2 }}</td> -->
+                    <!-- <td>{{ simulation.pas_d_espace_ox3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>pas d'espace oy (m) </td>
+                    <td><input type="float" name="deltay" id="deltay" value="1" required>
+                </td>
+                    <!-- <td>{{ simulation.pas_d_espace_oy2 }}</td> -->
+                    <!-- <td>{{ simulation.pas_d_espace_oy3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>x_zone_de_calcul_initial(m)</td>
+                    <td><input type="float" name="xDebut" id="xDebut" value="0" required>
+                </td>
+                    <!-- <td>{{ simulation.x_zone_de_calcul_initial2 }}</td> -->
+                    <!-- <td>{{ simulation.x_zone_de_calcul_initial3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>x_zone_de_calcul_final (m)</td>
+                    <td><input type="float" name="xFin" id="xFin" value="440" required>
+                </td>
+                    <!-- <td>{{ simulation.x_zone_de_calcul_final2 }}</td> -->
+                    <!-- <td>{{ simulation.x_zone_de_calcul_final3 }}</td> -->
+                  </tr>
+                  <tr>
+                    <td>y_zone_de_calcul _initial(m)</td>
+                    <td><input type="float" name="yDebut" id="yDebut" value="0" required>
+                </td>
+                    <!-- <td>{{ simulation.y_zone_de_calcul_initial2 }}</td> -->
+                    <!-- <td>{{ simulation.y_zone_de_calcul_initial3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>y_zone_de calcul_final(m)</td>
+                    <td><input type="float" name="yFin" id="yFin" value="400" required>
+                </td>
+                    <!-- <td>{{ simulation.y_zone_de_calcul_final2 }}</td> -->
+                    <!-- <td>{{ simulation.y_zone_de_calcul_final3 }}</td> -->
+                  </tr>
+              
+                </tbody>
+              </table>
+            </div>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th colspan="4" class="table-title">Depart Feu</th>
+                  </tr>
+                  <tr>
+                    <th>Paramètres</th>
+                    <th>Valeurs</th>
+                    <!-- <th>Départ_2</th> -->
+                    <!-- <th>Départ_3</th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>nombre eclosion</td>
+                    <td><input type="number" name="nbEclosion" id="nbEclosion" value="1" required>
+                </td>
+                    <!-- <td>{{ simulation.coordonnées_x_départ_de_feu2 }}</td> -->
+                    <!-- <td>{{ simulation.coordonnées_x_départ_de_feu3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>coordonnées x départ de feu(m)</td>
+                    <td><input type="float" name="xEclosion" id="xEclosion" value="0" required>
+                </td>
+                    <!-- <td>{{ simulation.coordonnées_x_départ_de_feu2 }}</td> -->
+                    <!-- <td>{{ simulation.coordonnées_x_départ_de_feu3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>coordonnées y départ de feu(m)</td>
+                    <td><input type="float" name="yEclosion" id="yEclosion" value="200" required>
+                </td>
+                    <!-- <td>{{ simulation.coordonnées_y_départ_de_feu2 }}</td> -->
+                    <!-- <td>{{ simulation.coordonnées_y_départ_de_feu3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>longueur d'eclosion</td>
+                    <td><input type="float" name="longueurEclosion" id="longueurEclosion" value="175" required>
+                </td>
+                    <!-- <td>{{ simulation.coordonnées_y_départ_de_feu2 }}</td> -->
+                    <!-- <td>{{ simulation.coordonnées_y_départ_de_feu3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>côté du site en feu(N:nord, S:sud, W:ouest, E:est ou C:centre)</td>
+                    <td><input type="text" name="coteSiteFeu" id="coteSiteFeu" value="NORD" required>
+                </td>
+                    <!-- <td>{{ simulation.coté_du_site_en_feu2 }}</td> -->
+                    <!-- <td>{{ simulation.coté_du_site_en_feu3 }}</td> -->
+                  </tr>           
+  
+                  <tr>
+                    <td>temps d'allumage</td>
+                    <td><input type="float" name="timeAllumage" id="timeAllumage" value="50" required>
+                </td>
+                    <!-- <td>{{ simulation.temps_d_allumage2 }}</td> -->
+                    <!-- <td>{{ simulation.temps_d_allumage3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>abscisse du point d'enregistrement(m)</td>
+                    <td><input type="float" name="xenreg" id="xenreg" value="201" required>
+                </td>
+                    <!-- <td>{{ simulation.abscisse_du_point_d_enregistrement2 }}</td> -->
+                    <!-- <td>{{ simulation.abscisse_du_point_d_enregistrement3 }}</td> -->
+                  </tr>
+  
+                  <tr>
+                    <td>ordonnée du point d'enregistrement(m)</td>
+                    <td><input type="float" name="yenreg" id="yenreg" value="200" required>
+                </td>
+                    <!-- <td>{{ simulation.Ordonnée_du_point_d_enregistrement2 }}</td> -->
+                    <!-- <td>{{ simulation.Ordonnée_du_point_d_enregistrement3 }}</td> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </body>
+        </div>
+      </div>
+      <center class="actions">
+        <button class="btn btn-primary" type="submit">Creer</button>
+        <a href="/" class="btn btn-secondary" type="submit">Annuler</a>
+      </center>
+      <br><br>
+    </form>
+</div>
+  </div>
+  
+  
+  <style>
+   .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+   }
+  
+    .table-container {
+       /* float: left; */
+       /* width: 48%; */
+       /* margin-right: 2%; */
+       margin-bottom: 20px;
+       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+       border-radius: 10px;
+       /* Bords arrondis */
+       overflow: hidden;
+    }
+  
+    table {
+       width: 100%;
+       border-collapse: collapse;
+       margin-bottom: 10px;
+       border-radius: 10px;
+       /* Bords arrondis */
+       overflow: hidden;
+    }
+  
+    th,
+    td {
+       border: 1px solid #ddd;
+       padding: 12px;
+       text-align: left;
+    }
+  
+    th {
+       background-color: #b11c30;
+       color: white;
+       font-weight: bold;
+    }
+  
+    tbody tr:nth-child(even) {
+       background-color: #f9f9f9;
+    }
+  
+    tbody tr:nth-child(odd) {
+       background-color: #f2f2f2;
+       /* Gris clair */
+    }
+  
+  
+  
+    tbody tr:hover {
+       background-color: #f0f0f0;
+    }
+  
+    /* Clearfix */
+    .clearfix::after {
+       content: "";
+       display: table;
+       clear: both;
+    }
+  
+    .table-title {
+       text-align: center;
+       font-weight: bold;
+       font-size: 18px;
+       margin-bottom: 10px;
+       background-color: #3d4246;
+       color: white;
+       padding: 10px;
+    }
+  
+    h1 {
+       text-align: center;
+       color: #ff9900;
+       margin-bottom: 20px;
+       font-size: 24px;
+       font-weight: bold;
+       border: 2px solid #ff9900;
+       padding: 10px;
+       border-radius: 10px;
+       background-color: #e0ddddec;
+       /* Fond gris */
+    }
+  
+  </style>
+  
+  <!-- -------------------- -->
+
 
 {% endblock %}

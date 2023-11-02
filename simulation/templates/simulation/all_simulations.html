@@ -9,7 +9,7 @@
     <br><br>
     <div class="container mt-4">
       {% if simulations %}                
-        <h1 class="display-5">All Simulations</h1>
+        <h1 class="display-5">Toutes les Simulations</h1>
         {% if user.is_authenticated %}
       <div class="lc-block d-grid gap-2 d-md-flex justify-content-md-start">   
         <a class="" href="/simulation/new"><button class="btn btn-primary px-4 mx-1 btn-sm">Create Simulation</button></a>
@@ -20,9 +20,9 @@
             <thead>
                 <tr>
                 <th class="text-black show display-4" scope="col"></th>
-                <th class="text-black show display-4" scope="col">Name</th>
-                <th class="text-black show display-4" scope="col">Creation Date</th>
-                <th class="text-black show display-4" scope="col">Author</th>
+                <th class="text-black show display-4" scope="col">No;</th>
+                <th class="text-black show display-4" scope="col">Date de creation</th>
+                <th class="text-black show display-4" scope="col">Auteur</th>
                 <th></th>
                 </tr>
             </thead>
