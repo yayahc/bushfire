@@ -6,9 +6,9 @@
 <!-- -------------------- -->
 
 
-<div class="gallery_section layout_padding">
+<div class="gallery_section layout_padding"> 
   <br><br><br>
-  <div class="container">
+  <div class="container">  
     
     <div class="basic-info">
       <table>
@@ -433,11 +433,28 @@
       </div>
     </div>
   </div>
+  <center><div class="loader"></div><br></center> 
 </div>
 
 
 <style>
- 
+.loader {
+  display: flex;
+  padding: 2rem 0;
+  justify-content: center;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #565add; /* Blue */
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 
   .table-container {
      /* float: left; */
@@ -531,7 +548,7 @@
   {% if simulation.is_completed %}
   <a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>
   {% else %}
-    <a class="btn btn-primary" href="{% url 'simulate' pk=simulation.pk %}">Simuler</a>
+    <a class="btn btn-primary" id="sim" href="{% url 'simulate' pk=simulation.pk %}">Simuler</a>
   {% endif %}
 
 {% else %}
@@ -544,6 +561,14 @@
 
 
 <script>
+  
+  const load = document.querySelector(".loader");
+  load.style.display = 'none';
+  const sim = document.getElementById("sim");
+  sim.addEventListener('click', () => {
+    load.style.display = 'flex';
+  })
+
   const downloadbtn = document.querySelector("#download");
   const centerbtns = document.querySelector(".center-action");
   downloadbtn.addEventListener('click', () => {
@@ -555,7 +580,7 @@
     
     centerbtns.style.display = 'block';
     footer.style.display = 'block';
-  })
+  });
 </script>
 
 {% endblock %}

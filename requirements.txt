@@ -1,9 +1,9 @@
 asgiref
-Django
+django
 django-crispy-forms
 gunicorn
-mysqlclient
 pytz
 sqlparse
 crispy-bootstrap4
 matplotlib
+pandas
