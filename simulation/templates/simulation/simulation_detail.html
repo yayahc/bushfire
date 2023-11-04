@@ -541,9 +541,9 @@
 
 <center class="center-action">
 {% if user == simulation.user %}
-  <a class="btn btn-outlined" id="download">Download PDF</a>
-  <a class="btn btn-secondary" href="{% url 'update_simulation' simulation.id %}">Edit </a>
-  <a class="btn btn-secondary" href="{% url 'delete_simulation' simulation.id %}">Delete</a>
+  <a class="btn btn-outlined" id="download">Telecharger en PDF</a>
+  <a class="btn btn-secondary" href="{% url 'update_simulation' simulation.id %}">Modifier </a>
+  <a class="btn btn-secondary" href="{% url 'delete_simulation' simulation.id %}">Supprimer</a>
   
   {% if simulation.is_completed %}
   <a href="{% url 'view_graphic' pk=simulation.pk %}">Voir la simulation</a>

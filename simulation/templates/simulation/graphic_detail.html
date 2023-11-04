@@ -16,7 +16,7 @@
                         Templates for Developers.
                     </p>      -->
                     <div class="container-graphic">
-                        <button class="btn btn-dark" type="submit" id="simulate">Play</button>
+                        <button class="btn btn-dark" type="submit" id="simulate">Lancer</button>
                         <div class="graphics">
                             <img src="{% static 'assets/images/placeholder-image.png' %}" id="slideshow-image">
                         </div>
@@ -54,7 +54,7 @@
             } else {
                 clearInterval(intervalId); // Pause the slideshow
                 intervalId = null;
-                simulateButton.textContent = "Play";
+                simulateButton.textContent = "Lancer";
             }
         });
     </script>
