@@ -1,0 +1,47 @@
+{% extends 'simulation/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="about_section layout_padding">
+  <br><br><br>
+  <div class="container">
+      <div class="row align-items-center">
+          <div class="col-md-6">
+              <div class="about_taital_main">
+                  <p class="about_text">Le mardi 17 juillet 2023 a eu lieu à l'UFR Mathématique et Informatique de l'Université Félix Houphouët Boigny le lancement du projet au Laboratoire de Mécanique et Informatique(LAMI).</p>
+                  <p class="about_text">Ce lancement a été éffectué en présence de représentants des parties impliquées dans le projet: le Fonds pour la Science, la Technologie et l'Innovation(FONSTI), la Société de Développement des Forêts(SODEFOR), le Comité National de Défense de la Forêt et de Lutte Contre les Feux de Brousse(CNDFB) et le Groupement des Spaurs Pompiers Militaires(GSPM). </p>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="about_img"><img src="{% static 'assets/images/lanc1.jpeg' %}" class="img-fluid" alt="Image"></div>
+          </div>
+      </div>
+  </div>
+</div>
+<br><br><br><br><br>
+<div class="about_section layout_padding">
+  <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="about_img"><img src="{% static 'assets/images/sodefor_siege.jpg' %}" class="img-fluid" alt="SODEFOR Image"></div>
+      </div>
+          <div class="col-md-6">
+              <div class="about_taital_main">
+                  <p class="about_text">La SODEFOR (Société de Développement des Forêts) joue un rôle essentiel dansla conservation et l'exploitation durable des ressources forestières du pays.  Elle s'efforce de préserver la biodiversité, de lutter contre la déforestation et de promouvoir des pratiques responsables d'exploitation forestière. En parallèle, la SODEFOR contribue au développement économique en permettant une exploitation légale et contrôlée des forêts. Elle travaille également sur des projets visant à assurer un avenir durable pour les forêts ivoiriennes, tout en collaborant avec des partenaires nationaux et internationaux.</p>
+              </div>
+          </div>
+          
+      </div>
+  </div>
+  <br><br><br>
+</div>
+     
+
+<style>
+  img {
+    border-radius: 20px;
+  }
+</style>
+
+{% endblock %}

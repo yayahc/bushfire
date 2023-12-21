@@ -1,0 +1,15 @@
+var_veg,data_veg
+limite initiale ox,0
+limite finale ox,440
+limite initiale oy,0
+limite finale oy,400
+longueur de la flamme,6.29
+hauteur de la végétation,0.51
+diamètre du combustible,1.00E-03
+densité de la végétation,512
+charge surfacique de la végétation,0.37
+teneur en eau de la végétation,0.058
+temps de combustion,23.52
+chaleur spécifique du combustible,1.25E+03
+coefficient absorption combustible,0.9
+emissivite du combustible,0.1

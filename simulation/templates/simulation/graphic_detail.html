@@ -1,0 +1,80 @@
+{% extends 'simulation/index.html' %}
+{% load static %}
+
+{% block content %}
+
+<br>
+
+{% if urls %}
+<div class="pt-md-14 pt-12 pb-14">
+            <div class="">
+                <div class="mb-4 mb-xl-0 text-center">                    
+                    <!-- Caption -->
+                    <!-- <h1 class="display-6 ls-sm mt-2 fw-bold ">{{ simulation.name }}</h1> -->
+                    <!-- <p class="mb-6 h2 text-muted px-md-8">
+                        Geeks is a customizable, Bootstrap based UI Kits and
+                        Templates for Developers.
+                    </p>      -->
+                    <div class="container-graphic">
+                        <button class="btn btn-dark" type="submit" id="simulate">Lancer</button>
+                        <div class="graphics">
+                            <img src="{% static 'assets/images/placeholder-image.png' %}" id="slideshow-image">
+                        </div>
+                    </div>
+                </div>
+    </div>
+</div>
+
+
+    <p id="urls" style="display: none;">{{ urls }}</p>   
+
+    <script>
+        // JavaScript code for the slideshow
+        var urlsString = document.getElementById('urls').textContent;
+        var urls = urlsString.split('|');
+        urls.pop();
+        console.log(urls);
+        
+        var currentImageIndex = 0;
+        var imageElement = document.getElementById('slideshow-image');
+        var simulateButton = document.getElementById('simulate');
+        var intervalId = null;
+
+        function changeImage() {
+            var imageUrl = '../../../' + urls[currentImageIndex];
+            imageElement.src = imageUrl;
+            currentImageIndex = (currentImageIndex + 1) % urls.length;
+        }
+
+        // Add a click event listener to the "simulate" button
+        simulateButton.addEventListener('click', function() {
+            if (!intervalId) {
+                intervalId = setInterval(changeImage, 1000); // Start the slideshow
+                simulateButton.textContent = "Pause";
+            } else {
+                clearInterval(intervalId); // Pause the slideshow
+                intervalId = null;
+                simulateButton.textContent = "Lancer";
+            }
+        });
+    </script>
+
+    <style>        
+        .graphic img{
+            display: flex;
+            justify-content: center;            
+            align-items: center;
+        }
+        .container-graphic button {
+            max-height: 50px;
+            width: 200px;
+        }
+        .graphic img {
+            width: 80%;
+        }
+    </style>
+
+
+{% endif %}
+
+{% endblock %}

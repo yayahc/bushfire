@@ -1,0 +1,9 @@
+asgiref
+django
+django-crispy-forms
+gunicorn
+pytz
+sqlparse
+crispy-bootstrap4
+matplotlib
+pandas
